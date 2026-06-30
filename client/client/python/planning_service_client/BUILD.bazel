@@ -1,0 +1,56 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@rules_python//python:packaging.bzl", "py_package", "py_wheel")
+
+alias(
+    name = "planning_service_client",
+    actual = "//client/python/planning_service_client/src:planning_service_client",
+    visibility = ["//client/python:__subpackages__"],
+)
+
+py_package(
+    name = "planning_service_client_pkg",
+    packages = [
+        # Source-rooted package path; `py_wheel.strip_path_prefixes` makes this land at
+        # site-packages/planning_service_client/...
+        "client/python/planning_service_client/src/planning_service_client",
+        # Generated protobuf/grpc Python modules.
+        "proto",
+    ],
+    deps = [
+        "//client/python/planning_service_client/src:planning_service_client",
+    ],
+)
+
+py_wheel(
+    name = "planning_service_client_wheel",
+    abi = select({
+        "@rules_python//python/config_settings:is_python_3.10": "cp310",
+        "@rules_python//python/config_settings:is_python_3.11": "cp311",
+        "@rules_python//python/config_settings:is_python_3.12": "cp312",
+    }),
+    distribution = "planning-service-client",
+    license = "BSD-3-Clause",
+    platform = "linux_x86_64",
+    python_requires = ">=3.10",
+    python_tag = select({
+        "@rules_python//python/config_settings:is_python_3.10": "cp310",
+        "@rules_python//python/config_settings:is_python_3.11": "cp311",
+        "@rules_python//python/config_settings:is_python_3.12": "cp312",
+    }),
+    requires_file = "requirements.txt",
+    strip_path_prefixes = [
+        "client/python/planning_service_client/src",
+    ],
+    version = "0.0.1",
+    deps = [
+        ":planning_service_client_pkg",
+    ],
+)
+
+py_binary(
+    name = "add_shape",
+    srcs = ["exe/add_shape.py"],
+    deps = [
+        ":planning_service_client",
+    ],
+)

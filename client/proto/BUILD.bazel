@@ -1,0 +1,89 @@
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
+load("//tools/bazel:proto_generate.bzl", "CPP", "PYTHON", "proto_generate")
+
+# Library of types which are shared across services, so must be compiled first
+
+# Types library (TODO: This should be broken out into respective sublibraries)
+proto_library(
+    name = "basic_types_proto",
+    srcs = ["basic_types.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@protobuf//:struct_proto"],
+)
+
+proto_generate(
+    srcs = [":basic_types_proto"],
+    languages = [
+        CPP,
+        PYTHON,
+    ],
+)
+
+# Builder
+proto_library(
+    name = "builder_proto",
+    srcs = ["builder.proto"],
+    visibility = ["//visibility:public"],
+    deps = [":basic_types_proto"],
+)
+
+proto_generate(
+    srcs = [":builder_proto"],
+    generate_grpc = True,
+    languages = [
+        CPP,
+        PYTHON,
+    ],
+)
+
+# Planner
+proto_library(
+    name = "planner_proto",
+    srcs = ["planner.proto"],
+    visibility = ["//visibility:public"],
+    deps = [":basic_types_proto"],
+)
+
+proto_generate(
+    srcs = [":planner_proto"],
+    generate_grpc = True,
+    languages = [
+        CPP,
+        PYTHON,
+    ],
+)
+
+# Visualizer
+proto_library(
+    name = "visualizer_proto",
+    srcs = ["visualizer.proto"],
+    deps = [
+        ":basic_types_proto",
+        "@protobuf//:empty_proto",
+    ],
+)
+
+proto_generate(
+    srcs = [":visualizer_proto"],
+    generate_grpc = True,
+    languages = [
+        CPP,
+        PYTHON,
+    ],
+)
+
+# Registry
+proto_library(
+    name = "registry_proto",
+    srcs = ["registry.proto"],
+    deps = [":basic_types_proto"],
+)
+
+proto_generate(
+    srcs = [":registry_proto"],
+    generate_grpc = True,
+    languages = [
+        CPP,
+        PYTHON,
+    ],
+)

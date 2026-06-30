@@ -1,0 +1,73 @@
+<robot name="tool">
+  <link name="tool_base_link">
+    <inertial>
+      <mass value="0.0015" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <origin rpy="1.5707963267948966 0 -3.141592653589793" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/bottle/visual/bottle_atm.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0.025 0 0.00475" />
+      <geometry>
+        <box size="0.018 0.0275 0.050" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_body_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+    <parent link="tool_base_link" />
+    <child link="tool_body_link" />
+  </joint>
+  <link name="tool_body_link">
+    <inertial>
+      <mass value="0.0015" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/bottle/visual/bottle_body.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.2392 1.5707963267948966 0" xyz="-0.090681 0.058294 0" />
+      <geometry>
+        <cylinder length="0.085" radius="0.0225" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="1.2392 1.5707963267948966 0" xyz="-0.10956 0.11313 0" />
+      <geometry>
+        <cylinder length="0.025" radius="0.0038" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="-1.5707963267948966 0 -2.81" xyz="-0.059349 0.04793 0" />
+      <geometry>
+        <box size="0.018 0.018 0.125" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_primary_tag_joint" type="fixed">
+    <origin rpy="1.2392 0 -1.5707963267948966" xyz="0.042521 0 0.0267" />
+    <parent link="tool_base_link" />
+    <child link="bottle_primary_tag_link" />
+  </joint>
+  <link name="bottle_primary_tag_link" />
+  <joint name="tool_secondary_tag_joint" type="fixed">
+    <origin rpy="0.61959 0 -1.5707963267948966" xyz="0.033054 0 0.013728" />
+    <parent link="tool_base_link" />
+    <child link="bottle_secondary_tag_link" />
+  </joint>
+  <link name="bottle_secondary_tag_link" />
+  <joint name="tool_tip_joint" type="fixed">
+    <origin rpy="0 -0.33161 3.141592653589793" xyz="0.11461 0 0.12779" />
+    <parent link="tool_base_link" />
+    <child link="bottle_tip_link" />
+  </joint>
+  <link name="bottle_tip_link" />
+</robot>

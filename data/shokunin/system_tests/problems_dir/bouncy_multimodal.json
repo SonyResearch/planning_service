@@ -1,0 +1,70 @@
+{
+    "context_id": {
+        "value": "9596595594101528582"
+    },
+    "multimodal_planning_problem": {
+        "start": {
+            "system_conf": {
+                "data": {
+                    "panda_east": {
+                        "data": [-0.367, -0.057, 0.355, -2.233, -0.009, 2.240, 0.202
+                        ]
+                    },
+                    "panda_west": {
+                        "data": [0.381, -0.150, -0.245, -1.819, 0.041, 1.668, 0.144
+                        ]
+                    }
+                }
+            }
+        },
+        "goal": {
+            "system_conf": {},
+            "poses": [
+                {
+                    "frame_A": "plate1__plate_root",
+                    "frame_B": "panda_east__tool_mount_attach_link",
+                    "X_AB": {
+                        "translation": {
+                            "x": -0.2,
+                            "y": -0.0,
+                            "z": 0.07
+                        },
+                        "quat": {
+                            "w": 0.0014893665915829467,
+                            "x": -0.4379752662925739,
+                            "y": 0.010266501646513432,
+                            "z": 0.8989271643726466
+                        }
+                    }
+                }
+            ]
+        },
+        "goal_transform_poses": [
+            {
+                "frame_A": "plate1__plate_root",
+                "frame_B": "panda_east__tool_mount_attach_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.1
+                    },
+                    "quat": {
+                        "w": 1
+                    }
+                }
+            }
+        ]
+    },
+    "name": "Bouncy_multimodal",
+    "start_system_conf": {
+        "data": {
+            "panda_east": {
+                "data": [-0.367, -0.057, 0.355, -2.233, -0.009, 2.240, 0.202]
+            },
+            "panda_west": {
+                "data": [0.381, -0.150, -0.245, -1.819, 0.041, 1.668, 0.144]
+            }
+        }
+    }
+}

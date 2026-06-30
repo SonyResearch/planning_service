@@ -1,0 +1,39 @@
+{
+  "creation_date": "2025-12-19_09-10-34",
+  "geometric_hash": "e8f2bd84e2b106c212fff84b5a49d29c",
+  "manifest": "jp",
+  "panda_east": {
+    "calibration_camera_extrinsics": "NONE",
+    "calibration_dh": {
+      "arm_type": "panda",
+      "calibration_id": "xanthan",
+      "creation_date": "2025-06-18_16-21-29"
+    },
+    "finger_type": "BASIC",
+    "gripper_type": "ROBOTIQ",
+    "hand_camera_name": "d405_east",
+    "hand_camera_type": "CAMERA_REALSENSE_D405",
+    "orientation_constrained": false,
+    "tool_name": "BOTTLE_GREEN_SAUCE",
+    "tool_type": "BOTTLE"
+  },
+  "panda_west": {
+    "calibration_camera_extrinsics": "NONE",
+    "calibration_dh": {
+      "arm_type": "panda",
+      "calibration_id": "vanilla",
+      "creation_date": "2024-12-07_02-41-00"
+    },
+    "finger_type": "TACTILE_SFEEL_COMPLIANT",
+    "gripper_type": "ROBOTIQ",
+    "hand_camera_name": "d405_west",
+    "hand_camera_type": "CAMERA_REALSENSE_D405",
+    "orientation_constrained": false,
+    "tool_name": "NONE",
+    "tool_type": "NONE"
+  },
+  "scene_hash": "1178be412d8b0d1d9c0b3b1a8f4f752b",
+  "scene_name": "jp-panda_west(ROBOTIQ,TACTILE_SFEEL_COMPLIANT,NONE)-panda_east(ROBOTIQ,BASIC,BOTTLE_GREEN_SAUCE)",
+  "shokunin_description_version": "0.0.32",
+  "spam_version": "dev-b236f00"
+}

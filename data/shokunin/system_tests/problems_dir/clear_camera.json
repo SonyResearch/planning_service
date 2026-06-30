@@ -1,0 +1,60 @@
+{
+    "context_id": {
+        "value": "8003175751376329689"
+    },
+    "out_of_violation_problem": {
+        "configuration_clearance_norm": 0.05,
+        "influence_distance": 0.05,
+        "use_gradient": false
+    },
+    "name": "ClearCameraView",
+    "start_system_conf": {
+        "data": {
+            "panda_west": {
+                "data": [
+                    0.38101985622897894,
+                    -0.14923301481162674,
+                    -0.24510387735617786,
+                    -1.8200114894276396,
+                    0.040434541355916266,
+                    1.668025103251139,
+                    0.1435243607825703
+                ]
+            },
+            "panda_east": {
+                "data": [
+                    -2.366706997690131,
+                    0.3812687591231408,
+                    0.7370374526244916,
+                    -2.3357867659269167,
+                    -0.4991850744884506,
+                    2.5799003619388716,
+                    -2.8568314611040804
+                ]
+            }
+        }
+    },
+    "plan_options": {
+        "collision_options": {
+            "shapes": [
+                {
+                    "shape": {
+                        "cylinder": {
+                            "radius": 0.12,
+                            "height": 0.5
+                        }
+                    },
+                    "frame": "plate1__plate_root",
+                    "pose_in_frame": {
+                        "translation": {
+                            "z": 0.25
+                        },
+                        "quat": {
+                            "w": 1
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

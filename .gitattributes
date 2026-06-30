@@ -1,0 +1,5 @@
+*.mtl filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+data/**/iris_regions.yaml filter=lfs diff=lfs merge=lfs -text
+data/**/ik_cache.yaml filter=lfs diff=lfs merge=lfs -text
+data/**/*.dat filter=lfs diff=lfs merge=lfs -text

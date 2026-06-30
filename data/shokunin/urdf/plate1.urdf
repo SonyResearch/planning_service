@@ -1,0 +1,55 @@
+<robot name="object">
+  <link name="plate1__plate_root">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="0.0002" ixy="0.0" ixz="0.0" iyy="0.0002" iyz="0.0" izz="0.0002" />
+    </inertial>
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/plate/visual/plate.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/plate/collision/plate.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="plate1__boston_plate_marker_1_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.12036 0.19142 0.014" />
+    <parent link="plate1__plate_root" />
+    <child link="plate1__boston_plate_marker_1" />
+  </joint>
+  <joint name="plate1__boston_plate_marker_2_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.12036 0.34142 0.014" />
+    <parent link="plate1__plate_root" />
+    <child link="plate1__boston_plate_marker_2" />
+  </joint>
+  <joint name="plate1__boston_plate_marker_3_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.079637 0.34142 0.014" />
+    <parent link="plate1__plate_root" />
+    <child link="plate1__boston_plate_marker_3" />
+  </joint>
+  <link name="plate1__boston_plate_marker_1" />
+  <link name="plate1__boston_plate_marker_2" />
+  <link name="plate1__boston_plate_marker_3" />
+  <joint name="plate1__tokyo_plate_marker_1_fixed_joint" type="fixed">
+    <origin rpy="0 0 1.5708" xyz="-0.0080088 0.18258 0.019" />
+    <parent link="plate1__plate_root" />
+    <child link="plate1__tokyo_plate_marker_1" />
+  </joint>
+  <joint name="plate1__tokyo_plate_marker_2_fixed_joint" type="fixed">
+    <origin rpy="0 0 1.5708" xyz="-0.15801 0.18258 0.019" />
+    <parent link="plate1__plate_root" />
+    <child link="plate1__tokyo_plate_marker_2" />
+  </joint>
+  <joint name="plate1__tokyo_plate_marker_3_fixed_joint" type="fixed">
+    <origin rpy="0 0 1.5708" xyz="-0.15801 -0.017418 0.019" />
+    <parent link="plate1__plate_root" />
+    <child link="plate1__tokyo_plate_marker_3" />
+  </joint>
+  <link name="plate1__tokyo_plate_marker_1" />
+  <link name="plate1__tokyo_plate_marker_2" />
+  <link name="plate1__tokyo_plate_marker_3" />
+</robot>

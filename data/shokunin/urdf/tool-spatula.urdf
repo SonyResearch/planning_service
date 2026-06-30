@@ -1,0 +1,96 @@
+<robot name="tool">
+  <link name="tool_base_link">
+    <visual name="visual">
+      <origin rpy="1.5707963267948966 0 -3.141592653589793" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/spatula/visual/spatula_atm.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.01 0 0" />
+      <geometry>
+        <box size="0.02 0.027 0.027" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_body_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+    <parent link="tool_base_link" />
+    <child link="tool_body_link" />
+  </joint>
+  <link name="tool_body_link">
+    <visual name="visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/spatula/visual/spatula_body.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.03 0 0" />
+      <geometry>
+        <box size="0.022 0.027 0.027" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.06 0.0215 0" />
+      <geometry>
+        <box size="0.040 0.07 0.027" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 -0.72" xyz="-0.10 0.016 0" />
+      <geometry>
+        <box size="0.08 0.04 0.027" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_face_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+    <parent link="tool_base_link" />
+    <child link="spatula_face_link" />
+  </joint>
+  <link name="spatula_face_link">
+    <visual name="visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/spatula/visual/spatula_face.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 -0.66" xyz="-0.147 0.0351 0" />
+      <geometry>
+        <box size="0.03 0.005 0.027" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 -1.15" xyz="-0.184 0.098 0" />
+      <geometry>
+        <box size="0.12 0.003 0.08" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_primary_tag_joint" type="fixed">
+    <origin rpy="0.7854 0 -1.5707963267948966" xyz="0.047695 0 0.019571" />
+    <parent link="tool_base_link" />
+    <child link="spatula_primary_tag_link" />
+  </joint>
+  <link name="spatula_primary_tag_link" />
+  <joint name="tool_secondary_tag_joint" type="fixed">
+    <origin rpy="0 0 -1.5707963267948966" xyz="0.03069 0 0.01250" />
+    <parent link="tool_base_link" />
+    <child link="spatula_secondary_tag_link" />
+  </joint>
+  <link name="spatula_secondary_tag_link" />
+  <joint name="tool_tip_joint" type="fixed">
+    <origin rpy="1.13546381558617 0 -1.5707963267949" xyz="0.208098087117404 0 0.151135455268745" />
+    <parent link="tool_base_link" />
+    <child link="spatula_tip_link" />
+  </joint>
+  <link name="spatula_tip_link" />
+  <joint name="tool_face_center_joint" type="fixed">
+    <origin rpy="1.13546381558617 0 -1.5707963267949" xyz="0.182036198460426 0 0.0961391609136655" />
+    <parent link="tool_base_link" />
+    <child link="spatula_face_center_link" />
+  </joint>
+  <link name="spatula_face_center_link" />
+</robot>

@@ -1,0 +1,19 @@
+# Pinned dependencies for the planning_service_client package used by bazel.
+click>=8.1.7
+colorlog>=6.9.0
+exceptiongroup>=1.2.2
+grpcio==1.69.0
+grpcio-health-checking==1.69.0
+grpcio-status==1.69.0
+grpcio-tools==1.69.0
+iniconfig>=2.0.0
+numpy<2,>=1.24.4
+packaging>=24.1
+pluggy>=1.5.0
+protobuf<6,>=5.29.3
+pygments==2.19.1
+pytest>=8.3.3
+pytest-timeout==2.3.1
+pyyaml>=6.0.2
+tomli>=2.0.1
+typing_extensions==4.13.2

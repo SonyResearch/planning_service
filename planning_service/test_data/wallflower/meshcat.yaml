@@ -1,0 +1,9 @@
+# This file is the default one that dracula uses to start meshcat
+# If you want to change anything and see it on live robot, modify
+# this file and restart TLE (on local-config or dev-docker)
+
+visual: true
+collision: true
+color_map: {}
+prm_color_map: {}
+end_effector_frame_vec: []

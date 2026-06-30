@@ -1,0 +1,123 @@
+load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
+# Test data target for all tests
+filegroup(
+    name = "config",
+    srcs = glob(["config/**"]),
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "shokunin_lib",
+    hdrs = [
+        "shokunin_common.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/service/utils",
+        "//planning_service/service/utils:resource_registry",
+        "@cli11",
+        "@planning_service_client//client/cpp/planning_service_client:basics",
+        "@planning_service_client//client/cpp/planning_service_client/common",
+        "@planning_service_client//client/cpp/planning_service_client/planner",
+    ],
+)
+
+cc_binary(
+    name = "artifacts_viz",
+    srcs = ["artifacts_viz.cc"],
+    deps = [":shokunin_lib"],
+)
+
+cc_binary(
+    name = "go_to_linear_move",
+    srcs = [
+        "go_to_linear_move.cc",
+    ],
+    # use config
+    data = [":config"],
+    deps = [
+        ":shokunin_lib",
+        "//planning_service/comms:plan_service",
+    ],
+)
+
+cc_binary(
+    name = "solve_plan_json",
+    srcs = ["solve_plan_json.cc"],
+    deps = [
+        ":shokunin_lib",
+        "//planning_service/comms:plan_service",
+    ],
+)
+
+cc_binary(
+    name = "repair_artifacts_from_problems",
+    srcs = ["repair_artifacts_from_problems.cc"],
+    deps = [
+        ":shokunin_lib",
+        "//planning_service/comms:plan_service",
+    ],
+)
+
+cc_binary(
+    name = "build_regions_from_problems",
+    srcs = ["build_regions_from_problems.cc"],
+    deps = [
+        ":shokunin_lib",
+        "//planning_service/comms:plan_service",
+    ],
+)
+
+cc_binary(
+    name = "update_roadmap_from_problems",
+    srcs = ["update_roadmap_from_problems.cc"],
+    deps = [
+        ":shokunin_lib",
+        "//planning_service/comms:plan_service",
+    ],
+)
+
+cc_binary(
+    name = "run_result_json",
+    srcs = ["run_result_json.cc"],
+    deps = [":shokunin_lib"],
+)
+
+cc_binary(
+    name = "meshcat_sliders",
+    srcs = ["meshcat_sliders.cc"],
+    deps = [":shokunin_lib"],
+)
+
+cc_binary(
+    name = "migrate_artifacts",
+    srcs = ["migrate_artifacts.cc"],
+    deps = [":shokunin_lib"],
+)
+
+cc_binary(
+    name = "solve_saved_problems",
+    srcs = ["solve_saved_problems.cc"],
+    deps = [
+        ":shokunin_lib",
+        "//planning_service/comms:plan_service",
+    ],
+)
+
+# Tests, move it elsewhere later
+cc_binary(
+    name = "async_motions",
+    srcs = ["async_motions.cc"],
+    deps = [":shokunin_lib"],
+)
+
+cc_binary(
+    name = "async_motions_stage_3",
+    srcs = ["async_motions_stage_3.cc"],
+    deps = [
+        ":shokunin_lib",
+        "//planning_service/draco:client_conversions",
+    ],
+)

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+export USER_UID=${UID}
+docker compose -f docker-compose.production.yml up -d --force-recreate

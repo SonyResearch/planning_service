@@ -1,0 +1,15 @@
+joint_limits:
+  flower1:
+    velocity_bound: [1, 1]
+    acceleration_bound: [2, 1]
+    torque_bound: [10, 10]
+  flower2:
+    velocity_bound: [1, 1]
+    acceleration_bound: [2, 1]
+    torque_bound: [10, 10]
+
+cartesian_limits:
+  flower1::ball:
+    speed_limit: 3.0
+  flower2::ball:
+    speed_limit: 3.0

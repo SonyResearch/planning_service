@@ -1,0 +1,57 @@
+composite_plan_name: scoop_hotel_pan_third_6in_000
+constraints_vec:
+  - plan_name: view_conf_to_getstuff_approach
+    position_constraints:
+      - frame_A: hotel_pan_third_6in_000
+        frame_B: disher_2oz_face
+        position_BQ: [0.0, 0.0, 0.0]
+        position_AQ_lower: [-0.315, -0.515, -0.02]
+        position_AQ_upper: [0.315, 0.515, 0.66]
+      - frame_A: hotel_pan_third_6in_000
+        frame_B: disher_2oz_tip
+        position_BQ: [0.0, 0.0, 0.0]
+        position_AQ_lower: [-0.315, -0.515, -0.02]
+        position_AQ_upper: [0.315, 0.515, 0.66]
+    collision_checker:
+      - name: main
+  - plan_name: getstuff_approach_to_getstuff_finish
+    position_constraints:
+      - frame_A: hotel_pan_third_6in_000
+        frame_B: disher_2oz
+        position_BQ: [0.0, 0.0, 0.0]
+        position_AQ_lower: [-0.315, -0.515, -0.02]
+        position_AQ_upper: [0.315, 0.515, 0.66]
+      - frame_A: hotel_pan_third_6in_000
+        frame_B: disher_2oz_tip
+        position_BQ: [0.0, 0.0, 0.0]
+        position_AQ_lower: [-0.315, -0.515, -0.02]
+        position_AQ_upper: [0.315, 0.515, 0.66]
+    collision_checker: getstuff
+  - plan_name: getstuff_finish_to_dispense_start
+    position_constraints:
+      - frame_A: hotel_pan_third_6in_000
+        frame_B: disher_2oz_face
+        position_BQ: [0.0, 0.0, 0.0]
+        position_AQ_lower: [-0.315, -0.515, -0.02]
+        position_AQ_upper: [0.315, 0.515, 0.66]
+      - frame_A: hotel_pan_third_6in_000
+        frame_B: disher_2oz_tip
+        position_BQ: [0.0, 0.0, 0.0]
+        position_AQ_lower: [-0.315, -0.515, -0.02]
+        position_AQ_upper: [0.315, 0.515, 0.66]
+    angle_constraints:
+      - frame_A: world
+        frame_B: disher_2oz_face
+        a_A: [0.0, 0.0, 1.0]
+        b_B: [0.0, 0.0, 1.0]
+        angle_lower: 0.0
+        angle_upper: 0.4
+    collision_checker: transport_to_dispense
+  - plan_name: dispense_start_to_dispense_finish
+    position_constraints:
+      - frame_A: bowl_5qt
+        frame_B: disher_2oz_face
+        position_BQ: [0.0, 0.0, 0.0]
+        position_AQ_lower: [-0.02, -0.02, 0]
+        position_AQ_upper: [0.02, 0.02, 0.5]
+    collision_checker: main

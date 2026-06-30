@@ -1,0 +1,32 @@
+directives:
+  - add_model:
+      file: package://test_models/wallflower/wallflower_flower.urdf
+      name: robot
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: robot::base_link
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://test_models/wallflower/wallflower_wall.urdf
+      name: wall
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: wall::main
+      X_PC:
+        translation: [0.75, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: calibrated_ball
+      X_PF:
+        base_frame: robot::ball
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]

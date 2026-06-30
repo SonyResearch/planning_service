@@ -1,0 +1,63 @@
+load("@rules_pkg//:mappings.bzl", "pkg_attributes", "pkg_files")
+load("@rules_pkg//pkg:pkg.bzl", "pkg_deb", "pkg_tar")
+
+# Distribution
+pkg_files(
+    name = "binaries",
+    srcs = [
+        "//planning_service/app:iris_builder",
+        "//planning_service/app:motion_planner",
+        "//planning_service/app:remove_invalid_contexts",
+        "//planning_service/app:remove_unused_geo",
+        "//planning_service/app:validate_resources",
+        "//planning_service/app:visualizer",
+    ],
+    attributes = pkg_attributes(
+        mode = "0755",
+    ),
+    prefix = "usr/bin",
+)
+
+pkg_files(
+    name = "docker_start",
+    srcs = ["//:docker_start.sh"],
+    attributes = pkg_attributes(
+        mode = "0755",
+    ),
+    prefix = "usr/share/planning_service",
+)
+
+pkg_tar(
+    name = "planning_service-tar",
+    srcs = [
+        ":binaries",
+        ":docker_start",
+        "@drake//:drake_files",
+    ],
+    extension = "tar.gz",
+)
+
+pkg_deb(
+    name = "planning_service-debian",
+    architecture = "amd64",
+    data = ":planning_service-tar",
+    description = "Motion planning service",
+    homepage = "https://github.com/SonyResearch/planning_service",
+    maintainer = "David Bambrick",
+    package = "planning_service",
+    package_file_name = "planning_service.deb",
+    version_file = "version.txt",
+)
+
+pkg_files(
+    name = "ompl_files",
+    srcs = ["@ompl"],
+    include_runfiles = True,
+)
+
+pkg_tar(
+    name = "ompl_tar",
+    srcs = [":ompl_files"],
+    extension = "tar.gz",
+    package_dir = "ompl",
+)

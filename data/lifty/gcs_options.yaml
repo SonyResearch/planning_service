@@ -1,0 +1,9 @@
+drake_gcs_options:
+  max_rounding_trials: 100
+  flow_tolerance: 1.e-05
+  rounding_seed: 0
+connecting_set_type: 1
+connection_set_epsilon: 0.001
+use_convex_hull_gcs: false
+cost_type: 0
+lazy_gcc_edges: false

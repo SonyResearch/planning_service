@@ -1,0 +1,17 @@
+load("//tools/bazel:python.bzl", "py_pytest")
+
+py_pytest(
+    name = "test_registry_client",
+    srcs = ["test_registry_client.py"],
+    data = ["//client/python/planning_service_client/tests:conftest.py"],
+    deps = ["//client/python/planning_service_client"],
+)
+
+py_pytest(
+    name = "test_base_client",
+    srcs = ["test_base_client.py"],
+    deps = [
+        "//client/python/planning_service_client",
+        "//client/python/planning_service_client/tests:dummy_py_pb2_grpc",
+    ],
+)

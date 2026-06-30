@@ -1,0 +1,39 @@
+{
+  "creation_date": "2025-12-19_09-44-51",
+  "geometric_hash": "b5bcba7bf89f7289a523da649bbec6e6",
+  "manifest": "jp",
+  "panda_east": {
+    "calibration_camera_extrinsics": "NONE",
+    "calibration_dh": {
+      "arm_type": "panda",
+      "calibration_id": "xanthan",
+      "creation_date": "2025-06-18_16-21-29"
+    },
+    "finger_type": "BASIC",
+    "gripper_type": "ROBOTIQ",
+    "hand_camera_name": "d405_east",
+    "hand_camera_type": "CAMERA_REALSENSE_D405",
+    "orientation_constrained": true,
+    "tool_name": "SPOON_SAUCE",
+    "tool_type": "SPOON"
+  },
+  "panda_west": {
+    "calibration_camera_extrinsics": "NONE",
+    "calibration_dh": {
+      "arm_type": "panda",
+      "calibration_id": "vanilla",
+      "creation_date": "2024-12-07_02-41-00"
+    },
+    "finger_type": "TACTILE_SFEEL_COMPLIANT",
+    "gripper_type": "ROBOTIQ",
+    "hand_camera_name": "d405_west",
+    "hand_camera_type": "CAMERA_REALSENSE_D405",
+    "orientation_constrained": false,
+    "tool_name": "NONE",
+    "tool_type": "NONE"
+  },
+  "scene_hash": "e1110da206e7559816d297ab0485dbe4",
+  "scene_name": "jp-panda_west(ROBOTIQ,TACTILE_SFEEL_COMPLIANT,NONE)-panda_east(ROBOTIQ,BASIC,SPOON_SAUCE-CONSTRAINED)",
+  "shokunin_description_version": "0.0.32",
+  "spam_version": "dev-b236f00"
+}

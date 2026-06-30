@@ -1,0 +1,375 @@
+<robot name="object">
+  <link name="workstation__workstation_root" />
+  <joint name="workstation__workstation_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.4675" />
+    <parent link="workstation__workstation_root" />
+    <child link="workstation__workstation_plate_shelf" />
+  </joint>
+  <link name="workstation__workstation_plate_shelf">
+    <inertial>
+      <origin rpy="0 0 0" xyz="1.49005099672872E-18 2.13439737369302E-18 0" />
+      <mass value="344.60441288" />
+      <inertia ixx="34.4181920087493" ixy="1.73551412110621E-30" ixz="1.19163937976435E-15" iyy="36.8666063622617" iyz="2.63489183416612E-29" izz="21.3715616098542" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/plate_shelf.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.644 0.574 0.93223" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_camera_support_north_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.480 0 0.4675" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_camera_support_north" />
+  </joint>
+  <link name="workstation__workstation_camera_support_north">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/camera_support_north.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.020 0 0.100" />
+      <geometry>
+        <box size="0.040 0.110 0.200" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.098 0 0.0075" />
+      <geometry>
+        <box size="0.200 0.100 0.015" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_ingredient_shelf_center_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.36159 0 0" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_ingredient_shelf_center" />
+  </joint>
+  <link name="workstation__workstation_ingredient_shelf_center">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.44612" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/ingredient_shelf_center.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.09 0.560 0.93223" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_robot_shelf_east_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.52177 0.0013836" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_robot_shelf_east" />
+  </joint>
+  <link name="workstation__workstation_robot_shelf_east">
+    <inertial>
+      <origin rpy="0 0 0" xyz="1.69638710663294E-15 -1.55431223447522E-15 -0.4675" />
+      <mass value="292.5054" />
+      <inertia ixx="26.78620638045" ixy="1.13099061171899E-15" ixz="-2.3107550734306E-16" iyy="31.92757379625" iyz="-2.38232819224704E-28" izz="16.0945246242" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/robot_shelf_east.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.660 0.474 0.935" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_robot_shelf_west_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.52177 0.0013836" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_robot_shelf_west" />
+  </joint>
+  <link name="workstation__workstation_robot_shelf_west">
+    <inertial>
+      <origin rpy="0 0 0" xyz="6.15437974771233E-15 -1.11022302462516E-16 -0.4675" />
+      <mass value="292.5054" />
+      <inertia ixx="26.78620638045" ixy="1.13099061171899E-15" ixz="-2.3107550734306E-16" iyy="31.92757379625" iyz="-2.38213891570035E-28" izz="16.0945246242" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/robot_shelf_west.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.660 0.474 0.935" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_robot_base_east_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.053 -0.52177 0.47564" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_robot_base_east" />
+  </joint>
+  <link name="workstation__workstation_robot_base_east">
+    <inertial>
+      <origin rpy="0 0 0" xyz="5.73552094225421E-18 -1.4432899320127E-15 -9.0205620750794E-17" />
+      <mass value="9.55739192229679" />
+      <inertia ixx="0.0880683266841081" ixy="-2.65601984880014E-19" ixz="2.07225097063281E-16" iyy="0.0880683266841081" iyz="3.32997614544763E-17" izz="0.163550869270304" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.203 0.203 0.019" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.203 0.203 0.019" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_camera_support_east_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.1745 0.0816 0" />
+    <parent link="workstation__workstation_robot_base_east" />
+    <child link="workstation__workstation_camera_support_east" />
+  </joint>
+  <link name="workstation__workstation_camera_support_east">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/camera_support_east.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.020 0.01763 0.055" />
+      <geometry>
+        <box size="0.055 0.080 0.110" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_robot_base_west_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.053 0.52177 0.47564" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_robot_base_west" />
+  </joint>
+  <link name="workstation__workstation_robot_base_west">
+    <inertial>
+      <origin rpy="0 0 0" xyz="4.80740007168569E-15 -1.11022302462516E-16 6.24500451351651E-17" />
+      <mass value="9.55739192229678" />
+      <inertia ixx="0.0880683266841085" ixy="5.56420592173173E-20" ixz="2.06783386502645E-16" iyy="0.0880683266841085" iyz="3.3299761454476E-17" izz="0.163550869270304" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.203 0.203 0.019" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.203 0.203 0.019" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_camera_support_west_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.1745 -0.0816 0" />
+    <parent link="workstation__workstation_robot_base_west" />
+    <child link="workstation__workstation_camera_support_west" />
+  </joint>
+  <link name="workstation__workstation_camera_support_west">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/camera_support_west.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.020 -0.01763 0.055" />
+      <geometry>
+        <box size="0.055 0.080 0.110" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_ingredient_shelf_east_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.564089399999999 -0.514999999999999 0.000153000000000292" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_ingredient_shelf_east" />
+  </joint>
+  <link name="workstation__workstation_ingredient_shelf_east">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00249999999999917 0 0.445962" />
+      <mass value="5.01219830975724" />
+      <inertia ixx="0.0533231825448605" ixy="-1.8850920890682E-17" ixz="6.00717482934992E-17" iyy="0.0202543389626385" iyz="4.51696135809426E-18" izz="0.0719577010312235" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/ingredient_shelf_east.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.485 0.475 0.93223" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_ingredient_shelf_west_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.564089399999998 0.515 0.000153000000002512" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_ingredient_shelf_west" />
+  </joint>
+  <link name="workstation__workstation_ingredient_shelf_west">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0024999999999995 2.22044604925031E-16 0.445961999999998" />
+      <mass value="5.01219830975724" />
+      <inertia ixx="0.0533231825448604" ixy="-1.87635458566411E-17" ixz="-1.02267284867918E-16" iyy="0.0202543389626385" iyz="2.49813222667197E-17" izz="0.0719577010312235" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/dual_robot_workstation/visual/ingredient_shelf_west.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.485 0.475 0.93223" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_base_cover_east_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.52177 0.48516" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_base_cover_east" />
+  </joint>
+  <link name="workstation__workstation_base_cover_east">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.06" />
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+      <geometry>
+        <cylinder length="0.16" radius="0.180" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.06" />
+      <geometry>
+        <cylinder length="0.16" radius="0.180" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_base_cover_west_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.52177 0.48516" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_base_cover_west" />
+  </joint>
+  <link name="workstation__workstation_base_cover_west">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.06" />
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+      <geometry>
+        <cylinder length="0.16" radius="0.180" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.06" />
+      <geometry>
+        <cylinder length="0.16" radius="0.180" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_north_wall_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.72159 0 0.78419" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_north_wall" />
+  </joint>
+  <link name="workstation__workstation_north_wall">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <material name="transparent_glass">
+        <color rgba="0.8 0.9 1.0 0.3" />
+      </material>
+      <geometry>
+        <box size="0.20 2 2.5" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.20 2 2.5" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_south_wall_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.8155 0 -0.00031" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_south_wall" />
+  </joint>
+  <link name="workstation__workstation_south_wall">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <material name="transparent_glass">
+        <color rgba="0.8 0.9 1.0 0.3" />
+      </material>
+      <geometry>
+        <box size="0.100 0.560 0.9322" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.100 0.560 0.9322" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="workstation__workstation_west_wall_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.12841 1.11 0.78419" />
+    <parent link="workstation__workstation_plate_shelf" />
+    <child link="workstation__workstation_west_wall" />
+  </joint>
+  <link name="workstation__workstation_west_wall">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <material name="transparent_glass">
+        <color rgba="0.8 0.9 1.0 0.3" />
+      </material>
+      <geometry>
+        <box size="1.5 0.2 2.5" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="1.5 0.2 2.5" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

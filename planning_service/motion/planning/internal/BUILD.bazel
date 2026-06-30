@@ -1,0 +1,39 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "geodesic_math",
+    srcs = ["geodesic_math.cc"],
+    hdrs = ["geodesic_math.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//planning_service/common:logging"],
+)
+
+cc_library(
+    name = "graph",
+    srcs = ["graph.cc"],
+    hdrs = ["graph.h"],
+    visibility = ["//visibility:public"],
+    deps = [":geodesic_math"],
+)
+
+# Tests
+
+cc_test(
+    name = "test_geodesic_math",
+    timeout = "short",
+    srcs = ["tests/test_geodesic_math.cc"],
+    deps = [
+        ":geodesic_math",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_graph",
+    timeout = "short",
+    srcs = ["tests/test_graph.cc"],
+    deps = [
+        ":graph",
+        "@googletest//:gtest_main",
+    ],
+)

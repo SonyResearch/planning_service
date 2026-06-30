@@ -1,0 +1,178 @@
+load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "draco_planner",
+    srcs = [
+        "draco_planner.cc",
+        "resolve_anchor.cc",
+        "solve_fixed_frames_motion.cc",
+        "solve_generalized_multimodal.cc",
+        "solve_global_ik.cc",
+        "solve_max_cartesian_acceleration.cc",
+        "solve_out_of_violation.cc",
+        "solve_plan_impl.cc",
+        "solve_update_traj_toward_waypoints.cc",
+    ],
+    hdrs = ["draco_planner.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:fmt",
+        "//planning_service/draco",
+        "//planning_service/draco:client_conversions",
+        "//planning_service/draco/visualizer:draco_visualizer",
+        "//planning_service/motion/iris:iris_inspector",
+        "@magic_enum",
+        "@planning_service_client//client/cpp/planning_service_client/planner",
+    ],
+)
+
+####### UNIT TESTS #######
+
+cc_test(
+    name = "test_solve_start_to_goal",
+    timeout = "long",
+    srcs = ["tests/test_solve_start_to_goal.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_solve_update_traj_toward_waypoints",
+    timeout = "short",
+    srcs = ["tests/test_solve_update_traj_toward_waypoints.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_solve_cartesian_linear_move",
+    timeout = "short",
+    srcs = ["tests/test_solve_cartesian_linear_move.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_solve_multimodal",
+    timeout = "short",
+    srcs = ["tests/test_solve_multimodal.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_solve_generalized_multimodal",
+    timeout = "short",
+    srcs = ["tests/test_solve_generalized_multimodal.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_solve_global_ik",
+    timeout = "short",
+    srcs = ["tests/test_solve_global_ik.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_solve_fixed_frames_motion",
+    timeout = "short",
+    srcs = ["tests/test_solve_fixed_frames_motion.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_solve_out_of_violation",
+    timeout = "short",
+    srcs = [
+        "tests/test_solve_out_of_violation.cc",
+    ],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_solve_max_cartesian_acceleration",
+    timeout = "short",
+    srcs = [
+        "tests/test_solve_max_cartesian_acceleration.cc",
+    ],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_draco_planner",
+    timeout = "short",
+    srcs = [
+        "tests/test_draco_planner.cc",
+    ],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_plan_options",
+    srcs = ["tests/test_plan_options.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_binary(
+    name = "run_circle",
+    srcs = ["exe/run_circle.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_planner",
+        "//planning_service/draco:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)

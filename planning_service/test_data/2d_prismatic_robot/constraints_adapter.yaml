@@ -1,0 +1,8 @@
+plan_name: ""
+position_constraints:
+  - frame_A: world
+    frame_B: robot::link2
+    position_BQ: [0.0, 0.0, 0.0]
+    position_AQ_lower: [-0.5, -0.25, -0.1]
+    position_AQ_upper: [0.5, 0.25, 0.1]
+collision_checker: {}

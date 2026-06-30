@@ -1,0 +1,13 @@
+directives:
+  - add_model:
+      file: package://iiwa_models/iiwa.urdf
+      name: iiwa
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: iiwa::base_link
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]

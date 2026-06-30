@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+# Usage: ./last3files.sh /path/to/directory
+DIR=$(dirname "$0")
+DIR=$(readlink -m "${DIR}/../../logs")
+# Check if directory exists
+if [[ ! -d "$DIR" ]]; then
+    echo "Error: $DIR is not a directory"
+    exit 1
+fi
+echo "text: Planning problems"
+echo "file_paths:"
+# Find files, sort by modification time, and print the last 3
+find "$DIR" -type f -printf "%T@ %p\n" \
+  | sort -nr \
+  | head -n 3 \
+  | readlink -m $(awk '{print $2}') \
+  | awk '{print "  - ", $1}'

@@ -1,0 +1,30 @@
+# This file is the default one that dracula uses to start meshcat
+# If you want to change anything and see it on live robot, modify
+# this file and restart TLE (on local-config or dev-docker)
+
+visual: true
+collision: true
+
+# Set meshcat colors. The colors of the bodies in drake change to
+# the rgba vector values if the name of the body starts with the key
+# below. For example, sneeze_guard_east_wall will get the color
+# of sneeze_guard below. Feel free to modify/add more colors.
+# TODO(@anyone): make a standard color map based on X11/CSS4 color names
+# see https://matplotlib.org/stable/gallery/color/named_colors.html
+color_map: # rgba values
+  iiwa_link:
+    rgba: [0.8, 0.8, 0.99, 1.0]
+  base_link:
+    rgba: [0.6, 0.6, 0.9, 1.0]
+  box_0:
+    rgba: [0.9, 0.3, 0.3, 0.8]
+  box_1:
+    rgba: [0.3, 0.9, 0.3, 0.8]
+  box_2:
+    rgba: [0.3, 0.3, 0.9, 0.8]
+
+prm_color_map: {}
+# Meshcat will show the xyz frame attached to the body if the name of
+# the body starts with the key below.
+end_effector_frame_vec:
+  - iiwa_link_ee

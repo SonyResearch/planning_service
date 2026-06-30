@@ -1,0 +1,108 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "utils",
+    srcs = ["utils.cc"],
+    hdrs = ["utils.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common",
+        "//planning_service/common:logging",
+        "//planning_service/service/types",
+    ],
+)
+
+cc_test(
+    name = "test_utils",
+    srcs = ["tests/test_utils.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "request_queue",
+    hdrs = ["request_queue.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:logging",
+        "//planning_service/service/types",
+    ],
+)
+
+cc_test(
+    name = "test_request_queue",
+    srcs = ["tests/test_request_queue.cc"],
+    deps = [
+        ":request_queue",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "job_runner",
+    hdrs = ["job_runner.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":utils",
+        "//planning_service/common:misc_utils",
+    ],
+)
+
+cc_test(
+    name = "test_job_runner",
+    srcs = ["tests/test_job_runner.cc"],
+    deps = [
+        ":job_runner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "resource_manager",
+    hdrs = ["resource_manager.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":job_runner",
+        ":request_queue",
+        ":resource_registry",
+        ":utils",
+        "//planning_service/common:misc_utils",
+        "@magic_enum",
+    ],
+)
+
+cc_test(
+    name = "test_resource_manager",
+    srcs = ["tests/test_resource_manager.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":resource_manager",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "resource_registry",
+    srcs = ["resource_registry.cc"],
+    hdrs = ["resource_registry.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":utils",
+        "//planning_service/common:time_utils",
+        "//planning_service/draco/planner:draco_planner",
+        "//planning_service/service/utils/web:meshcat_ports",
+    ],
+)
+
+cc_test(
+    name = "test_resource_registry",
+    srcs = ["tests/test_resource_registry.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":resource_registry",
+        "@googletest//:gtest_main",
+    ],
+)

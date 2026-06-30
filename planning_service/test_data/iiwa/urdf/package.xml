@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>iiwa_models</name>
+  <version>0.0.0</version>
+  <description>
+     Collision geometry for KUKA IIWA and three box obstacles.
+  </description>
+  <maintainer email="dave.bambrick@dexai.com">David Bambrick</maintainer>
+  <author>David Bambrick</author>
+  <license>Dexai Robotics</license>
+</package>

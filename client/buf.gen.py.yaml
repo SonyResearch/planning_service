@@ -1,0 +1,13 @@
+version: v2
+clean: true
+managed:
+  enabled: true
+plugins:
+  - remote: buf.build/protocolbuffers/python:v29.5 # v30+ Needs protobuf~=6.30.0
+    out: gen/python_proto_5/src
+  - remote: buf.build/protocolbuffers/python
+    out: gen/python_proto_6/src
+  - remote: buf.build/protocolbuffers/pyi
+    out: gen/python/src
+  - remote: buf.build/grpc/python
+    out: gen/python/src

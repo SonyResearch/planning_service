@@ -1,0 +1,4 @@
+xml_file: "planning_service/test_data/package.xml"
+dmd_file: "planning_service/test_data/wallflower/dmd.yaml"
+meshcat_params_file: "planning_service/test_data/meshcat.yaml"
+constraints_adapter_file: "planning_service/test_data/wallflower/default_constraints.yaml"

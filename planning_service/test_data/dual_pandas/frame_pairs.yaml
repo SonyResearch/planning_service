@@ -1,0 +1,11 @@
+frame_pairs:
+  - frame_A: WorldModelInstance::world
+    frame_B: franka_left::franka_tool_location
+  - frame_A: WorldModelInstance::world
+    frame_B: franka_right::franka_tool_location
+  - frame_A: franka_left::franka_tool_location
+    frame_B: franka_right::franka_tool_location
+  - frame_A: world
+    frame_B: franka_left::franka_tool_location
+  - frame_A: world
+    frame_B: franka_right::franka_tool_location

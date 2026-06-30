@@ -1,0 +1,161 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "utils",
+    srcs = ["utils.cc"],
+    hdrs = ["utils.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common",
+        "//planning_service/service/utils",
+        "@magic_enum",
+        "@planning_service_client//proto:builder_cpp_proto",
+        "@planning_service_client//proto:planner_cpp_proto",
+        "@planning_service_client//proto:registry_cpp_proto",
+        "@planning_service_client//proto:visualizer_cpp_proto",
+        "@protobuf//:json_util",
+    ],
+)
+
+cc_library(
+    name = "grpc_utils",
+    hdrs = ["grpc_utils.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:logging",
+        "@grpc//:grpc++",
+    ],
+)
+
+cc_library(
+    name = "server_wrapper",
+    hdrs = ["server_wrapper.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:logging",
+        "@grpc//:grpc++",
+        "@grpc//:grpc++_reflection",
+    ],
+)
+
+cc_library(
+    name = "plan_service",
+    srcs = [
+        "plan_service.cc",
+        "register_client_planning_problems.cc",
+    ],
+    hdrs = [
+        "plan_service.h",
+        "register_client_planning_problems.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":grpc_utils",
+        ":utils",
+        "//planning_service/service/planning:plan_manager",
+        "@planning_service_client//client/cpp/planning_service_client/common",
+        "@planning_service_client//client/cpp/planning_service_client/planner",
+        "@planning_service_client//proto:planner_cpp_grpc",
+    ],
+)
+
+cc_library(
+    name = "iris_service",
+    srcs = ["iris_service.cc"],
+    hdrs = ["iris_service.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":grpc_utils",
+        ":utils",
+        "//planning_service/service/iris:iris_manager",
+        "@planning_service_client//proto:builder_cpp_grpc",
+    ],
+)
+
+cc_library(
+    name = "registry_service",
+    srcs = ["registry_service.cc"],
+    hdrs = ["registry_service.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":grpc_utils",
+        ":utils",
+        "//planning_service/service/utils:resource_manager",
+        "@planning_service_client//proto:registry_cpp_grpc",
+    ],
+)
+
+cc_library(
+    name = "viz_service",
+    srcs = ["viz_service.cc"],
+    hdrs = ["viz_service.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":grpc_utils",
+        ":utils",
+        "//planning_service/service/visualization:visualizer_hub",
+        "@planning_service_client//client/cpp/planning_service_client:basics",
+        "@planning_service_client//proto:visualizer_cpp_grpc",
+    ],
+)
+
+# Testing
+cc_library(
+    name = "testing_utils",
+    hdrs = ["tests/testing_utils.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":server_wrapper",
+        "//planning_service/service/utils:resource_registry",
+        "@magic_enum",
+        "@planning_service_client//proto:builder_cpp_grpc",
+        "@planning_service_client//proto:planner_cpp_grpc",
+        "@planning_service_client//proto:registry_cpp_grpc",
+    ],
+)
+
+cc_test(
+    name = "test_plan_service",
+    srcs = ["tests/test_plan_service.cc"],
+    data = ["//planning_service:test_data"],
+    flaky = True,
+    deps = [
+        ":plan_service",
+        ":testing_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_registry_service",
+    srcs = ["tests/test_registry_service.cc"],
+    data = ["//planning_service:test_data"],
+    flaky = True,
+    deps = [
+        ":registry_service",
+        ":testing_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_iris_service",
+    srcs = ["tests/test_iris_service.cc"],
+    data = ["//planning_service:test_data"],
+    flaky = True,
+    deps = [
+        ":iris_service",
+        ":testing_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_viz_service",
+    srcs = ["tests/test_viz_service.cc"],
+    deps = [
+        ":viz_service",
+        "@googletest//:gtest_main",
+        "@grpc//:grpc++_test",
+    ],
+)

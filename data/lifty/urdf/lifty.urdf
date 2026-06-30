@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<robot name="lifty">
+
+  <link name="base_link">
+    <collision>
+      <geometry>
+       <box size="0.2 0.2 0.1"/> </geometry>
+    </collision>
+  </link>
+
+  <link name="main_shaft">
+    <collision>
+      <geometry>
+       <cylinder length="0.5" radius="0.07"/> </geometry>
+    </collision>
+  </link>
+
+  <joint name="rev" type="revolute">
+    <parent link="base_link"/>
+    <child link="main_shaft"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.25"/>
+    <axis xyz="0 0 1"/> 
+    <limit effort="10" lower="-1.57" upper="1.57" velocity="2.1750"/>
+  </joint>
+
+  <link name="arm_holder">
+    <collision>
+      <geometry>
+       <sphere radius="0.1"/> </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_main_shaft_arm_holder" type="fixed">
+    <parent link="main_shaft"/>
+    <child link="arm_holder"/>
+    <origin rpy="1.5707 0 0" xyz="0.0 0.0 0.3"/>
+  </joint>
+
+  <link name="arm">
+    <collision>
+      <geometry>
+        <cylinder length="0.6" radius="0.03"/> </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_arm_holder_arm" type="fixed">
+    <parent link="arm_holder"/>
+    <child link="arm"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.3"/>
+  </joint>
+
+
+  <link name="piston_holder">
+    <collision>
+      <geometry>
+        <cylinder length="0.15" radius="0.05"/> </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_arm_piston_holder" type="fixed">
+    <parent link="arm"/>
+    <child link="piston_holder"/>
+    <origin rpy="1.57 0 0" xyz="0.0 0.0 0.3"/>
+  </joint>
+
+  <link name="piston">
+    <collision>
+      <geometry>
+        <cylinder length="0.5" radius="0.03"/> </geometry>
+    </collision>
+  </link>
+
+  <joint name="piston" type="prismatic">
+    <parent link="piston_holder"/>
+    <child link="piston"/>
+    <axis xyz="0 0 1"/> 
+    <limit effort="10" lower="0.0" upper="0.3" velocity="2.1750"/>
+  </joint>
+
+  <link name="stamp">
+    <collision>
+      <geometry>
+        <cylinder length="0.02" radius="0.05"/> </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_piston_stamp" type="fixed">
+    <parent link="piston"/>
+    <child link="stamp"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.25"/>
+  </joint>
+
+<drake:collision_filter_group name="everything">
+    <drake:member link="base_link"/>
+    <drake:member link="main_shaft"/>
+    <drake:member link="arm_holder"/>
+    <drake:member link="piston_holder"/>
+    <drake:member link="piston"/>
+    <drake:member link="arm"/>
+    <drake:member link="stamp"/>
+    <drake:ignored_collision_filter_group name="everything"/>
+  </drake:collision_filter_group>
+
+  <drake:collision_filter_group name="base">
+    <drake:member link="base_link"/>
+    <drake:member link="main_shaft"/>
+  </drake:collision_filter_group>
+
+</robot>

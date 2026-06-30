@@ -1,0 +1,8 @@
+deployment:
+  type: "compose"
+  commands:
+    start: ".shok/deploy/start"
+    stop: ".shok/deploy/stop"
+    bug: ".shok/deploy/bug"
+  compose_files:
+    - " docker-compose.production.yml"

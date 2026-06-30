@@ -1,0 +1,23 @@
+# Enable Bzlmod for every Bazel command
+common --enable_bzlmod
+# Use a fixed minimal environment for actions so cache keys don't vary between
+# invocations from different callers (e.g. bare shell vs. uv build environment).
+build --incompatible_strict_action_env
+# Shared disk cache for all local Bazel invocations (manual builds, uv installs, etc.).
+# In CI, setup-bazel overrides this with its own managed cache path.
+build --disk_cache=~/.cache/bazel-disk
+# In ci, prefer to build faster
+build:ci -c fastbuild
+# Use highest optimization option for compilation
+build --cxxopt=-O3
+# Use C++20 by default.
+build --cxxopt=-std=c++20
+build --host_cxxopt=-std=c++20
+# Compiler warnings
+build --features=external_include_paths
+build --cxxopt=-Wall
+build --cxxopt=-Wextra
+build --cxxopt=-Wpedantic
+build --cxxopt=-Werror
+build --per_file_copt=external/.*@-w
+build --host_per_file_copt=external/.*@-w

@@ -1,0 +1,8 @@
+# Override compose file for system tests.
+# - Configures the visualizer with SYSTEM_NAME=lifty and default_init.
+services:
+  visualizer:
+    env_file:
+      - .env.ci
+    environment:
+      - DEFAULT_INIT=true

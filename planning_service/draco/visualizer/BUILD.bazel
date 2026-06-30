@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "draco_visualizer",
+    srcs = ["draco_visualizer.cc"],
+    hdrs = ["draco_visualizer.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/draco",
+        "//planning_service/draco:client_conversions",
+        "//planning_service/motion:robot_constraints",
+        "//planning_service/motion:robot_model",
+        "@planning_service_client//client/cpp/planning_service_client/planner",
+    ],
+)
+
+cc_test(
+    name = "test_draco_visualizer",
+    timeout = "short",
+    srcs = ["tests/test_draco_visualizer.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco_visualizer",
+        "@googletest//:gtest_main",
+    ],
+)

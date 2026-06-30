@@ -1,0 +1,49 @@
+load("//tools/bazel:python.bzl", "py_pytest")
+
+py_pytest(
+    name = "test_import",
+    srcs = ["test_import.py"],
+    deps = [
+        "//client/python/planning_service_client/src:planning_service_client",
+    ],
+)
+
+py_pytest(
+    name = "test_types",
+    srcs = ["test_types.py"],
+    deps = [
+        "//client/python/planning_service_client/src:planning_service_client",
+    ],
+)
+
+py_pytest(
+    name = "test_visualizer",
+    srcs = ["test_visualizer.py"],
+    deps = [
+        "//client/python/planning_service_client/src:planning_service_client",
+    ],
+)
+
+py_pytest(
+    name = "test_file_io",
+    srcs = ["test_file_io.py"],
+    deps = [
+        "//client/python/planning_service_client/src:planning_service_client",
+    ],
+)
+
+py_pytest(
+    name = "test_shapes",
+    srcs = ["test_shapes.py"],
+    deps = [
+        "//client/python/planning_service_client/src:planning_service_client",
+    ],
+)
+
+py_pytest(
+    name = "test_state",
+    srcs = ["test_state.py"],
+    deps = [
+        "//client/python/planning_service_client/src:planning_service_client",
+    ],
+)

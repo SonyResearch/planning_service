@@ -1,0 +1,20 @@
+name: release
+run-name: ${{ github.actor }} release 🚀
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: [ubuntu-latest]
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Bump submodule in dependant repositories
+        uses: SonyResearch/shokunin_shared_actions/bump-submodule@main
+        with:
+          gh-token: ${{ secrets.SHOKUNIN_GH_BOT_TOKEN }}

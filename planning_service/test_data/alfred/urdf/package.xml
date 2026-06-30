@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>test_models</name>
+  <version>0.0.0</version>
+  <description>
+    Unit test data for `process_model_directives.cc`
+  </description>
+  <maintainer email="sadra@dexai.com">Sadra Sadraddini</maintainer>
+  <author>Sadra Sadraddini</author>
+  <license>Dexai Robotics</license>
+</package>

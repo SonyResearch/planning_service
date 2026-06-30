@@ -1,0 +1,19 @@
+visualizer_options:
+  add_plans_to_visualizer: true
+  wait_for_user_go_input_in_meshcat: false
+  plans_buffer_size: 10
+  display_trajectory_frequency: 20
+  meshcat_beat_interval_ms: 100
+  mode: kNone
+planner_options:
+  use_straight_path_planner: true
+  use_gcs_planner: true
+  use_sample_based_planner: true
+  deconfliction_step: 0.01
+  deconfliction_offset: 0.1
+  async_collison_checking_time_step: 0.05
+  async_latency_check_per_call: 0.0005
+  latency_comms: 0.005
+  partial_solution_time_buffer: 0.3
+  update_spline_per_conf: 0.001
+  update_spline_extra_time: 0.005

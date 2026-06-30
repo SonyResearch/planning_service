@@ -1,0 +1,139 @@
+<robot name="object">
+  <link name="bottle_miso_sauce_holder__bottle_holder_root">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/tool_holders/bottle_holder/visual/bottle_holder.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0265 0.014554 0.04" />
+      <geometry>
+        <box size="0.007 0.018 0.060" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0265 0.014554 0.04" />
+      <geometry>
+        <box size="0.007 0.018 0.060" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.045 -0.019446 0.0305" />
+      <geometry>
+        <box size="0.010 0.086 0.041" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.045 -0.019446 0.0305" />
+      <geometry>
+        <box size="0.010 0.086 0.041" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.067471 0.0305" />
+      <geometry>
+        <box size="0.100 0.010 0.041" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0.014554 0.0175" />
+      <geometry>
+        <box size="0.100 0.018 0.015" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.04747 0.0665" />
+      <geometry>
+        <box size="0.03 0.01 0.113" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="bottle_miso_sauce_holder__bottle_holder_joint" type="fixed">
+    <origin rpy="3.141592653589793 0.33161 -1.5707963267948966" xyz="0 0.054833 0.16114" />
+    <parent link="bottle_miso_sauce_holder__bottle_holder_root" />
+    <child link="bottle_miso_sauce_holder__tool_mount_attach_link" />
+  </joint>
+  <link name="bottle_miso_sauce_holder__tool_mount_attach_link">
+  </link>
+  <joint name="bottle_miso_sauce_holder__tool_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="bottle_miso_sauce_holder__tool_mount_attach_link" />
+    <child link="bottle_miso_sauce_holder__tool_base_link" />
+  </joint>
+  <link name="bottle_miso_sauce_holder__tool_base_link">
+    <inertial>
+      <mass value="0.0015" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <origin rpy="1.5707963267948966 0 -3.141592653589793" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/bottle/visual/bottle_atm.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0.025 0 0.00475" />
+      <geometry>
+        <box size="0.018 0.0275 0.050" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="bottle_miso_sauce_holder__tool_body_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+    <parent link="bottle_miso_sauce_holder__tool_base_link" />
+    <child link="bottle_miso_sauce_holder__tool_body_link" />
+  </joint>
+  <link name="bottle_miso_sauce_holder__tool_body_link">
+    <inertial>
+      <mass value="0.0015" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/bottle/visual/bottle_body.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.2392 1.5707963267948966 0" xyz="-0.090681 0.058294 0" />
+      <geometry>
+        <cylinder length="0.085" radius="0.0225" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="1.2392 1.5707963267948966 0" xyz="-0.10956 0.11313 0" />
+      <geometry>
+        <cylinder length="0.025" radius="0.0038" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="-1.5707963267948966 0 -2.81" xyz="-0.059349 0.04793 0" />
+      <geometry>
+        <box size="0.018 0.018 0.125" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="bottle_miso_sauce_holder__tool_primary_tag_joint" type="fixed">
+    <origin rpy="1.2392 0 -1.5707963267948966" xyz="0.042521 0 0.0267" />
+    <parent link="bottle_miso_sauce_holder__tool_base_link" />
+    <child link="bottle_miso_sauce_holder__bottle_primary_tag_link" />
+  </joint>
+  <link name="bottle_miso_sauce_holder__bottle_primary_tag_link" />
+  <joint name="bottle_miso_sauce_holder__tool_secondary_tag_joint" type="fixed">
+    <origin rpy="0.61959 0 -1.5707963267948966" xyz="0.033054 0 0.013728" />
+    <parent link="bottle_miso_sauce_holder__tool_base_link" />
+    <child link="bottle_miso_sauce_holder__bottle_secondary_tag_link" />
+  </joint>
+  <link name="bottle_miso_sauce_holder__bottle_secondary_tag_link" />
+  <joint name="bottle_miso_sauce_holder__tool_tip_joint" type="fixed">
+    <origin rpy="0 -0.33161 3.141592653589793" xyz="0.11461 0 0.12779" />
+    <parent link="bottle_miso_sauce_holder__tool_base_link" />
+    <child link="bottle_miso_sauce_holder__bottle_tip_link" />
+  </joint>
+  <link name="bottle_miso_sauce_holder__bottle_tip_link" />
+</robot>

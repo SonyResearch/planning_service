@@ -1,0 +1,14 @@
+[project]
+name = "generate_protos_builder"
+version = "0.1.0"
+description = "Hatchling build hook to generate protos"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["hatchling", "requests", "setuptools", "editables>=0.5"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.entry-points.hatch]
+build-script = "generate_protos_builder.hooks"

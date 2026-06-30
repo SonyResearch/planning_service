@@ -1,0 +1,85 @@
+name: pr
+run-name: ${{ github.actor }} pull request 🚀
+on: [pull_request]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+env:
+  DEBIAN_FRONTEND: noninteractive
+  PYTHON: "3.12"
+jobs:
+  pre-commit:
+    runs-on: [ubuntu-22.04]
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Installing Python V${{ env.PYTHON }} 🐍
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON }}
+      - name: Run pre-commit hooks
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install pre-commit
+          pre-commit run --all-files --show-diff-on-failure
+  run-tests:
+    runs-on: [ubuntu-22.04]
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      cache-ref: ${{ steps.ref.outputs.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Sanitize ref for cache key
+        id: ref
+        run: |
+          REF="${{ github.head_ref || github.ref_name }}"
+          echo "ref=${REF//\//-}" >> $GITHUB_OUTPUT
+      - uses: bazel-contrib/setup-bazel@0.19.0
+        with:
+          bazelisk-cache: true
+          disk-cache: false
+          repository-cache: false
+      - name: Set up Bazel cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/bazel-disk
+          key: bazel-${{ runner.os }}-${{ steps.ref.outputs.ref }}-${{ hashFiles('MODULE.bazel', 'client/**', 'proto/**') }}
+          restore-keys: |
+            bazel-${{ runner.os }}-${{ steps.ref.outputs.ref }}-
+            bazel-${{ runner.os }}-
+      - name: Run unit tests
+        run: ./run_tests.sh --config=ci
+      - uses: SonyResearch/shokunin_shared_actions/ci-health@main
+  validate-python-packages:
+    runs-on: [ubuntu-22.04]
+    needs: run-tests
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: bazel-contrib/setup-bazel@0.19.0
+        with:
+          bazelisk-cache: true
+          disk-cache: false
+      - name: Restore Bazel cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/bazel-disk
+          fail-on-cache-miss: true # Should always hit the cache since this job depends on run-tests
+          key: bazel-${{ runner.os }}-${{ needs.run-tests.outputs.cache-ref }}-${{ hashFiles('MODULE.bazel', 'client/**', 'proto/**') }}
+          restore-keys: |
+            bazel-${{ runner.os }}-${{ needs.run-tests.outputs.cache-ref }}-
+            bazel-${{ runner.os }}-
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ env.PYTHON }}
+      - name: Validate installed packages
+        run: uv run tools/python/validate_pkgs.py

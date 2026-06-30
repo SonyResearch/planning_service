@@ -1,0 +1,122 @@
+{
+    "context_id": {
+        "value": "9596595594101528582"
+    },
+    "multimodal_planning_problem": {
+        "start": {
+            "system_conf": {
+                "data": {
+                    "panda_west": {
+                        "data": [
+                            1.3023641717935861,
+                            0.85695718455654243,
+                            -1.1281863255249824,
+                            -2.2585456906034231,
+                            1.081979267570732,
+                            2.3106345887978867,
+                            2.4953241829673449
+                        ]
+                    },
+                    "panda_east": {
+                        "data": [
+                            -0.36886874359429939,
+                            -0.45948681741430047,
+                            0.32562412804112878,
+                            -2.1994352430363069,
+                            0.13062293633949126,
+                            1.791782683783598,
+                            -0.064321255700745456
+                        ]
+                    }
+                }
+            },
+            "poses": []
+        },
+        "goal": {
+            "system_conf": {},
+            "poses": [
+                {
+                    "frame_A": "plate1__plate_root",
+                    "frame_B": "panda_west__finger_eef",
+                    "X_AB": {
+                        "translation": {
+                            "x": 0.00040155369710740833,
+                            "y": -0.0020038842427685206,
+                            "z": 0.035
+                        },
+                        "quat": {
+                            "w": 1.4919718565953887e-19,
+                            "x": 0.0024365749498290569,
+                            "y": 0.999997031546851,
+                            "z": -6.12321581920353e-17
+                        }
+                    }
+                }
+            ]
+        },
+        "start_transform_poses": [
+            {
+                "frame_A": "plate1__plate_root",
+                "frame_B": "panda_west__finger_eef",
+                "X_AB": {
+                    "translation": {
+                        "z": 0.075
+                    },
+                    "quat": {
+                        "w": 1
+                    }
+                }
+            }
+        ],
+        "goal_transform_poses": [
+            {
+                "frame_A": "plate1__plate_root",
+                "frame_B": "panda_west__finger_eef",
+                "X_AB": {
+                    "translation": {
+                        "z": 0.075
+                    },
+                    "quat": {
+                        "w": 1
+                    }
+                }
+            }
+        ]
+    },
+    "name": "place_salmon_block_panda_west",
+    "start_system_conf": {
+        "data": {
+            "panda_west": {
+                "data": [
+                    1.3023641717935861,
+                    0.85695718455654243,
+                    -1.1281863255249824,
+                    -2.2585456906034231,
+                    1.081979267570732,
+                    2.3106345887978867,
+                    2.4953241829673449
+                ]
+            },
+            "panda_east": {
+                "data": [
+                    -0.36886874359429939,
+                    -0.45948681741430047,
+                    0.32562412804112878,
+                    -2.1994352430363069,
+                    0.13062293633949126,
+                    1.791782683783598,
+                    -0.064321255700745456
+                ]
+            }
+        }
+    },
+    "active_trajectory": {},
+    "plan_options": {
+        "dynamic_limits": {
+            "cartesian_velocity_limits": {
+                "panda_west__finger_eef": 0.5
+            }
+        },
+        "trajectory_update_options": {}
+    }
+}

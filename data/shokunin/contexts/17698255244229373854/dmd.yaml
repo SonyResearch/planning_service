@@ -1,0 +1,379 @@
+directives:
+  - add_model:
+      file: package://shokunin_description/panda_west-vanilla-tanuki.urdf
+      name: panda_west
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/panda_east-xanthan-robotiq-bottle_miso_sauce.urdf
+      name: panda_east
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/plate1.urdf
+      name: plate1
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/workstation.urdf
+      name: workstation
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/container_puree_holder.urdf
+      name: container_puree_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/container_yellow_sauce_holder.urdf
+      name: container_yellow_sauce_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/tweezer_holder.urdf
+      name: tweezer_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/spoon_puree_holder.urdf
+      name: spoon_puree_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/spoon_sauce_holder.urdf
+      name: spoon_sauce_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/bottle_green_sauce_holder.urdf
+      name: bottle_green_sauce_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/bottle_miso_sauce_holder-empty.urdf
+      name: bottle_miso_sauce_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/bottle_brown_sauce_holder.urdf
+      name: bottle_brown_sauce_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/spatula_holder.urdf
+      name: spatula_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/scraper_holder.urdf
+      name: scraper_holder
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/tray_small.urdf
+      name: tray_small
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/tray_large.urdf
+      name: tray_large
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/d415_east.urdf
+      name: d415_east
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/d415_west.urdf
+      name: d415_west
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_model:
+      file: package://shokunin_description/d415_north.urdf
+      name: d415_north
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: panda_west::panda_west__panda_link0
+      X_PC:
+        translation: [0.0, 0.522, 0.95267]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 179.99984796050427]
+  - add_weld:
+      parent: world
+      child: panda_east::panda_east__panda_link0
+      X_PC:
+        translation: [0.0, -0.522, 0.95267]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 179.99984796050427]
+  - add_weld:
+      parent: world
+      child: plate1::plate1__plate_root
+      X_PC:
+        translation: [0.0, 0.0, 0.935]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 0.0]
+  - add_weld:
+      parent: world
+      child: workstation::workstation__workstation_root
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 0.0]
+  - add_weld:
+      parent: world
+      child: container_puree_holder::container_puree_holder__container_holder_160_root
+      X_PC:
+        translation: [-0.70159, -0.38533, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, -39.42465292515681]
+  - add_weld:
+      parent: world
+      child: container_yellow_sauce_holder::container_yellow_sauce_holder__container_holder_120_root
+      X_PC:
+        translation: [-0.54171, -0.38533, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, -39.42465292515681]
+  - add_weld:
+      parent: world
+      child: tweezer_holder::tweezer_holder__tweezer_holder_root
+      X_PC:
+        translation: [-0.38159, 0.11, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 0.0]
+  - add_weld:
+      parent: world
+      child: spoon_puree_holder::spoon_puree_holder__spoon_holder_root
+      X_PC:
+        translation: [-0.38159, -0.176, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 0.0]
+  - add_weld:
+      parent: world
+      child: spoon_sauce_holder::spoon_sauce_holder__spoon_holder_root
+      X_PC:
+        translation: [-0.38159, -0.048, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 0.0]
+  - add_weld:
+      parent: world
+      child: bottle_green_sauce_holder::bottle_green_sauce_holder__bottle_holder_root
+      X_PC:
+        translation: [-0.50854, -0.68823, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, -159.99846429028239]
+  - add_weld:
+      parent: world
+      child: bottle_miso_sauce_holder::bottle_miso_sauce_holder__bottle_holder_root
+      X_PC:
+        translation: [-0.35913, -0.68823, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, -159.99846429028239]
+  - add_weld:
+      parent: world
+      child: bottle_brown_sauce_holder::bottle_brown_sauce_holder__bottle_holder_root
+      X_PC:
+        translation: [-0.65753, -0.68823, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, -159.99846429028239]
+  - add_weld:
+      parent: world
+      child: spatula_holder::spatula_holder__spatula_holder_root
+      X_PC:
+        translation: [-0.36999, -0.47, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, -90.0002104591497]
+  - add_weld:
+      parent: world
+      child: scraper_holder::scraper_holder__scraper_holder_root
+      X_PC:
+        translation: [-0.66759, 0.3, 0.93362]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 90.0002104591497]
+  - add_weld:
+      parent: world
+      child: tray_small::tray_small__tray_small_root
+      X_PC:
+        translation: [-0.2516, 0.0, 0.93791]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 0.0]
+  - add_weld:
+      parent: world
+      child: tray_large::tray_large__tray_large_root
+      X_PC:
+        translation: [-0.55126, 0.5075, 0.93791]
+        rotation: !Rpy
+          deg: [0.0, 0.0, 0.0]
+  - add_weld:
+      parent: world
+      child: d415_east::d415_east__camera_link
+      X_PC:
+        translation: [-0.13261, -0.41635, 1.024]
+        rotation: !Rpy
+          deg: [-0.5391074485944941, 12.000028061219961, 64.99060270168928]
+  - add_weld:
+      parent: world
+      child: d415_west::d415_west__camera_link
+      X_PC:
+        translation: [-0.096258, 0.43331, 1.024]
+        rotation: !Rpy
+          deg: [0.5360249356566904, 12.000028061219961, -65.00779143554321]
+  - add_weld:
+      parent: world
+      child: d415_north::d415_north__camera_link
+      X_PC:
+        translation: [0.45839, -0.020008, 1.1116]
+        rotation: !Rpy
+          deg: [0.0, 21.999860459638217, -180.0004209182994]
+  - add_collision_filter_group:
+      name: panda_west_gripper
+      members: [panda_west::panda_west__tanuki_base_link, panda_west::panda_west__tanuki_right_fingertip_link, panda_west::panda_west__tanuki_left_fingertip_link, panda_west::panda_west__camera_mount_base_link, panda_west::panda_west__module_mount_base_link, panda_west::d405_west_link]
+      member_groups: []
+      ignored_collision_filter_groups: [panda_west_gripper]
+  - add_collision_filter_group:
+      name: plate1
+      members: [plate1::plate1__plate_root]
+      member_groups: []
+      ignored_collision_filter_groups: [plate1]
+  - add_collision_filter_group:
+      name: workstation
+      members: [workstation::workstation__workstation_plate_shelf, workstation::workstation__workstation_camera_support_north, workstation::workstation__workstation_ingredient_shelf_center, workstation::workstation__workstation_robot_shelf_east, workstation::workstation__workstation_robot_shelf_west, workstation::workstation__workstation_robot_base_east, workstation::workstation__workstation_camera_support_east, workstation::workstation__workstation_robot_base_west, workstation::workstation__workstation_camera_support_west, workstation::workstation__workstation_ingredient_shelf_east, workstation::workstation__workstation_ingredient_shelf_west, workstation::workstation__workstation_base_cover_east, workstation::workstation__workstation_base_cover_west, workstation::workstation__workstation_north_wall, workstation::workstation__workstation_south_wall, workstation::workstation__workstation_west_wall]
+      member_groups: []
+      ignored_collision_filter_groups: [workstation]
+  - add_collision_filter_group:
+      name: panda_west_base_cover
+      members: [panda_west::panda_west__panda_link0, panda_west::panda_west__panda_link1, workstation::workstation__workstation_base_cover_west]
+      member_groups: []
+      ignored_collision_filter_groups: [panda_west_base_cover]
+  - add_collision_filter_group:
+      name: tweezer_holder
+      members: [tweezer_holder::tweezer_holder__tweezer_holder_root, tweezer_holder::tweezer_holder__tool_base_link, tweezer_holder::tweezer_holder__tool_body_link]
+      member_groups: []
+      ignored_collision_filter_groups: [tweezer_holder]
+  - add_collision_filter_group:
+      name: spoon_puree_holder
+      members: [spoon_puree_holder::spoon_puree_holder__spoon_holder_root, spoon_puree_holder::spoon_puree_holder__tool_base_link, spoon_puree_holder::spoon_puree_holder__tool_body_link]
+      member_groups: []
+      ignored_collision_filter_groups: [spoon_puree_holder]
+  - add_collision_filter_group:
+      name: spoon_sauce_holder
+      members: [spoon_sauce_holder::spoon_sauce_holder__spoon_holder_root, spoon_sauce_holder::spoon_sauce_holder__tool_base_link, spoon_sauce_holder::spoon_sauce_holder__tool_body_link]
+      member_groups: []
+      ignored_collision_filter_groups: [spoon_sauce_holder]
+  - add_collision_filter_group:
+      name: bottle_green_sauce_holder
+      members: [bottle_green_sauce_holder::bottle_green_sauce_holder__bottle_holder_root, bottle_green_sauce_holder::bottle_green_sauce_holder__tool_base_link, bottle_green_sauce_holder::bottle_green_sauce_holder__tool_body_link]
+      member_groups: []
+      ignored_collision_filter_groups: [bottle_green_sauce_holder]
+  - add_collision_filter_group:
+      name: bottle_miso_sauce_holder
+      members: [bottle_miso_sauce_holder::bottle_miso_sauce_holder__bottle_holder_root]
+      member_groups: []
+      ignored_collision_filter_groups: [bottle_miso_sauce_holder]
+  - add_collision_filter_group:
+      name: bottle_brown_sauce_holder
+      members: [bottle_brown_sauce_holder::bottle_brown_sauce_holder__bottle_holder_root, bottle_brown_sauce_holder::bottle_brown_sauce_holder__tool_base_link, bottle_brown_sauce_holder::bottle_brown_sauce_holder__tool_body_link]
+      member_groups: []
+      ignored_collision_filter_groups: [bottle_brown_sauce_holder]
+  - add_collision_filter_group:
+      name: spatula_holder
+      members: [spatula_holder::spatula_holder__spatula_holder_root, spatula_holder::spatula_holder__tool_base_link, spatula_holder::spatula_holder__tool_body_link, spatula_holder::spatula_holder__spatula_face_link]
+      member_groups: []
+      ignored_collision_filter_groups: [spatula_holder]
+  - add_collision_filter_group:
+      name: scraper_holder
+      members: [scraper_holder::scraper_holder__scraper_holder_root, scraper_holder::scraper_holder__tool_base_link, scraper_holder::scraper_holder__tool_body_link, scraper_holder::scraper_holder__tool_ring_link]
+      member_groups: []
+      ignored_collision_filter_groups: [scraper_holder]
+  - add_collision_filter_group:
+      name: tray_small
+      members: [tray_small::tray_small__tray_small_root]
+      member_groups: []
+      ignored_collision_filter_groups: [tray_small]
+  - add_collision_filter_group:
+      name: tray_large
+      members: [tray_large::tray_large__tray_large_root]
+      member_groups: []
+      ignored_collision_filter_groups: [tray_large]
+  - add_collision_filter_group:
+      name: panda_east_gripper
+      members: [panda_east::panda_east__robotiq_coupling_link, panda_east::panda_east__robotiq_85_base_link, panda_east::panda_east__robotiq_85_left_finger_tip_link, panda_east::panda_east__robotiq_85_right_finger_tip_link, panda_east::panda_east__camera_mount_base_link, panda_east::panda_east__tool_mount_base_link, panda_east::d405_east_link, panda_east::panda_east__evs_base_link, panda_east::panda_east__panda_robotiq_cable_clip]
+      member_groups: []
+      ignored_collision_filter_groups: [panda_east_gripper]
+  - add_collision_filter_group:
+      name: panda_east_base_cover
+      members: [panda_east::panda_east__panda_link0, panda_east::panda_east__panda_link1, workstation::workstation__workstation_base_cover_east]
+      member_groups: []
+      ignored_collision_filter_groups: [panda_east_base_cover]
+  - add_frame:
+      name: d405_west_depth_optical_frame_calibrated
+      X_PF:
+        base_frame: panda_west::d405_west_depth_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d405_west_color_optical_frame_calibrated
+      X_PF:
+        base_frame: panda_west::d405_west_color_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d405_east_depth_optical_frame_calibrated
+      X_PF:
+        base_frame: panda_east::d405_east_depth_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d405_east_color_optical_frame_calibrated
+      X_PF:
+        base_frame: panda_east::d405_east_color_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d415_east__camera_depth_optical_frame_calibrated
+      X_PF:
+        base_frame: d415_east::d415_east__camera_depth_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d415_east__camera_color_optical_frame_calibrated
+      X_PF:
+        base_frame: d415_east::d415_east__camera_color_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d415_west__camera_depth_optical_frame_calibrated
+      X_PF:
+        base_frame: d415_west::d415_west__camera_depth_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d415_west__camera_color_optical_frame_calibrated
+      X_PF:
+        base_frame: d415_west::d415_west__camera_color_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d415_north__camera_depth_optical_frame_calibrated
+      X_PF:
+        base_frame: d415_north::d415_north__camera_depth_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_frame:
+      name: d415_north__camera_color_optical_frame_calibrated
+      X_PF:
+        base_frame: d415_north::d415_north__camera_color_optical_frame
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]

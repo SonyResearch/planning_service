@@ -1,0 +1,78 @@
+<robot name="tool">
+  <link name="tool_base_link">
+    <visual name="visual">
+      <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/scraper/visual/scraper_atm.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 -1.5707963267948966" xyz="0.0155 0 0.0025" />
+      <geometry>
+        <box size="0.02 0.025 0.031" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_body_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="tool_base_link" />
+    <child link="tool_body_link" />
+  </joint>
+  <link name="tool_body_link">
+    <visual name="visual">
+      <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/scraper/visual/scraper_body.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 -1.5707963267948966" xyz="0.092 0 0.0075" />
+      <geometry>
+        <box size="0.020 0.035 0.122" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_ring_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="tool_base_link" />
+    <child link="tool_ring_link" />
+  </joint>
+  <link name="tool_ring_link">
+    <visual name="visual">
+      <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/scraper/visual/scraper_ring.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 -1.5707963267948966" xyz="0.173 0.00022662 0.019" />
+      <geometry>
+        <cylinder length="0.040" radius="0.030" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_primary_tag_joint" type="fixed">
+    <origin rpy="0.7854 0 -1.5707963267948966" xyz="0.040071 0 0.015815" />
+    <parent link="tool_base_link" />
+    <child link="scraper_primary_tag_link" />
+  </joint>
+  <link name="scraper_primary_tag_link" />
+  <joint name="tool_secondary_tag_joint" type="fixed">
+    <origin rpy="0 0 -1.5707963267948966" xyz="0.024475 0 0.0087439" />
+    <parent link="tool_base_link" />
+    <child link="scraper_secondary_tag_link" />
+  </joint>
+  <link name="scraper_secondary_tag_link" />
+  <joint name="tool_tip_joint" type="fixed">
+    <origin rpy="0 -1.2217 3.141592653589793" xyz="0.1905 0.00022662 -0.01" />
+    <parent link="tool_base_link" />
+    <child link="scraper_tip_link" />
+  </joint>
+  <link name="scraper_tip_link" />
+  <joint name="tool_ring_center_joint" type="fixed">
+    <origin rpy="0 -1.2217 3.141592653589793" xyz="0.18066 0.0002169 0.017022" />
+    <parent link="tool_base_link" />
+    <child link="scraper_ring_center_link" />
+  </joint>
+  <link name="scraper_ring_center_link" />
+</robot>

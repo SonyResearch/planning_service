@@ -1,0 +1,100 @@
+name: client-ci
+run-name: ${{ github.actor }} client CI 🚀
+on:
+  pull_request:
+    paths:
+      - 'client/**'
+      - '.github/workflows/client.yml'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+env:
+  DEBIAN_FRONTEND: noninteractive
+  PYTHON: "3.12"
+defaults:
+  run:
+    working-directory: client
+jobs:
+  # pre-commit:
+  #   runs-on: [ubuntu-22.04]
+  #   permissions:
+  #     contents: read
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Installing Python V${{ env.PYTHON }} 🐍
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: ${{ env.PYTHON }}
+  #     - name: Run pre-commit hooks
+  #       # Run hooks scoped only to client/ files, using the client's own config.
+  #       # The main repo's .pre-commit-config.yaml excludes client/ to avoid
+  #       # version conflicts (e.g. clang-format, black) between the two configs.
+  #       working-directory: ${{ github.workspace }}
+  #       run: |
+  #         python -m venv .venv
+  #         . .venv/bin/activate
+  #         pip install pre-commit
+  #         mapfile -t CLIENT_FILES < <(git ls-files -- client/)
+  #         pre-commit run \
+  #           --config client/.pre-commit-config.yaml \
+  #           --show-diff-on-failure \
+  #           --files "${CLIENT_FILES[@]}"
+  run-tests:
+    runs-on: [ubuntu-22.04]
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      cache-ref: ${{ steps.ref.outputs.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Sanitize ref for cache key
+        id: ref
+        run: |
+          REF="${{ github.head_ref || github.ref_name }}"
+          echo "ref=${REF//\//-}" >> $GITHUB_OUTPUT
+      - uses: bazel-contrib/setup-bazel@0.19.0
+        with:
+          bazelisk-cache: true
+          disk-cache: false
+          repository-cache: false
+      - name: Set up Bazel cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/bazel-disk
+          key: bazel-client-${{ runner.os }}-${{ steps.ref.outputs.ref }}-${{ hashFiles('client/MODULE.bazel', 'client/client/**', 'client/proto/**') }}
+          restore-keys: |
+            bazel-client-${{ runner.os }}-${{ steps.ref.outputs.ref }}-
+            bazel-client-${{ runner.os }}-
+      - name: Run unit tests
+        run: ./run_tests.sh --config=ci
+      - uses: SonyResearch/shokunin_shared_actions/ci-health@main
+  validate-python-packages:
+    runs-on: [ubuntu-22.04]
+    needs: run-tests
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: bazel-contrib/setup-bazel@0.19.0
+        with:
+          bazelisk-cache: true
+          disk-cache: false
+      - name: Restore Bazel cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/bazel-disk
+          fail-on-cache-miss: true
+          key: bazel-client-${{ runner.os }}-${{ needs.run-tests.outputs.cache-ref }}-${{ hashFiles('client/MODULE.bazel', 'client/client/**', 'client/proto/**') }}
+          restore-keys: |
+            bazel-client-${{ runner.os }}-${{ needs.run-tests.outputs.cache-ref }}-
+            bazel-client-${{ runner.os }}-
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ env.PYTHON }}
+      - name: Validate installed packages
+        run: uv run tools/python/validate_pkgs.py

@@ -1,0 +1,10 @@
+{
+  "field": "string",
+  "repeated_fields": [
+    "string1",
+    "string2"
+  ],
+  "nested_field": {
+    "field": "nested_string"
+  }
+}

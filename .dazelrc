@@ -1,0 +1,5 @@
+DAZEL_DOCKERFILE="Dockerfile"
+DAZEL_DOCKER_COMPOSE_COMMAND="docker compose"
+DAZEL_PORTS=["7000:7000"]
+DAZEL_VOLUMES=[".:/root/app"]
+DAZEL_USER="root"

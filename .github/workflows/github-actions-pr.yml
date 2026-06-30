@@ -1,0 +1,73 @@
+name: pull-request
+run-name: ${{ github.actor }} pull request 🚀
+on: [pull_request]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  Pull-Request:
+    runs-on: [ubuntu-latest]
+    # runs-on: [ubuntu-large-runner] # Uncomment this line and re-enable tests below to run on a runner with more resources
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      BAZEL_CONFIG: ci
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - id: uid
+        run: |
+          set
+          echo "UID=${UID}" >> $GITHUB_OUTPUT
+      - uses: docker/setup-buildx-action@v3
+        with:
+          version: latest
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          # Must match docker-compose.yml
+          tags: planning_service-dev-${{ steps.uid.outputs.UID }}:latest
+          build-args: |
+            USER_UID=${{ steps.uid.outputs.UID }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          load: true
+          outputs: type=docker,dest=./planning_service_image.tar
+      # - name: Load image, configure environment
+      #   run: |
+      #     docker load -i ./planning_service_image.tar
+      #     export USER_UID=${UID}
+      #     cp .env.ci .env
+      # - name: Run unit tests
+      #   run: |
+      #     ./bazelw fetch --force --repo=@drake
+      #     ./scripts/run_unit_tests.sh
+      # - name: Run Shokunin benchmarks
+      #   run: |
+      #     cp .env.ci .env.prod
+      #     ./scripts/stop_services.sh --remove
+      #     ./scripts/run_shokunin_system_tests.sh
+      # - name: Run system tests
+      #   run: |
+      #     ./scripts/run_system_tests.sh
+      #     # Cleanup containers after tests
+      #     ./scripts/stop_services.sh --remove
+  misc-checks:
+    runs-on: [ubuntu-latest]
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          lfs: true
+      - name: Run pre-commit hooks
+        run: |
+          python3 -m pip install pre-commit
+          python3 -m pre_commit install
+          python3 -m pre_commit run --all-files --show-diff-on-failure
+      - name: Validate submodules
+        run: ./scripts/validate_submodules.sh

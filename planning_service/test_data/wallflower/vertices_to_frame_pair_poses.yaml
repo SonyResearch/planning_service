@@ -1,0 +1,85 @@
+roadmap_vertex_to_frame_pair_poses_:
+  0:
+    vertex_conf: [5.011238679857618, 0.3694503474768663]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [0.19710026472336722, -0.6397773804557318, 0.22029420317998552]
+        quaternion: [0.5690895951888032, 0.41982646454917877, 0.5686365942399157, -0.42016091679642303]
+  1:
+    vertex_conf: [1.299824631233557, 0.3688531488513197]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [0.17903042125793278, 0.6444474272938533, 0.22029372761476837]
+        quaternion: [0.5631778760418906, -0.42771164988496635, 0.5627295808799403, 0.4280523838180455]
+  10:
+    vertex_conf: [0.1, 0.25]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [0.5472522120318779, 0.05490837124225592, 0.22019908167768332]
+        quaternion: [0.7065042180310852, -0.03532653537124295, 0.7059418336827035, 0.035354678044799644]
+  11:
+    vertex_conf: [0.8339244195830244, 0.2998997995991984]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [0.40311737494689115, 0.44427023025151674, 0.2202388182209644]
+        quaternion: [0.6467816587403727, -0.2862534568975353, 0.6462668141401385, 0.2864814990054658]
+  2:
+    vertex_conf: [3.1374716662672815, 0.36914884215559246]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [-0.6691430431969593, 0.0027575456080189465, 0.22029396308324475]
+        quaternion: [0.0014575680132818596, -0.7068236806453411, 0.001456407774720714, 0.7073867675118423]
+  3:
+    vertex_conf: [4.5683888987577195, 0.3693790891162707]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [-0.096057845439209, -0.6624508272185717, 0.2202941464350496]
+        quaternion: [0.46291984159977007, 0.5344605529355113, 0.4625513528252846, -0.5348863277450737]
+  4:
+    vertex_conf: [1.745314821544763, 0.36892483207659793]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [-0.11614805152642554, 0.6587639217513956, 0.22029378469803537]
+        quaternion: [0.45470432451075726, -0.5414562240740579, 0.45434237536916683, 0.5418875719432792]
+  5:
+    vertex_conf: [3.569040288131262, 0.36921828528008077]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [-0.6090064643713734, -0.27742401305558023, 0.22029401838265966]
+        quaternion: [0.15003737340167134, 0.690743401894507, 0.14991794216783022, -0.6912936785029168]
+  6:
+    vertex_conf: [3.9588442046535675, 0.3692810081021992]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [-0.45794082254136853, -0.4880851504890276, 0.2202940683305183]
+        quaternion: [0.28107975405800323, 0.6486306632318918, 0.28085601179250086, -0.6491473909783964]
+  7:
+    vertex_conf: [2.7615893181922013, 0.36908835943426394]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [-0.6213577610269304, 0.24818059742927845, 0.22029391491923822]
+        quaternion: [0.1335977253148417, -0.6941050987105521, 0.1334913802035473, 0.694658053394666]
+  8:
+    vertex_conf: [2.065510895830942, 0.36897635439476667]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [-0.31761684679860386, 0.588768838204837, 0.22029382572663353]
+        quaternion: [0.3625044085044936, -0.6069608831161619, 0.36221585140835844, 0.6074444148810438]
+  9:
+    vertex_conf: [2.3996285385643468, 0.3690301168137254]
+    frame_pair_poses:
+      - frame_A: WorldModelInstance::world
+        frame_B: robot::ball
+        translation: [-0.4931706180041254, 0.4520883566050739, 0.22029386853908378]
+        quaternion: [0.256450075109303, -0.658741114356209, 0.2562459383119534, 0.6592658965332573]

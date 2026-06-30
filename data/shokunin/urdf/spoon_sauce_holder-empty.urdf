@@ -1,0 +1,39 @@
+<robot name="object">
+  <link name="spoon_sauce_holder__spoon_holder_root">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/tool_holders/spoon_holder/visual/spoon_holder.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.001 0 0.005" />
+      <geometry>
+        <box size="0.022 0.068 0.010" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 -0.7854 3.141592653589793" xyz="-0.032228 -0.029 0.019299" />
+      <geometry>
+        <box size="0.040 0.010 0.010" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 -0.7854 3.141592653589793" xyz="-0.032228 0.029 0.019299" />
+      <geometry>
+        <box size="0.040 0.010 0.010" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="spoon_sauce_holder__spoon_holder_joint" type="fixed">
+    <origin rpy="0 0.7853981633974483 3.141592653589793" xyz="-0.014747 0 0.032931" />
+    <parent link="spoon_sauce_holder__spoon_holder_root" />
+    <child link="spoon_sauce_holder__tool_mount_attach_link" />
+  </joint>
+  <link name="spoon_sauce_holder__tool_mount_attach_link">
+  </link>
+</robot>

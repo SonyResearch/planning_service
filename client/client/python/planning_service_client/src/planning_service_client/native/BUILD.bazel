@@ -1,0 +1,25 @@
+load("@pybind11_bazel//:build_defs.bzl", "pybind_extension")
+load("@rules_python//python:defs.bzl", "py_library")
+
+package(default_visibility = ["//visibility:public"])
+
+pybind_extension(
+    name = "_planning_service_client",
+    srcs = glob(["src/**"]),
+    deps = [
+        "//client/cpp/planning_service_client:basics",
+        "//client/cpp/planning_service_client/api:visualizer_client",
+        "//client/cpp/planning_service_client/common:io_utils",
+    ],
+)
+
+py_library(
+    name = "native",
+    srcs = [
+        "__init__.py",
+        "_ext.py",
+        "types.py",
+        "visualizer.py",
+    ],
+    data = [":_planning_service_client"],
+)

@@ -1,0 +1,8 @@
+plan_name: ""
+position_constraints:
+  - frame_A: env::rack_b
+    frame_B: b::stamp
+    position_BQ: [0.0, 0.0, 0.0]
+    position_AQ_lower: [-0.15, -0.15, 0.0]
+    position_AQ_upper: [0.15, 0.15, 0.66]
+collision_checker: {}

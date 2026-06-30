@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package dummy_protos;
+
+message DummyMessage {
+  string field = 1;
+  repeated string repeated_fields = 2;
+  DummyMessageNested nested_field = 3;
+}
+
+message DummyMessageNested {
+  string field = 1;
+}

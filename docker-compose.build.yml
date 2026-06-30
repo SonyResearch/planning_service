@@ -1,0 +1,13 @@
+services:
+  planning_service_build:
+    extends:
+      file: docker-compose.dev-base.yml
+      service: _dev_base
+    container_name: planning_service_build
+    command: ["/bin/bash", "scripts/build_artifacts.sh"]
+  generate_coverage:
+    extends:
+      file: docker-compose.dev-base.yml
+      service: _dev_base
+    container_name: generate_coverage
+    command: ["/bin/bash", "scripts/generate_coverage.sh"]

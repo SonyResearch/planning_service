@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Info by default
+VERBOSITY=3
+SERVICE=dev
+ARGS=()
+EXTRA_RUN_ARGS=()
+COMPOSE_FILES=(-f docker-compose.dev.yml)
+STARTUP_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -v | --verbosity)
+            VERBOSITY="${2:?'-v requires a level argument'}"
+            shift 2
+            ;;
+        -v[0-9]*)
+            VERBOSITY="${1#-v}"
+            shift
+            ;;
+        -p | --ports)
+            SERVICE=dev-ports
+            shift
+            ;;
+        --system-test)
+            COMPOSE_FILES+=(-f docker-compose.system-test.yml)
+            shift
+            ;;
+        --startup-opt)
+            STARTUP_ARGS+=("${2:?'--startup-opt requires an argument'}")
+            shift 2
+            ;;
+        *)
+            ARGS+=("$1")
+            shift
+            ;;
+    esac
+done
+
+# We need to create the following directories before running docker compose,
+# otherwise the directories will be owned by root, because
+# the ownership behavior of `create_host_path`.
+mkdir -p logs
+mkdir -p ${HOME}/.cache/bazel
+mkdir -p ${HOME}/.cache/bazelisk
+
+
+export USER_UID=${UID}
+
+# If BAZEL_CONFIG is set, inject --config=<value> after the bazel subcommand
+# (e.g. "bazel test --config=ci ..."). The first positional arg is the
+# subcommand (build, test, run, fetch, …); --config is invalid for some
+# subcommands like fetch, so we only inject it for build/test/run/coverage.
+BAZEL_ARGS=()
+if [[ ${#ARGS[@]} -gt 0 ]]; then
+  BAZEL_ARGS+=("${ARGS[0]}")
+  if [[ -n "${BAZEL_CONFIG:-}" ]] && [[ "${ARGS[0]}" =~ ^(build|test|run|coverage)$ ]]; then
+    BAZEL_ARGS+=("--config=${BAZEL_CONFIG}")
+  fi
+  BAZEL_ARGS+=("${ARGS[@]:1}")
+fi
+
+exec docker compose "${COMPOSE_FILES[@]}" run --rm --service-ports -e VERBOSITY="$VERBOSITY" "$SERVICE" bazel  "${STARTUP_ARGS[@]}" "${BAZEL_ARGS[@]}"

@@ -1,0 +1,74 @@
+services:
+  motion_planner:
+    environment:
+      - USER_UID
+      - SYSTEM_NAME=${SYSTEM_NAME:-shokunin}
+      - LOAD_ON_INIT=${LOAD_ON_INIT:-true}
+    env_file:
+      - .env.prod
+    image: ${IMAGE_NAME:-768186218100.dkr.ecr.us-east-2.amazonaws.com/sonyresearch/planning_service}:${IMAGE_TAG:-latest}
+    container_name: motion_planner-production
+    volumes:
+      - data:/data
+      - type: bind
+        source: ./logs
+        target: /logs
+        bind:
+          create_host_path: true
+    ports:
+      - 5050:5050
+      - 5051:5051
+      # Allow up to 50 ports to be mapped for the planner
+      - "7001-7050:7001-7050"
+      # For the meshcat table
+      - 7777:7777
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "bash",
+          "-c",
+          "grpcurl -import-path=/healthcheck -proto=/healthcheck/proto/grpc/health/v1/health.proto -plaintext localhost:5050 grpc.health.v1.Health/Check",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    command:
+      [
+        "/bin/bash",
+        "/usr/share/planning_service/docker_start.sh",
+        "--planner",
+      ]
+
+  visualizer:
+    environment:
+      - USER_UID
+      - SYSTEM_NAME=${SYSTEM_NAME:-shokunin}
+      - SET_CONFIGURATION=true
+      - SLIDERS=false
+      - DEFAULT_INIT=true
+    env_file:
+      - .env.prod
+    image: ${IMAGE_NAME:-768186218100.dkr.ecr.us-east-2.amazonaws.com/sonyresearch/planning_service}:${IMAGE_TAG:-latest}
+    container_name: visualizer-production
+    depends_on: [motion_planner]
+    volumes:
+      - type: volume
+        source: data
+        target: /data
+        volume:
+          nocopy: true
+    ports:
+      - 5550:5550
+      - 7000:7000
+    restart: unless-stopped
+    command:
+      [
+        "/bin/bash",
+        "/usr/share/planning_service/docker_start.sh",
+        "--viz",
+      ]
+
+volumes:
+  data:

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package dummy_protos;
+
+service DummyService {
+  rpc DummyMethod(DummyMethodRequest) returns (DummyMethodResponse);
+}
+
+message DummyMethodRequest {
+  string field = 1;
+}
+
+message DummyMethodResponse {
+  uint32 result = 1;
+}

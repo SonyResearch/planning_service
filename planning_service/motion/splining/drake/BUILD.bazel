@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "drake_toppra",
+    srcs = ["toppra.cc"],
+    hdrs = ["toppra.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:logging",
+        "//planning_service/motion:holonomic_mapping",
+    ],
+)

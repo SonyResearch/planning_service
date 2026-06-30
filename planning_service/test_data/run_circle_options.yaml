@@ -1,0 +1,12 @@
+run_time: 20 # Total time to run the trajectory
+max_num_updates: 1000 # Maximum number of updates
+radius: 0.1 # Radius of the circle in meters
+num_waypoints: 10 # Number of waypoints to generate
+theta_step: 0.1 # Step size in radians for the circle
+delta_switch: 0.04 # Time to switch afterwards
+run_toppra: true # Whether to run TOPPRA or not
+uniform_timing: null # If set, use uniform timing
+sleep_ms: 0 # Sleep time between updates, which would allow the trajectory to move on
+percentage_trajectory_forward: null # Percentage of the trajectory to move forward before updating. If not set, will use sleep_ms.
+search_step_size: 0.02 # In seconds. It will search the waypoints trajectory with this resolution to find a landing cubic spline from current state to the new trajectory.
+theta_lead: 0.7 # Lead angle for the trajectory

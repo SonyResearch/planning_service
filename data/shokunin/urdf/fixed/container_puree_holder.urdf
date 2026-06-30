@@ -1,0 +1,97 @@
+<robot name="object">
+  <link name="container_puree_holder__container_holder_160_root">
+    <inertial>
+      <mass value="0.850" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/container_holders/visual/container_holder_160.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.08045" />
+      <geometry>
+        <box size="0.1 0.1884 0.1609" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.052 -0.0135 0.045" />
+      <geometry>
+        <box size="0.004 0.055 0.01" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.05815 0.0225 0.06275" />
+      <geometry>
+        <box size="0.0163 0.093 0.0455" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0.075 0.173" />
+      <geometry>
+        <box size="0.021 0.01 0.026" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.043 0.063 0.16405" />
+      <geometry>
+        <cylinder length="0.0081" radius="0.0032" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.043 0.063 0.16405" />
+      <geometry>
+        <cylinder length="0.0081" radius="0.0032" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.043 -0.063 0.16405" />
+      <geometry>
+        <cylinder length="0.0081" radius="0.0032" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.043 -0.063 0.16405" />
+      <geometry>
+        <cylinder length="0.0081" radius="0.0032" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="container_puree_holder__container_marker_1_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.043 -0.063 0.165" />
+    <parent link="container_puree_holder__container_holder_160_root" />
+    <child link="container_puree_holder__container_marker_1" />
+  </joint>
+  <joint name="container_puree_holder__container_marker_2_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.043 -0.063 0.165" />
+    <parent link="container_puree_holder__container_holder_160_root" />
+    <child link="container_puree_holder__container_marker_2" />
+  </joint>
+  <joint name="container_puree_holder__container_marker_3_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.043 0.063 0.165" />
+    <parent link="container_puree_holder__container_holder_160_root" />
+    <child link="container_puree_holder__container_marker_3" />
+  </joint>
+  <joint name="container_puree_holder__container_marker_4_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.043 0.063 0.165" />
+    <parent link="container_puree_holder__container_holder_160_root" />
+    <child link="container_puree_holder__container_marker_4" />
+  </joint>
+  <link name="container_puree_holder__container_marker_1" />
+  <link name="container_puree_holder__container_marker_2" />
+  <link name="container_puree_holder__container_marker_3" />
+  <link name="container_puree_holder__container_marker_4" />
+  <joint name="container_puree_holder__container_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.13245" />
+    <parent link="container_puree_holder__container_holder_160_root" />
+    <child link="container_puree_holder__container_root" />
+  </joint>
+  <link name="container_puree_holder__container_root" />
+  <joint name="container_puree_holder__container_yoke_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.11395" />
+    <parent link="container_puree_holder__container_holder_160_root" />
+    <child link="container_puree_holder__container_yoke_root" />
+  </joint>
+  <link name="container_puree_holder__container_yoke_root" />
+</robot>

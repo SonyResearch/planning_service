@@ -1,0 +1,173 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("//tools/bazel:cpp.bzl", "cc_googletest")
+
+cc_library(
+    name = "basics",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":check_satisfied_response",
+        ":conf",
+        ":context_id",
+        ":frame_relative_pose",
+        ":rgba",
+        ":shape",
+        ":state",
+        ":trajectories",
+        ":visualizer_status",
+    ],
+)
+
+cc_library(
+    name = "visualizer_status",
+    hdrs = ["visualizer_status.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "conf",
+    srcs = ["conf.cc"],
+    hdrs = ["conf.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client/common",
+        "//client/cpp/planning_service_client/internal",
+    ],
+)
+
+cc_library(
+    name = "context_id",
+    hdrs = ["context_id.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client/internal:proto_base",
+        "//proto:basic_types_cpp_proto",
+    ],
+)
+
+cc_library(
+    name = "frame_relative_pose",
+    srcs = ["frame_relative_pose.cc"],
+    hdrs = ["frame_relative_pose.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client/internal",
+        "@eigen",
+    ],
+)
+
+cc_library(
+    name = "trajectories",
+    srcs = ["trajectories.cc"],
+    hdrs = ["trajectories.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":conf",
+        "//client/cpp/planning_service_client/internal",
+    ],
+)
+
+cc_library(
+    name = "shape",
+    srcs = ["shape.cc"],
+    hdrs = ["shape.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":rgba",
+        "//client/cpp/planning_service_client/internal",
+        "@eigen",
+    ],
+)
+
+cc_library(
+    name = "state",
+    srcs = ["state.cc"],
+    hdrs = ["state.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client/internal",
+    ],
+)
+
+cc_library(
+    name = "rgba",
+    srcs = ["rgba.cc"],
+    hdrs = ["rgba.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client/internal",
+    ],
+)
+
+cc_library(
+    name = "check_satisfied_response",
+    srcs = ["check_satisfied_response.cc"],
+    hdrs = ["check_satisfied_response.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client/internal",
+    ],
+)
+
+# --------------------------
+# ------- Unit tests -------
+# --------------------------
+
+cc_googletest(
+    name = "test_conf",
+    srcs = ["tests/test_conf.cc"],
+    deps = [":conf"],
+)
+
+cc_googletest(
+    name = "test_frame_relative_pose",
+    srcs = ["tests/test_frame_relative_pose.cc"],
+    deps = [":frame_relative_pose"],
+)
+
+cc_googletest(
+    name = "test_trajectories",
+    srcs = ["tests/test_trajectories.cc"],
+    deps = [":trajectories"],
+)
+
+cc_googletest(
+    name = "test_state",
+    timeout = "short",
+    srcs = ["tests/test_state.cc"],
+    deps = [
+        ":state",
+    ],
+)
+
+cc_googletest(
+    name = "test_shape",
+    srcs = ["tests/test_shape.cc"],
+    deps = [":shape"],
+)
+
+cc_googletest(
+    name = "test_shape_in_frame",
+    srcs = ["tests/test_shape_in_frame.cc"],
+    deps = [":shape"],
+)
+
+cc_googletest(
+    name = "test_rgba",
+    srcs = ["tests/test_rgba.cc"],
+    deps = [":rgba"],
+)
+
+cc_googletest(
+    name = "test_check_satisfied_response",
+    srcs = ["tests/test_check_satisfied_response.cc"],
+    deps = [":check_satisfied_response"],
+)

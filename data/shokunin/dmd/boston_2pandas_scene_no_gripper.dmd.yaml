@@ -1,0 +1,73 @@
+directives:
+- add_model:
+    default_free_body_pose: {}
+    default_joint_positions: {}
+    file: package://shokunin_description/e2ac4d91700ce3289a837d8a71351328.urdf
+    name: panda_west
+- add_weld:
+    X_PC:
+      rotation: !Rpy
+        deg:
+        - 0.0
+        - 0.0
+        - 0.0
+      translation:
+      - 0.0
+      - 0.522
+      - 1.024
+    child: panda_west::panda_west__panda_link0
+    parent: world
+- add_model:
+    default_free_body_pose: {}
+    default_joint_positions: {}
+    file: package://shokunin_description/fdee4f81856dbe4ccf3922b08a289ec2.urdf
+    name: panda_east
+- add_weld:
+    X_PC:
+      rotation: !Rpy
+        deg:
+        - 0.0
+        - 0.0
+        - 179.99984796050427
+      translation:
+      - 0.0
+      - -0.522
+      - 1.024
+    child: panda_east::panda_east__panda_link0
+    parent: world
+- add_model:
+    default_free_body_pose: {}
+    default_joint_positions: {}
+    file: package://shokunin_description/77b737419a44f4a20f5c69e4d40afd9a.urdf
+    name: plate1
+- add_weld:
+    X_PC:
+      rotation: !Rpy
+        deg:
+        - 0.0
+        - 0.0
+        - 0.0
+      translation:
+      - 0.0
+      - 0.0
+      - 0.935
+    child: plate1::plate1__plate_root
+    parent: world
+- add_model:
+    default_free_body_pose: {}
+    default_joint_positions: {}
+    file: package://shokunin_description/c58cb73ec9e76573136347e2d18e4d70.urdf
+    name: workstation
+- add_weld:
+    X_PC:
+      rotation: !Rpy
+        deg:
+        - 0.0
+        - 0.0
+        - 0.0
+      translation:
+      - 0.0
+      - 0.0
+      - 0.0
+    child: workstation::workstation__dual_robot_workstation_root
+    parent: world

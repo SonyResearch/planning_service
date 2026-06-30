@@ -1,0 +1,131 @@
+"""Buildfile to incorporate Drake as a precompiled binary."""
+
+load("@rules_cc//cc:defs.bzl", "cc_import", "cc_library")
+load("@rules_pkg//:mappings.bzl", "pkg_attributes", "pkg_filegroup", "pkg_files")
+
+package(default_visibility = ["//visibility:private"])
+
+# --- Resources stuff ---
+
+_RUNFILES = glob(
+    [
+        "share/drake/**",
+    ],
+    allow_empty = False,
+    exclude = [
+        "share/drake/common/**",
+        "share/drake/setup/**",
+        "share/drake/tutorials/**",
+    ],
+)
+
+filegroup(
+    name = "_runfiles",
+    srcs = _RUNFILES,
+)
+
+# --- C++ stuff ---
+
+_DRAKE_SHLIBS = glob(
+    ["lib/libdrake*.so"],
+    allow_empty = False,
+)
+
+_THIRD_SHLIBS = glob(
+    [
+        # For Mosek (not enabled by default).
+        "lib/libtbb*.so*",
+        "lib/libmosek64*.so*",
+        # For Gurobi (not enabled by default).
+        "lib/libgurobi*.so*",
+    ],
+    allow_empty = True,
+)
+
+cc_library(
+    name = "_drake_headers",
+    hdrs = glob(
+        ["include/drake/**"],
+    ),
+    strip_include_prefix = "include",
+)
+
+[
+    cc_import(
+        name = "_imported{}".format(shlib),
+        shared_library = shlib,
+    )
+    for shlib in _DRAKE_SHLIBS + _THIRD_SHLIBS
+]
+
+cc_library(
+    name = "drake_shared_library",
+    data = [
+        ":_runfiles",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":_drake_headers",
+        "@eigen",
+    ] + [
+        ":_imported{}".format(shlib)
+        for shlib in _DRAKE_SHLIBS + _THIRD_SHLIBS
+    ],
+)
+
+# --- Distribution stuff ---
+pkg_files(
+    name = "drake_runfiles",
+    srcs = [
+        "share/drake/.drake-find_resource-sentinel",
+        "share/drake/package.xml",
+    ],
+    prefix = "share/drake",
+)
+
+pkg_files(
+    name = "drake_install_prereqs",
+    srcs = [
+        "share/drake/setup/install_prereqs",
+        "share/drake/setup/packages-noble.txt",
+    ],
+    attributes = pkg_attributes(
+        mode = "0755",
+    ),
+    prefix = "share/drake/setup",
+)
+
+pkg_files(
+    name = "drake_models",
+    srcs = [
+        "share/drake/multibody/parsing/drake_models.json",
+    ],
+    prefix = "share/drake/multibody/parsing",
+)
+
+pkg_files(
+    name = "drake_geometry",
+    srcs = glob([
+        "share/drake/geometry/**",
+    ]),
+    prefix = "share/drake/geometry",
+)
+
+pkg_files(
+    name = "drake_libs",
+    srcs = _DRAKE_SHLIBS + _THIRD_SHLIBS,
+    prefix = "lib",
+)
+
+pkg_filegroup(
+    name = "drake_files",
+    srcs = [
+        ":drake_geometry",
+        ":drake_install_prereqs",
+        ":drake_libs",
+        ":drake_models",
+        ":drake_runfiles",
+    ],
+    prefix = "opt/drake/",
+    visibility = ["//visibility:public"],
+)

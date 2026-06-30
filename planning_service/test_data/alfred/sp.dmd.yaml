@@ -1,0 +1,69 @@
+directives:
+  - add_model:
+      file: package://test_models/alfred/urdf/sp_utensils_in_bins_no_franka-drake.urdf
+      name: environment
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: environment::base_link
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://test_models/alfred/urdf/franka_dexai.urdf
+      name: franka
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: franka::base_link
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://test_models/alfred/urdf/ancillary_arm-drake.urdf
+      name: ancillary_arm
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: ancillary_arm::base_link
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://test_models/alfred/urdf/singulator-drake.urdf
+      name: singulator
+      default_joint_positions: {singulator_motor_box_to_singulator_arm: [-3.5]}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: singulator::base_link
+      X_PC:
+        translation: [0.3338957, 0.879775, -0.089126]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_collision_filter_group:
+        name: singulatorXeverything
+        members: []
+        member_groups: [environment::sneeze_guard, environment::hotel_pans, ancillary_arm::bowl_5qt, ancillary_arm::ancillary_arm, franka::base]
+        ignored_collision_filter_groups: [singulator::singulator]
+  - add_collision_filter_group:
+        name: aaXbase
+        members: []
+        member_groups: [environment::hotel_pans, ancillary_arm::ancillary_arm, ancillary_arm::bowl_5qt, franka::base]
+        ignored_collision_filter_groups: [aaXbase]
+  - add_collision_filter_group:
+        name: ancillary_arm
+        members: []
+        member_groups: [ancillary_arm::ancillary_arm, ancillary_arm::bowl_5qt]
+        ignored_collision_filter_groups: []
+  - add_collision_filter_group:
+        name: container_ramp
+        members: []
+        member_groups: [environment::container_drop_off]
+        ignored_collision_filter_groups: []

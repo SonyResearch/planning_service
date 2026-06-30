@@ -1,0 +1,103 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "common",
+    deps = [
+        ":file_utils",
+        ":fmt",
+        ":logging",
+        ":misc_utils",
+        ":override",
+        ":string_utils",
+        ":time_utils",
+    ],
+)
+
+cc_library(
+    name = "file_utils",
+    srcs = ["file_utils.cc"],
+    hdrs = ["file_utils.h"],
+    deps = [
+        "//planning_service/common:logging",
+        "@nlohmann_json//:json",
+    ],
+)
+
+cc_library(
+    name = "string_utils",
+    srcs = ["string_utils.cc"],
+    hdrs = ["string_utils.h"],
+)
+
+cc_library(
+    name = "time_utils",
+    srcs = ["time_utils.cc"],
+    hdrs = ["time_utils.h"],
+)
+
+cc_library(
+    name = "misc_utils",
+    srcs = ["misc_utils.cc"],
+    hdrs = ["misc_utils.h"],
+    deps = [
+        "@eigen",
+    ],
+)
+
+cc_library(
+    name = "logging",
+    srcs = ["logging.cc"],
+    hdrs = ["logging.h"],
+    deps = [
+        ":fmt",
+        "@drake//:drake_shared_library",
+    ],
+)
+
+cc_library(
+    name = "override",
+    hdrs = ["override.h"],
+)
+
+cc_library(
+    name = "fmt",
+    hdrs = [
+        "fmt.h",
+        "fmt_eigen.h",
+        "fmt_json.h",
+    ],
+    deps = [
+        "@eigen",
+        "@nlohmann_json//:json",
+    ],
+)
+
+cc_test(
+    name = "test_override",
+    srcs = ["tests/test_override.cc"],
+    deps = [
+        ":override",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_logging",
+    srcs = ["tests/test_logging.cc"],
+    deps = [
+        ":logging",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_string_utils",
+    srcs = ["tests/test_string_utils.cc"],
+    deps = [
+        ":string_utils",
+        "@googletest//:gtest_main",
+    ],
+)

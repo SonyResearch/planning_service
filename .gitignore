@@ -1,0 +1,124 @@
+# Directories
+.vscode/
+cache/
+xcode/
+.cproject/
+.project/
+.settings/
+.clwb/
+.history/
+
+# Unwanted artifacts
+*.dae
+*.stl
+# Planning problems
+**/problems/
+# CI model
+**/lifty_ci/
+# Python Distribution / packaging
+.eggs/
+*.egg-info/
+*.egg
+
+# Local environment files
+.env
+
+# Venv
+.venv/
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Ignore generated helper files
+*snopt.out
+# Python
+*.ipynb
+*.ipynb_checkpoints
+.pytest_cache
+.tags*
+
+# Ignore some preferences files for IDE's, etc.
+.idea/
+
+# C extensions
+*.so
+
+# Common editor-specific files
+*.idea
+*.autosave
+*.bk
+*.tmp
+*~
+.#*
+*.bak
+*.pyc
+*.o
+*.swp
+*DS_Store
+
+# Build artifacts
+**/build/
+
+# Bazel
+**/bazel-*
+**/bazel-*/
+user.bazelrc
+MODULE.bazel.lock
+
+# Dazel temp files
+.dazel_run
+
+# Optimization license
+**/*.lic
+# Logfiles
+logs/
+*.log
+
+# packaging artifact
+*.deb
+*.tar.gz
+dist/
+tmp/
+
+# documentation
+docs/_out/*
+docs/planning_service_website/
+
+# version file (CI only)
+version.txt
+
+# Problems
+**/problems/*
+
+# Code coverage
+coverage/
+_codeql_detected_source_root

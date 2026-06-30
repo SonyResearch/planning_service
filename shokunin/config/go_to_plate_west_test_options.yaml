@@ -1,0 +1,15 @@
+q_east_start: [-0.367, -0.057, 0.355, -2.233, -0.009, 2.240, 0.202]
+q_west_start: [0.381, -0.150, -0.245, -1.819, 0.041, 1.668, 0.144]
+z_plate: 0.017
+frame_plate: plate1__plate_root
+frame_eef: panda_west__finger_eef
+min_ee_x: -0.06
+max_ee_x: 0.061
+min_ee_y: -0.04
+max_ee_y: 0.041
+min_ee_yaw: 0
+max_ee_yaw: 6.27
+step_x: 0.04
+step_y: 0.04
+step_yaw: 1.047
+z_offset: -0.07

@@ -1,0 +1,86 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "clique_generator",
+    srcs = ["clique_generator.cc"],
+    hdrs = ["clique_generator.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//planning_service/motion:robot_constraints"],
+)
+
+cc_library(
+    name = "iris_adapter",
+    srcs = ["iris_adapter.cc"],
+    hdrs = ["iris_adapter.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//planning_service/motion/planning/internal:geodesic_math"],
+)
+
+cc_library(
+    name = "iris_inspector",
+    srcs = ["iris_inspector.cc"],
+    hdrs = ["iris_inspector.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":iris_adapter",
+        "//planning_service/motion:robot_constraints",
+    ],
+)
+
+cc_library(
+    name = "iris_builder",
+    srcs = ["iris_builder.cc"],
+    hdrs = ["iris_builder.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":clique_generator",
+        ":iris_inspector",
+        "//planning_service/motion:robot_constraints",
+        "@magic_enum",
+    ],
+)
+
+# Unit Tests
+cc_test(
+    name = "test_clique_generator",
+    timeout = "short",
+    srcs = ["tests/test_clique_generator.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":clique_generator",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_iris_adapter",
+    timeout = "short",
+    srcs = ["tests/test_iris_adapter.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":iris_adapter",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_iris_inspector",
+    timeout = "short",
+    srcs = ["tests/test_iris_inspector.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":iris_inspector",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_iris_builder",
+    timeout = "moderate",
+    srcs = ["tests/test_iris_builder.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":iris_builder",
+        "@googletest//:gtest_main",
+    ],
+)

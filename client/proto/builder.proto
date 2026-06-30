@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+import "proto/basic_types.proto";
+package proto;
+
+// A vector of system configurations.
+message SystemConfVec {
+  repeated SystemConf data = 1;
+}
+
+// A vector of system configuration edges.
+message SystemConfEdgeVec {
+  repeated SystemConfEdge data = 1;
+}
+
+// A vector of planning problems
+message ProblemDefVec {
+  repeated ProblemDef data = 1;
+}
+
+// Data used to construct a PRM roadmap.
+message RoadmapData {
+  // Number of samples from which to generate a PRM.
+  int32 num_samples = 1;
+}
+
+message GenerateFromProblems {
+  // the max number of problems to solve
+  int32 num_problems = 1;
+  // the max number of frame pair pose problems (fpp) to solve
+  int32 num_fpp_problems = 2;
+  // the number of random samples to use as IK seeds to solve fpp problems
+  int32 num_random_ik_seed_samples = 3;
+  // boolean flag for updating roadmap with IK solutions
+  bool insert_solution_in_roadmap = 4;
+}
+
+// Request to start generating a set of IRIS regions for a given planning
+// context from some set of seed data.
+message StartBuildRequest {
+  // The request ID.
+  string id = 1;
+  // Unique target context for which the regions will be generated.
+  PlanContext context = 2;
+  oneof seed_data {
+    // A vector of system configs.
+    SystemConfVec sysconf_vec = 3;
+    // A vector of system config edges.
+    SystemConfEdgeVec sysconf_edge_vec = 4;
+    // Data used to construct a sample-based PRM. The resulting discrete edges
+    // will be used to seed the IRIS regions.
+    RoadmapData roadmap_data = 5;
+    ProblemDefVec problem_def_vec = 6;
+  }
+  // num problems to load and use solutions to generate
+  int32 num_problems = 7;
+}
+
+// Response which contains the result of attempting to start computation of a
+// solution for the corresponding StartBuildRequest.
+message StartBuildResponse {
+  // ID of request. Used to track job status.
+  string id = 1;
+}
+
+// Request to retrieve the status of a given IRIS region generation job with a
+// unique ID.
+message ReportBuildStatusRequest {
+  string id = 1;
+}
+
+// Response which contains the result of retrieving the status of the job with
+// the given ID.
+message ReportBuildStatusResponse {
+  string id = 1;
+}
+
+// Request to update the roadmap with the solution of the planning problem given
+// (start to goal).
+message UpdateRoadmapRequest {
+  // ID of the request. Used to track job status.
+  string id = 1;
+  // Unique target context for which the roadmap will be updated.
+  PlanContext context = 2;
+  oneof seed_data {
+    // The planning problem. Can be given as pose/pose, pose/conf, or conf/conf.
+    GenerateFromProblems generate_from_problems = 3;
+    // the number of random samples to build the roadmap from
+    RoadmapData roadmap_data = 4;
+    // the passed planning problems
+    ProblemDefVec problem_def_vec = 5;
+  }
+}
+
+// Response for UpdateRoadmapRequest
+message UpdateRoadmapResponse {
+  string id = 1;
+}
+
+service IrisBuilder {
+  // Start a build job with some set of seed data.
+  rpc HandleStartBuildRequest(StartBuildRequest) returns (StartBuildResponse) {}
+  // Return a reoprt on the status of a build job with the given original
+  // request ID.
+  rpc HandleReportStatusRequest(ReportBuildStatusRequest)
+      returns (ReportBuildStatusResponse) {}
+  // Start a roadmap update job for a given planning problem
+  rpc HandleUpdateRoadmapRequest(UpdateRoadmapRequest)
+      returns (UpdateRoadmapResponse) {}
+}

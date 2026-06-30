@@ -1,0 +1,25 @@
+[project]
+name = "planning-service-proto"
+version = "0.0.1"
+description = "Add your description here"
+requires-python = ">=3.10"
+dependencies = [
+    "protobuf<6,>=5.29.5",
+    "grpcio>=1.69.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+generate_protos_builder = { path = "../generate_protos_builder" }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/proto"]
+
+[tool.hatch.build.targets.wheel.hooks.generate-protos]
+dependencies = ["generate_protos_builder"]
+proto_generated_path="src/proto"
+buf_gen_py_yaml_path="../../buf.gen.py.yaml"
+proto_root_path="../.."

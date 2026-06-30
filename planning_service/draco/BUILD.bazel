@@ -1,0 +1,68 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "draco",
+    srcs = ["draco.cc"],
+    hdrs = [
+        "draco.h",
+        "draco_options.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":client_conversions",
+        "//planning_service/motion/iris:iris_adapter",
+        "//planning_service/motion/planning:artifact_builder",
+        "//planning_service/motion/planning:ik_planner",
+        "//planning_service/motion/planning:single_mode_gcs_planner",
+        "//planning_service/motion/planning:straight_path_planner",
+        "//planning_service/motion/planning:thunder_planner",
+        "//planning_service/motion/splining:cubic_spliner",
+        "//planning_service/motion/splining:time_optimal_spliner",
+        "@planning_service_client//client/cpp/planning_service_client/planner",
+    ],
+)
+
+cc_library(
+    name = "client_conversions",
+    srcs = ["client_conversions.cc"],
+    hdrs = ["client_conversions.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/motion:robot_model",
+        "//planning_service/motion/splining:time_optimal_spliner",
+        "@planning_service_client//client/cpp/planning_service_client:basics",
+    ],
+)
+
+cc_library(
+    name = "test_utils",
+    srcs = ["tests/test_utils.cc"],
+    hdrs = ["tests/test_utils.h"],
+    visibility = ["//visibility:public"],
+    deps = [":draco"],
+)
+
+# ---- Unit tests ----
+
+cc_test(
+    name = "test_draco",
+    timeout = "short",
+    srcs = ["tests/test_draco.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":draco",
+        ":test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_client_conversions",
+    timeout = "short",
+    srcs = ["tests/test_client_conversions.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":client_conversions",
+        "@googletest//:gtest_main",
+    ],
+)

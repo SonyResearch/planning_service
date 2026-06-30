@@ -1,0 +1,36 @@
+name: release
+run-name: ${{ github.actor }} release 🚀
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  Code-Coverage:
+    runs-on: [ubuntu-latest]
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          lfs: true
+      # - name: Generate coverage
+      #   run: |
+      #     cp .env.ci .env
+      #     ./bazelw fetch --force --repo=@drake
+      #     scripts/run_unit_tests.sh --coverage
+      - name: Upload code coverage HTML
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./coverage
+          name: coverage-${{ github.sha }}
+
+  Deploy-Pages:
+    uses: ./.github/workflows/static.yml
+    needs: [Code-Coverage]
+    secrets: inherit
+    # with:
+    #   coverage-artifact-name: coverage-${{ github.sha }}

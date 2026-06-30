@@ -1,0 +1,25 @@
+directives:
+  - add_model:
+      file: package://test_models/alfred/urdf/franka_dexai.urdf
+      name: franka_right
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: franka_right::base_link
+      X_PC:
+        translation: [-0.522, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://test_models/alfred/urdf/franka_dexai.urdf
+      name: franka_left
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: franka_left::base_link
+      X_PC:
+        translation: [0.522, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 180.0]

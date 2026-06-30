@@ -1,0 +1,91 @@
+"Motion planning service for the Shokunin project."
+
+module(name = "planning_service")
+
+# C++ rules
+bazel_dep(name = "rules_cc", version = "0.2.17")
+
+# Python rules
+bazel_dep(name = "rules_python", version = "1.9.0")
+
+# Pin to Python 3.10 to match the planning_service_client pip hub (cp310).
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(python_version = "3.10")
+
+# Make the planning_service_client pip hub visible to this repo so that the
+# py_pytest macro's pytest/pytest-timeout deps can be resolved when building
+# system_tests targets here.
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+use_repo(pip, "planning_service_client_dependencies")
+
+# eigen
+bazel_dep(name = "eigen", version = "3.4.1")
+
+# magic_enum
+bazel_dep(name = "magic_enum", version = "0.9.7")
+
+# CLI11
+bazel_dep(name = "cli11", version = "2.5.0")
+
+# GTest
+bazel_dep(name = "googletest", version = "1.17.0")
+
+# Protobuf
+bazel_dep(name = "protobuf", version = "29.5")
+
+# gRPC
+bazel_dep(name = "grpc", version = "1.70.1")
+
+# XML
+bazel_dep(name = "tinyxml2", version = "10.0.0")
+
+# Packaging rules
+bazel_dep(name = "rules_pkg", version = "1.2.0")
+
+# JSON
+bazel_dep(name = "nlohmann_json", version = "3.12.0")
+
+# civetweb
+bazel_dep(name = "civetweb", version = "1.16.bcr.3")
+
+# --- Archive dependencies ---
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# Drake (Binary release)
+http_archive(
+    name = "drake",
+    build_file = "external/drake.BUILD.bazel",
+    sha256 = "8be7e749416285923f1be5b27f5dcf741d97a82041345238be6058d9115c1d63",
+    strip_prefix = "drake",
+    urls = ["https://github.com/RobotLocomotion/drake/releases/download/v1.52.1/drake-1.52.1-noble.tar.gz"],
+)
+
+# CTPL
+http_archive(
+    name = "ctpl",
+    build_file_content = """
+cc_library(
+    name = "ctpl",
+    hdrs = ["ctpl_stl.h"],
+    visibility = ["//visibility:public"],
+)
+    """,
+    sha256 = "ae8d3360b0c4cd247aca1aa8624bc95adccf211a1872530e948bd434ff6ad570",
+    strip_prefix = "CTPL-master",
+    url = "https://github.com/vit-vit/CTPL/archive/refs/heads/master.zip",
+)
+
+# --- Local path override dependencies ---
+# Client
+bazel_dep(name = "planning_service_client")
+local_path_override(
+    module_name = "planning_service_client",
+    path = "client",
+)
+
+# OMPL
+bazel_dep(name = "ompl")
+local_path_override(
+    module_name = "ompl",
+    path = "external/shokunin_ompl",
+)

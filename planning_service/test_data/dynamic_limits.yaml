@@ -1,0 +1,23 @@
+joint_limits:
+  franka:
+    velocity_bound: [2.1750, 2.1750, 2.1750, 2.1750, 2.6100, 2.6100, 2.6100]
+    acceleration_bound: [15, 7.5, 10, 12.5, 15, 20, 20]
+    torque_bound: [87, 87, 87, 87, 12, 12, 12]
+
+  ancillary_arm:
+    velocity_bound: [2.0, 2.0]
+    acceleration_bound: [5.0, 5.0]
+    torque_bound: [4, 4]
+
+  singulator:
+    velocity_bound: [3.0]
+    acceleration_bound: [25.0]
+    torque_bound: [100.0]
+
+cartesian_limits:
+  franka_tool_location:
+    speed_limit: 2.5
+
+  bowl_center_location:
+    acc_lower: [-100, -100, -100, -5.0, -5.0, -100]
+    acc_upper: [100, 100, 100, 5.0, 5.0, 100]

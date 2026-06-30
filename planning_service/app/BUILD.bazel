@@ -1,0 +1,93 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+cc_library(
+    name = "iris_builder_app",
+    hdrs = ["iris_builder_app.h"],
+    deps = [
+        "//planning_service/comms:iris_service",
+        "//planning_service/comms:registry_service",
+        "//planning_service/comms:server_wrapper",
+    ],
+)
+
+cc_library(
+    name = "motion_planner_app",
+    hdrs = ["motion_planner_app.h"],
+    deps = [
+        "//planning_service/comms:plan_service",
+        "//planning_service/comms:registry_service",
+        "//planning_service/comms:server_wrapper",
+    ],
+)
+
+cc_library(
+    name = "visualizer_app",
+    hdrs = ["visualizer_app.h"],
+    deps = [
+        "//planning_service/common:logging",
+        "//planning_service/comms:server_wrapper",
+        "//planning_service/comms:viz_service",
+    ],
+)
+
+# Executables
+cc_binary(
+    name = "motion_planner",
+    srcs = ["motion_planner.cc"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":motion_planner_app",
+        "@cli11",
+    ],
+)
+
+cc_binary(
+    name = "iris_builder",
+    srcs = ["iris_builder.cc"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":iris_builder_app",
+        "@cli11",
+    ],
+)
+
+cc_binary(
+    name = "visualizer",
+    srcs = ["visualizer.cc"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":visualizer_app",
+        "@cli11",
+    ],
+)
+
+cc_binary(
+    name = "remove_unused_geo",
+    srcs = ["exe/remove_unused_geo.cc"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common",
+        "@cli11",
+    ],
+)
+
+cc_binary(
+    name = "remove_invalid_contexts",
+    srcs = ["exe/remove_invalid_contexts.cc"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/service/utils:resource_registry",
+        "@cli11",
+    ],
+)
+
+cc_binary(
+    name = "validate_resources",
+    srcs = ["exe/validate_resources.cc"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:string_utils",
+        "//planning_service/service/utils:resource_registry",
+        "@cli11",
+    ],
+)

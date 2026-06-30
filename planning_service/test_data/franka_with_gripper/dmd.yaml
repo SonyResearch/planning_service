@@ -1,0 +1,25 @@
+directives:
+  - add_model:
+      file: package://test_models/franka_with_gripper/franka.urdf
+      name: franka
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: franka::panda_east__panda_link0
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://test_models/franka_with_gripper/gripper.urdf
+      name: gripper
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: franka::panda_east__panda_link8
+      child: gripper::panda_east__robotiq_coupling_link
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 180.0]

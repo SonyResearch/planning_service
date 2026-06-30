@@ -1,0 +1,10 @@
+[project]
+name = "bazel-build"
+version = "0.1.0"
+description = "Bazel/bazelisk utilities for hatch_build.py hooks"
+requires-python = ">=3.10"
+dependencies = ["hatchling"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,9 @@
+joint_limits:
+  iiwa:
+    velocity_bound: [2.1750, 2.1750, 2.1750, 2.1750, 2.6100, 2.6100, 2.6100]
+    acceleration_bound: [15, 7.5, 10, 12.5, 15, 20, 20]
+    torque_bound: [87, 87, 87, 87, 12, 12, 12]
+
+cartesian_limits:
+  iiwa_link_ee:
+    speed_limit: 2.5

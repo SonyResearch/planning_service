@@ -1,0 +1,38 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("//tools/bazel:cpp.bzl", "cc_googletest")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "common",
+    deps = [
+        ":io_utils",
+    ],
+)
+
+cc_library(
+    name = "io_utils",
+    srcs = ["io_utils.cc"],
+    hdrs = ["io_utils.h"],
+    strip_include_prefix = "/client/cpp",
+    deps = [
+        "//client/cpp/planning_service_client/internal:proto_base",
+        "@nlohmann_json//:json",
+        "@protobuf",
+    ],
+)
+
+cc_googletest(
+    name = "test_io_utils",
+    srcs = ["tests/test_io_utils.cc"],
+    data = [
+        "//client/cpp/planning_service_client/test_data:dummyMessageCamel.json",
+        "//client/cpp/planning_service_client/test_data:dummy_message_snake.json",
+    ],
+    deps = [
+        ":io_utils",
+        "//client/cpp/planning_service_client/test_data:dummy",
+    ],
+)

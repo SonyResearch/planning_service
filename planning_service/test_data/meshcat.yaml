@@ -1,0 +1,66 @@
+# This file is the default one that dracula uses to start meshcat
+# If you want to change anything and see it on live robot, modify
+# this file and restart TLE (on local-config or dev-docker)
+
+visual: true
+collision: true
+reserved_ports: [7000]
+# Set meshcat colors. The colors of the bodies in drake change to
+# the rgba vector values if the name of the body starts with the key
+# below. For example, sneeze_guard_east_wall will get the color
+# of sneeze_guard below. Feel free to modify/add more colors.
+# TODO(@anyone): make a standard color map based on X11/CSS4 color names
+# see https://matplotlib.org/stable/gallery/color/named_colors.html
+color_map: # rgba values
+  franka_link:
+    rgba: [0.9, 0.9, 0.9, 1.0]
+  franka_base:
+    rgba: [0.5, 0.5, 0.5, 1.0]
+  iiwa_link:
+    rgba: [0.9, 0.9, 0.9, 1.0]
+  iiwa_base:
+    rgba: [0.5, 0.5, 0.5, 1.0]
+  franka_head:
+    rgba: [0.7, 0.7, 0.7, 1.0]
+  sneeze_guard:
+    rgba: [0.7, 0.9, 1.0, 0.5]
+  low_boy:
+    rgba: [0.4, 0.4, 0.4, 0.9]
+  bowl:
+    rgba: [0.9, 0.9, 0.5, 0.9]
+  utensil:
+    rgba: [0.7, 0.7, 0.9, 0.8]
+  vine:
+    rgba: [0.7, 0.7, 0.9, 0.8]
+  tc:
+    rgba: [0.7, 0.7, 0.9, 0.8]
+  disher:
+    rgba: [0.3, 0.3, 0.7, 0.8]
+  ancillary_arm:
+    rgba: [0.9, 0.9, 0.7, 0.8]
+  hotel:
+    rgba: [0.4, 0.4, 0.4, 0.5]
+  labeler:
+    rgba: [0.3, 0.3, 0.4, 0.9]
+  singulator:
+    rgba: [0.3, 0.3, 0.4, 0.9]
+  container_ramp:
+    rgba: [0.3, 0.3, 0.4, 0.9]
+  tong:
+    rgba: [0.2, 0.2, 0.7, 0.8]
+  lidder:
+    rgba: [0.2, 0.2, 0.4, 0.8]
+  tool:
+    rgba: [0.6, 0.6, 0.8, 0.9]
+  cg_base:
+    rgba: [0.9, 0.9, 0.9, 0.9]
+  franka_robot_base:
+    rgba: [0.9, 0.9, 0.9, 0.9]
+  april_tag:
+    rgba: [0.3, 0.3, 0.3, 0.9]
+  column_walls:
+    rgba: [0.3, 0.9, 0.9, 0.4]
+prm_color_map: {}
+# Meshcat will show the xyz frame attached to the body if the name of
+# the body starts with the key below.
+end_effector_frame_vec: []

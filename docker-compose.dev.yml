@@ -1,0 +1,60 @@
+services:
+  dev:
+    extends:
+      file: docker-compose.dev-base.yml
+      service: _dev_base
+    container_name: dev
+
+  dev-ports:
+    extends:
+      file: docker-compose.dev-base.yml
+      service: _dev_base
+    ports:
+      - 7000:7000
+      - "7001-7050:7001-7050"
+      - 7777:7777
+    container_name: dev-ports
+
+  motion_planner:
+    extends:
+      file: docker-compose.dev-base.yml
+      service: _dev_base
+    ports:
+       # Allow up to 50 ports to be mapped for the planner
+      - 5050:5050
+      - "7001-7050:7001-7050"
+      - 7777:7777
+    container_name: motion_planner-dev
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "bash",
+          "-c",
+          "grpcurl -import-path=/healthcheck -proto=/healthcheck/proto/grpc/health/v1/health.proto -plaintext localhost:5050 grpc.health.v1.Health/Check",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    command: ["/bin/bash", "docker_start.sh", "--dev", "--planner"]
+
+  iris_builder:
+    extends:
+      file: docker-compose.dev-base.yml
+      service: _dev_base
+    ports:
+      - 5150:5150
+      - "7001-7050:7001-7050"
+      - 7777:7777
+    container_name: iris_builder-dev
+    command: ["/bin/bash", "docker_start.sh", "--dev", "--iris"]
+
+  visualizer:
+    extends:
+      file: docker-compose.dev-base.yml
+      service: _dev_base
+    ports:
+      - 5550:5550
+      - 7000:7000
+    container_name: visualizer-dev
+    command: ["/bin/bash", "docker_start.sh", "--dev", "--viz"]

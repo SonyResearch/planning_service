@@ -1,0 +1,36 @@
+plan_name: default
+angle_constraints:
+  - frame_A: plate1::plate1__plate_root
+    frame_B: panda_east::panda_east__spoon_face_link
+    a_A: [0.0, 0.0, 1.0]
+    b_B: [0.0, 0.0, 1.0]
+    angle_lower: 0.0
+    angle_upper: 0.175
+collision_checker:
+  paddings:
+    - pair: [panda_west_gripper, plate1]
+      distance: 0.05
+    - pair: [panda_west_gripper, workstation]
+      distance: 0.05
+    - pair: [panda_west_gripper, tweezer_holder]
+      distance: 0.05
+    - pair: [panda_west_gripper, spoon_puree_holder]
+      distance: 0.05
+    - pair: [panda_west_gripper, spoon_sauce_holder]
+      distance: 0.05
+    - pair: [bottle_green_sauce_holder, panda_west_gripper]
+      distance: 0.05
+    - pair: [bottle_miso_sauce_holder, panda_west_gripper]
+      distance: 0.05
+    - pair: [bottle_brown_sauce_holder, panda_west_gripper]
+      distance: 0.05
+    - pair: [panda_west_gripper, spatula_holder]
+      distance: 0.05
+    - pair: [panda_west_gripper, scraper_holder]
+      distance: 0.05
+    - pair: [panda_west_gripper, tray_small]
+      distance: 0.05
+    - pair: [panda_west_gripper, tray_large]
+      distance: 0.05
+    - pair: [panda_east_gripper, panda_west_gripper]
+      distance: 0.08

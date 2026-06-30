@@ -1,0 +1,19 @@
+load("//tools/bazel:python.bzl", "py_pytest")
+
+py_pytest(
+    name = "test_constraints",
+    srcs = ["test_constraints.py"],
+    deps = ["//client/python/planning_service_client"],
+)
+
+py_pytest(
+    name = "test_planning_problem",
+    srcs = ["test_planning_problem.py"],
+    deps = ["//client/python/planning_service_client"],
+)
+
+py_pytest(
+    name = "test_robot_state",
+    srcs = ["test_robot_state.py"],
+    deps = ["//client/python/planning_service_client"],
+)

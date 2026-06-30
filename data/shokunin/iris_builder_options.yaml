@@ -1,0 +1,66 @@
+drake_iris_zo_options:
+  sampled_iris_options:
+    num_particles: 1000
+    tau: 0.5
+    delta: 0.05
+    epsilon: 0.01
+    max_iterations: 3
+    max_iterations_separating_planes: 20
+    max_separating_planes_per_iteration: 10
+    verbose: false
+    require_sample_point_is_contained: true
+    configuration_space_margin: 0.01
+    termination_threshold: 0.02
+    relative_termination_threshold: 0.001
+    remove_all_collisions_possible: true
+    random_seed: 1234
+    mixing_steps: 50
+    sample_particles_in_parallel: false
+  bisection_steps: 10
+drake_iris_np_options:
+  require_sample_point_is_contained: true
+  iteration_limit: 100
+  termination_threshold: 0.02
+  relative_termination_threshold: 0.001
+  configuration_space_margin: 0.01
+  num_collision_infeasible_samples: 5
+  num_additional_constraint_infeasible_samples: 5
+  random_seed: 1234
+  mixing_steps: 10
+  convexity_radius_stepback: 0.001
+  verify_domain_boundedness: true
+drake_iris_np2_options:
+  ray_sampler_options:
+    only_walk_toward_collisions: false
+    ray_search_num_steps: 10
+    num_particles_to_walk_towards: 200
+  sampling_strategy: greedy
+  sampled_iris_options:
+    num_particles: 1000
+    tau: 0.5
+    delta: 0.001
+    epsilon: 0.001
+    max_iterations: 1
+    max_iterations_separating_planes: 20
+    max_separating_planes_per_iteration: 10
+    verbose: false
+    require_sample_point_is_contained: true
+    configuration_space_margin: 0.01
+    termination_threshold: 0.02
+    relative_termination_threshold: 0.001
+    remove_all_collisions_possible: true
+    random_seed: 1234
+    mixing_steps: 50
+    sample_particles_in_parallel: false
+existing_regions_as_obstacle: true
+minimum_region_volume: 0.0
+edge_sample_step: 0.005
+repair_regions: true
+repair_via_ellipsoid: true
+valid_config_method: kEdge
+num_samples_for_repair: 1000
+partition_overlap: 1.e-06
+intersection_samples: 1
+mixing_steps: 3
+use_generation_from_cliques: true
+exclude_existing_regions_from_cliques: true

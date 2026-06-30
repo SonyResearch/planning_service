@@ -1,0 +1,76 @@
+/* custom.css */
+
+/* Body and Typography */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4d2f8;
+}
+
+/* Header */
+.header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Content */
+.content {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #6c1919;
+}
+
+/* Code blocks */
+pre {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #ccc;
+    overflow-x: auto;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}

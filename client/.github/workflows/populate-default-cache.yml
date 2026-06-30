@@ -1,0 +1,37 @@
+name: populate-cache
+run-name: ${{ github.actor }} Populate github cache from default branch
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  Populate-Cache:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Sanitize ref for cache key
+        id: ref
+        run: |
+          REF="${{ github.head_ref || github.ref_name }}"
+          echo "branch=${REF//\//-}" >> $GITHUB_OUTPUT
+      - uses: bazel-contrib/setup-bazel@0.19.0
+        with:
+          bazelisk-cache: true
+          disk-cache: false
+      - name: Restore Bazel cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/bazel-disk
+          key: bazel-${{ runner.os }}-${{ steps.ref.outputs.branch }}-${{ hashFiles('MODULE.bazel', 'client/**', 'proto/**') }}
+          restore-keys: |
+            bazel-${{ runner.os }}-${{ steps.ref.outputs.branch }}-
+            bazel-${{ runner.os }}-
+      - name: Run unit tests
+        run: ./run_tests.sh --config=ci
+      - uses: SonyResearch/shokunin_shared_actions/ci-health@main

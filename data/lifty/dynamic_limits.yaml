@@ -1,0 +1,11 @@
+joint_limits:
+  a:
+    velocity_bound: [2.0, 2.0]
+    acceleration_bound: [5.0, 5.0]
+    torque_bound: [4, 4]
+  b:
+    velocity_bound: [2.0, 2.0]
+    acceleration_bound: [5.0, 5.0]
+    torque_bound: [4, 4]
+
+cartesian_limits: {}

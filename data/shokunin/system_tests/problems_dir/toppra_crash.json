@@ -1,0 +1,2457 @@
+{
+    "context_id": {
+        "value": "13699240785472859170"
+    },
+    "update_traj_toward_waypoints_problem": {
+        "current_trajectory": {
+            "data": {
+                "panda_west": {
+                    "path": {
+                        "breaks": [
+                            0,
+                            10
+                        ],
+                        "dim": 7,
+                        "coeffs": [
+                            {
+                                "data": [
+                                    0.3803885234624735
+                                ]
+                            },
+                            {
+                                "data": [
+                                    -0.14809038161416718
+                                ]
+                            },
+                            {
+                                "data": [
+                                    -0.24450568179167054
+                                ]
+                            },
+                            {
+                                "data": [
+                                    -1.820699998470773
+                                ]
+                            },
+                            {
+                                "data": [
+                                    0.03959356250696711
+                                ]
+                            },
+                            {
+                                "data": [
+                                    1.6682007181644438
+                                ]
+                            },
+                            {
+                                "data": [
+                                    0.14369537021716436
+                                ]
+                            }
+                        ]
+                    },
+                    "time_scaling": {
+                        "breaks": [
+                            0,
+                            10
+                        ],
+                        "dim": 1,
+                        "coeffs": [
+                            {
+                                "data": [
+                                    0,
+                                    1
+                                ]
+                            }
+                        ]
+                    },
+                    "global_time_offset": 1775504204.9630637
+                },
+                "panda_east": {
+                    "path": {
+                        "breaks": [
+                            0,
+                            10
+                        ],
+                        "dim": 7,
+                        "coeffs": [
+                            {
+                                "data": [
+                                    -0.44971533586180723
+                                ]
+                            },
+                            {
+                                "data": [
+                                    0.08530063959403825
+                                ]
+                            },
+                            {
+                                "data": [
+                                    0.029411726937706082
+                                ]
+                            },
+                            {
+                                "data": [
+                                    -2.0625668261857957
+                                ]
+                            },
+                            {
+                                "data": [
+                                    0.16697568354473322
+                                ]
+                            },
+                            {
+                                "data": [
+                                    2.1605635757262984
+                                ]
+                            },
+                            {
+                                "data": [
+                                    -1.6213346629591103
+                                ]
+                            }
+                        ]
+                    },
+                    "time_scaling": {
+                        "breaks": [
+                            0,
+                            10
+                        ],
+                        "dim": 1,
+                        "coeffs": [
+                            {
+                                "data": [
+                                    0,
+                                    1
+                                ]
+                            }
+                        ]
+                    },
+                    "global_time_offset": 1775504204.9630637
+                }
+            }
+        },
+        "wayposes": [
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.01913163997232914,
+                        "y": 0.008840905502438545,
+                        "z": 0.18279291689395905
+                    },
+                    "quat": {
+                        "w": 0.5916582014371097,
+                        "x": 0.4067057081405924,
+                        "y": 0.5122953865374612,
+                        "z": -0.47125839681696596
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.017851730808615685,
+                        "y": 0.008814416825771332,
+                        "z": 0.18216410279273987
+                    },
+                    "quat": {
+                        "w": 0.5911458479773314,
+                        "x": 0.40694451387008074,
+                        "y": 0.5176221058426121,
+                        "z": -0.465843433562463
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.015814807265996933,
+                        "y": 0.009198320098221302,
+                        "z": 0.18089942634105682
+                    },
+                    "quat": {
+                        "w": 0.5886876238137949,
+                        "x": 0.4098749527679755,
+                        "y": 0.5248824715393938,
+                        "z": -0.4582006064297768
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.014011962339282036,
+                        "y": 0.009871698915958405,
+                        "z": 0.17919255793094635
+                    },
+                    "quat": {
+                        "w": 0.5823855531493031,
+                        "x": 0.4172122326589894,
+                        "y": 0.5314000056502926,
+                        "z": -0.4520785931644526
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.012687942944467068,
+                        "y": 0.010836689732968807,
+                        "z": 0.17702560126781464
+                    },
+                    "quat": {
+                        "w": 0.5729298455747369,
+                        "x": 0.4275437627329059,
+                        "y": 0.5370496763493519,
+                        "z": -0.4478117552398028
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.011500822380185127,
+                        "y": 0.011712390929460526,
+                        "z": 0.17451348900794983
+                    },
+                    "quat": {
+                        "w": 0.5627196073899595,
+                        "x": 0.4375732101305817,
+                        "y": 0.5433947252085645,
+                        "z": -0.44339429614104897
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.010000104084610939,
+                        "y": 0.01235120091587305,
+                        "z": 0.17145143449306488
+                    },
+                    "quat": {
+                        "w": 0.5523996202513428,
+                        "x": 0.4469219747139962,
+                        "y": 0.5508117847706555,
+                        "z": -0.4378604638714022
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.008103184401988983,
+                        "y": 0.012952166609466076,
+                        "z": 0.16772383451461792
+                    },
+                    "quat": {
+                        "w": 0.5415043344777463,
+                        "x": 0.4563996058177454,
+                        "y": 0.5582680024866201,
+                        "z": -0.43221440622776447
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.005883891135454178,
+                        "y": 0.01360137015581131,
+                        "z": 0.1634846180677414
+                    },
+                    "quat": {
+                        "w": 0.5297584772393962,
+                        "x": 0.46662959892130196,
+                        "y": 0.5643440803132653,
+                        "z": -0.4279351962843391
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.004181114491075277,
+                        "y": 0.013927406631410122,
+                        "z": 0.1596623808145523
+                    },
+                    "quat": {
+                        "w": 0.5191121910289233,
+                        "x": 0.4753174856597322,
+                        "y": 0.5693006233969733,
+                        "z": -0.42484423163211094
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0030335288029164076,
+                        "y": 0.014423182234168053,
+                        "z": 0.15603771805763245
+                    },
+                    "quat": {
+                        "w": 0.5081240762758926,
+                        "x": 0.4825887554307041,
+                        "y": 0.5762288625649787,
+                        "z": -0.4205690361732372
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0024427499156445265,
+                        "y": 0.014827373437583447,
+                        "z": 0.15292930603027344
+                    },
+                    "quat": {
+                        "w": 0.4976107454671086,
+                        "x": 0.4878806565002152,
+                        "y": 0.584684802026678,
+                        "z": -0.4153308239074146
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0019723838195204735,
+                        "y": 0.015103418380022049,
+                        "z": 0.15027476847171783
+                    },
+                    "quat": {
+                        "w": 0.48713609759658166,
+                        "x": 0.49359060220092854,
+                        "y": 0.5916685103129531,
+                        "z": -0.41109015281486533
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0008655823185108602,
+                        "y": 0.015321806073188782,
+                        "z": 0.1479446291923523
+                    },
+                    "quat": {
+                        "w": 0.47830929355102086,
+                        "x": 0.5000612466711878,
+                        "y": 0.5950494384209056,
+                        "z": -0.4087482539599963
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.0011336642783135176,
+                        "y": 0.015460840426385403,
+                        "z": 0.14504562318325043
+                    },
+                    "quat": {
+                        "w": 0.4696062526886581,
+                        "x": 0.5072165104547294,
+                        "y": 0.5979100925941735,
+                        "z": -0.4058385148453394
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.0033065013121813536,
+                        "y": 0.014968181028962135,
+                        "z": 0.14202545583248138
+                    },
+                    "quat": {
+                        "w": 0.46331310424994204,
+                        "x": 0.5128097288471938,
+                        "y": 0.5999056264979749,
+                        "z": -0.40308856188934705
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.006246096920222044,
+                        "y": 0.015065512619912624,
+                        "z": 0.1385253518819809
+                    },
+                    "quat": {
+                        "w": 0.45863095575393786,
+                        "x": 0.5181733639748759,
+                        "y": 0.6020417398380516,
+                        "z": -0.3983713779677978
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.009130093269050121,
+                        "y": 0.015539570711553097,
+                        "z": 0.13520869612693787
+                    },
+                    "quat": {
+                        "w": 0.4559306043420287,
+                        "x": 0.5218735320885415,
+                        "y": 0.6049760182919438,
+                        "z": -0.39214706147231093
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.011772398836910725,
+                        "y": 0.01622137427330017,
+                        "z": 0.13146927952766418
+                    },
+                    "quat": {
+                        "w": 0.4527081907903557,
+                        "x": 0.5255380161527119,
+                        "y": 0.6084711586423417,
+                        "z": -0.3855229392267612
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.013433320447802544,
+                        "y": 0.017848476767539978,
+                        "z": 0.1276080310344696
+                    },
+                    "quat": {
+                        "w": 0.44694061638701527,
+                        "x": 0.5297447413866979,
+                        "y": 0.6130511753730733,
+                        "z": -0.37918709204089285
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.013838493265211582,
+                        "y": 0.019760940223932266,
+                        "z": 0.12386454641819
+                    },
+                    "quat": {
+                        "w": 0.4391029565506658,
+                        "x": 0.5334693280760516,
+                        "y": 0.6188420194660024,
+                        "z": -0.373675828083367
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.013493765145540237,
+                        "y": 0.0213421992957592,
+                        "z": 0.12047294527292252
+                    },
+                    "quat": {
+                        "w": 0.4307502670516401,
+                        "x": 0.5365685924422978,
+                        "y": 0.6244653585207287,
+                        "z": -0.36958269581652464
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.012843359261751175,
+                        "y": 0.02260567992925644,
+                        "z": 0.11657320708036423
+                    },
+                    "quat": {
+                        "w": 0.42098824482664493,
+                        "x": 0.5400880493167499,
+                        "y": 0.6299019216513029,
+                        "z": -0.36646605000054877
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.013353262096643448,
+                        "y": 0.02335979975759983,
+                        "z": 0.11229299008846283
+                    },
+                    "quat": {
+                        "w": 0.41374478885707616,
+                        "x": 0.5428197163594514,
+                        "y": 0.6349840968470354,
+                        "z": -0.36188009336852595
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.01455875113606453,
+                        "y": 0.023987174034118652,
+                        "z": 0.10819026082754135
+                    },
+                    "quat": {
+                        "w": 0.4094558405164956,
+                        "x": 0.5441313782593825,
+                        "y": 0.6405314507482166,
+                        "z": -0.35494565564725533
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.015716655179858208,
+                        "y": 0.025475148111581802,
+                        "z": 0.10495918244123459
+                    },
+                    "quat": {
+                        "w": 0.40662487937294706,
+                        "x": 0.5444179694553476,
+                        "y": 0.6471794972906555,
+                        "z": -0.3455777485540221
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.016249431297183037,
+                        "y": 0.025504713878035545,
+                        "z": 0.10240644961595535
+                    },
+                    "quat": {
+                        "w": 0.404719067989809,
+                        "x": 0.5436065909969948,
+                        "y": 0.6534889484844152,
+                        "z": -0.3371150314637716
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.016465717926621437,
+                        "y": 0.023089878261089325,
+                        "z": 0.10085032135248184
+                    },
+                    "quat": {
+                        "w": 0.40413085357427636,
+                        "x": 0.5417257468335528,
+                        "y": 0.6586778888209325,
+                        "z": -0.3306885350074227
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.018189510330557823,
+                        "y": 0.023165801540017128,
+                        "z": 0.0998000055551529
+                    },
+                    "quat": {
+                        "w": 0.40278530032077536,
+                        "x": 0.5433721313058117,
+                        "y": 0.6622825312053449,
+                        "z": -0.32232371558097306
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.019810864701867104,
+                        "y": 0.023892177268862724,
+                        "z": 0.0991629883646965
+                    },
+                    "quat": {
+                        "w": 0.40093181588400695,
+                        "x": 0.5456015591863919,
+                        "y": 0.6657100389137858,
+                        "z": -0.3136921448087865
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.020019717514514923,
+                        "y": 0.02384619601070881,
+                        "z": 0.09935557097196579
+                    },
+                    "quat": {
+                        "w": 0.3982626829152161,
+                        "x": 0.54642402342551,
+                        "y": 0.6706901977610535,
+                        "z": -0.3049299602333144
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.0201594065874815,
+                        "y": 0.025651177391409874,
+                        "z": 0.10009492188692093
+                    },
+                    "quat": {
+                        "w": 0.3942051172311082,
+                        "x": 0.5479693028437149,
+                        "y": 0.6765841966629218,
+                        "z": -0.29422065446832585
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.019346002489328384,
+                        "y": 0.02738947793841362,
+                        "z": 0.10117463022470474
+                    },
+                    "quat": {
+                        "w": 0.3889906983803882,
+                        "x": 0.5487681683952325,
+                        "y": 0.6835584870341922,
+                        "z": -0.2833505403792374
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.019595256075263023,
+                        "y": 0.028250770643353462,
+                        "z": 0.1017078086733818
+                    },
+                    "quat": {
+                        "w": 0.3850377580632374,
+                        "x": 0.5502946681644449,
+                        "y": 0.6882695932479721,
+                        "z": -0.27423834535981734
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.019354134798049927,
+                        "y": 0.028642481192946434,
+                        "z": 0.10184779018163681
+                    },
+                    "quat": {
+                        "w": 0.38005599348759983,
+                        "x": 0.5522769111331682,
+                        "y": 0.6925851034191592,
+                        "z": -0.2662208289470088
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.019439853727817535,
+                        "y": 0.02924092300236225,
+                        "z": 0.1014055460691452
+                    },
+                    "quat": {
+                        "w": 0.37410176779244864,
+                        "x": 0.5558681651511889,
+                        "y": 0.6951559434396056,
+                        "z": -0.2604163293778012
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.018920673057436943,
+                        "y": 0.02942177653312683,
+                        "z": 0.10065879672765732
+                    },
+                    "quat": {
+                        "w": 0.36768672104876166,
+                        "x": 0.5590221812663305,
+                        "y": 0.6978590019319998,
+                        "z": -0.25552590756930504
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.018465330824255943,
+                        "y": 0.029327575117349625,
+                        "z": 0.09984878450632095
+                    },
+                    "quat": {
+                        "w": 0.3631211126420466,
+                        "x": 0.5609941488640698,
+                        "y": 0.7003754461851764,
+                        "z": -0.25080441956790755
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.018579304218292236,
+                        "y": 0.028905587270855904,
+                        "z": 0.09842484444379807
+                    },
+                    "quat": {
+                        "w": 0.35946912088372796,
+                        "x": 0.5629273069837455,
+                        "y": 0.7026965942736968,
+                        "z": -0.2451780874777661
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.018588818609714508,
+                        "y": 0.028653107583522797,
+                        "z": 0.09687992930412292
+                    },
+                    "quat": {
+                        "w": 0.3562213809122762,
+                        "x": 0.5643071867188872,
+                        "y": 0.7052608615842471,
+                        "z": -0.23931327567816085
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.01844159886240959,
+                        "y": 0.02828860469162464,
+                        "z": 0.09516733139753342
+                    },
+                    "quat": {
+                        "w": 0.35324837868351305,
+                        "x": 0.5651007171363407,
+                        "y": 0.7077942475134681,
+                        "z": -0.23431616597304142
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.019056478515267372,
+                        "y": 0.027383841574192047,
+                        "z": 0.09221448749303818
+                    },
+                    "quat": {
+                        "w": 0.3508868207979507,
+                        "x": 0.566175281793119,
+                        "y": 0.7094886693604395,
+                        "z": -0.23010827304975795
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.019089745357632637,
+                        "y": 0.02908337675035,
+                        "z": 0.0910324901342392
+                    },
+                    "quat": {
+                        "w": 0.3453565497989291,
+                        "x": 0.5681396944551753,
+                        "y": 0.7125836660866777,
+                        "z": -0.22398807986549216
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.018417369574308395,
+                        "y": 0.029053818434476852,
+                        "z": 0.09112156182527542
+                    },
+                    "quat": {
+                        "w": 0.34036919861326,
+                        "x": 0.5695160813576979,
+                        "y": 0.7146500080171784,
+                        "z": -0.22153015088557493
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.018807515501976013,
+                        "y": 0.0284416563808918,
+                        "z": 0.09181022644042969
+                    },
+                    "quat": {
+                        "w": 0.33867069917454723,
+                        "x": 0.5709209043267374,
+                        "y": 0.7149003656858701,
+                        "z": -0.21970194734133025
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.01829402521252632,
+                        "y": 0.026653191074728966,
+                        "z": 0.09257708489894867
+                    },
+                    "quat": {
+                        "w": 0.33837864045832733,
+                        "x": 0.570762990788755,
+                        "y": 0.7150362339636996,
+                        "z": -0.22011971321637502
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.01795094832777977,
+                        "y": 0.023687615990638733,
+                        "z": 0.09275304526090622
+                    },
+                    "quat": {
+                        "w": 0.3398734737425185,
+                        "x": 0.5699769229882956,
+                        "y": 0.7140376975248603,
+                        "z": -0.22307508964558098
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.017979318276047707,
+                        "y": 0.020166922360658646,
+                        "z": 0.09250932931900024
+                    },
+                    "quat": {
+                        "w": 0.3424615917400355,
+                        "x": 0.5690912446904532,
+                        "y": 0.7121383863625645,
+                        "z": -0.22740741427771186
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.018710417672991753,
+                        "y": 0.017169391736388206,
+                        "z": 0.09237586706876755
+                    },
+                    "quat": {
+                        "w": 0.34513772341724464,
+                        "x": 0.5689478292227688,
+                        "y": 0.7097134231358279,
+                        "z": -0.2312686241535717
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.020422372967004776,
+                        "y": 0.013967308215796947,
+                        "z": 0.0922723263502121
+                    },
+                    "quat": {
+                        "w": 0.3485118161315077,
+                        "x": 0.5698158621369724,
+                        "y": 0.7058075567742256,
+                        "z": -0.23597688461842037
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.022568712010979652,
+                        "y": 0.010182450525462627,
+                        "z": 0.09202317148447037
+                    },
+                    "quat": {
+                        "w": 0.35272498051153206,
+                        "x": 0.5709543555370203,
+                        "y": 0.700812338487466,
+                        "z": -0.24178146794197097
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.0237593874335289,
+                        "y": 0.005507437512278557,
+                        "z": 0.09235930442810059
+                    },
+                    "quat": {
+                        "w": 0.3571806258453727,
+                        "x": 0.5708541610174537,
+                        "y": 0.6960947735051278,
+                        "z": -0.24899717602537524
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.02332787774503231,
+                        "y": -0.0004288394993636757,
+                        "z": 0.09227745234966278
+                    },
+                    "quat": {
+                        "w": 0.3619036594360408,
+                        "x": 0.5682949257765328,
+                        "y": 0.6926157471227745,
+                        "z": -0.25758502569250474
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.022872760891914368,
+                        "y": -0.008927923627197742,
+                        "z": 0.09154736995697021
+                    },
+                    "quat": {
+                        "w": 0.3688333003615657,
+                        "x": 0.5649259918811981,
+                        "y": 0.6870565993126804,
+                        "z": -0.2697662869639838
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.022431669756770134,
+                        "y": -0.017212528735399246,
+                        "z": 0.09133467823266983
+                    },
+                    "quat": {
+                        "w": 0.3755033580086874,
+                        "x": 0.5619339541200604,
+                        "y": 0.6808872543399552,
+                        "z": -0.2821701724289624
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.022785305976867676,
+                        "y": -0.02541317604482174,
+                        "z": 0.09089919924736023
+                    },
+                    "quat": {
+                        "w": 0.3826696231391751,
+                        "x": 0.5602129780039141,
+                        "y": 0.6728557405833744,
+                        "z": -0.2949415724622529
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.023003574460744858,
+                        "y": -0.03145411238074303,
+                        "z": 0.09085159748792648
+                    },
+                    "quat": {
+                        "w": 0.38828155094168093,
+                        "x": 0.5591594347931168,
+                        "y": 0.6660898690669426,
+                        "z": -0.30479903216143583
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.02238530106842518,
+                        "y": -0.03735487163066864,
+                        "z": 0.09074831753969193
+                    },
+                    "quat": {
+                        "w": 0.39345016602944505,
+                        "x": 0.557698493722207,
+                        "y": 0.6593121790735057,
+                        "z": -0.3153994411484097
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.02184043452143669,
+                        "y": -0.04218569025397301,
+                        "z": 0.09018325805664062
+                    },
+                    "quat": {
+                        "w": 0.39847324752171187,
+                        "x": 0.5561146630938149,
+                        "y": 0.6533690721838785,
+                        "z": -0.3241364034093224
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.021154752001166344,
+                        "y": -0.04490113630890846,
+                        "z": 0.0896904245018959
+                    },
+                    "quat": {
+                        "w": 0.40256531256372885,
+                        "x": 0.554750263282426,
+                        "y": 0.6491963349068651,
+                        "z": -0.3297535947522632
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.019737228751182556,
+                        "y": -0.04596230015158653,
+                        "z": 0.08930902928113937
+                    },
+                    "quat": {
+                        "w": 0.40520366927014767,
+                        "x": 0.5539579078904717,
+                        "y": 0.6457072627692655,
+                        "z": -0.3346681244197648
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.01851104199886322,
+                        "y": -0.04627720266580582,
+                        "z": 0.08878453075885773
+                    },
+                    "quat": {
+                        "w": 0.4073267983558477,
+                        "x": 0.5537314693442962,
+                        "y": 0.642474160180478,
+                        "z": -0.3386639819930233
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.017503149807453156,
+                        "y": -0.046277839690446854,
+                        "z": 0.08816438168287277
+                    },
+                    "quat": {
+                        "w": 0.41052457442911616,
+                        "x": 0.554129706642248,
+                        "y": 0.6378818853420613,
+                        "z": -0.34280685868113336
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.015958067029714584,
+                        "y": -0.046414658427238464,
+                        "z": 0.0876462310552597
+                    },
+                    "quat": {
+                        "w": 0.4159480331244238,
+                        "x": 0.5529821794001785,
+                        "y": 0.6335265423433742,
+                        "z": -0.34618212425282885
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.014219749718904495,
+                        "y": -0.04675711691379547,
+                        "z": 0.08735467493534088
+                    },
+                    "quat": {
+                        "w": 0.42313497373920295,
+                        "x": 0.5502065772019886,
+                        "y": 0.629958318681164,
+                        "z": -0.3483992438665686
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.012134258635342121,
+                        "y": -0.04750268533825874,
+                        "z": 0.0871998593211174
+                    },
+                    "quat": {
+                        "w": 0.432834129747928,
+                        "x": 0.545607781886212,
+                        "y": 0.6260425648676824,
+                        "z": -0.3507669759889826
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.010489079169929028,
+                        "y": -0.047799427062273026,
+                        "z": 0.08697601407766342
+                    },
+                    "quat": {
+                        "w": 0.44454594783963275,
+                        "x": 0.5403254629767841,
+                        "y": 0.621521485616849,
+                        "z": -0.3523327081536877
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.009088577702641487,
+                        "y": -0.04806133732199669,
+                        "z": 0.08650410920381546
+                    },
+                    "quat": {
+                        "w": 0.4577373713666521,
+                        "x": 0.5337370325559375,
+                        "y": 0.6169041403685659,
+                        "z": -0.35359660706637236
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.007209130097180605,
+                        "y": -0.04814274236559868,
+                        "z": 0.08595312386751175
+                    },
+                    "quat": {
+                        "w": 0.46872498180355193,
+                        "x": 0.5272061482501903,
+                        "y": 0.6129563483083795,
+                        "z": -0.35585823546591544
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": 0.004052248317748308,
+                        "y": -0.048330698162317276,
+                        "z": 0.0853872075676918
+                    },
+                    "quat": {
+                        "w": 0.47981146857835144,
+                        "x": 0.5187730924689868,
+                        "y": 0.6093836870884638,
+                        "z": -0.35959276280442437
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0008059599786065519,
+                        "y": -0.048578452318906784,
+                        "z": 0.08521655946969986
+                    },
+                    "quat": {
+                        "w": 0.4888354592206395,
+                        "x": 0.5090429065492416,
+                        "y": 0.606644966495805,
+                        "z": -0.36591952356460855
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0077872625552117825,
+                        "y": -0.049400217831134796,
+                        "z": 0.08540305495262146
+                    },
+                    "quat": {
+                        "w": 0.4936275638849247,
+                        "x": 0.4994798450719722,
+                        "y": 0.6039010607307935,
+                        "z": -0.37703477477301195
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.013972586952149868,
+                        "y": -0.04927436262369156,
+                        "z": 0.08526086807250977
+                    },
+                    "quat": {
+                        "w": 0.49486613321407463,
+                        "x": 0.49317852744693014,
+                        "y": 0.6006778375103443,
+                        "z": -0.38867542472727024
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.020239820703864098,
+                        "y": -0.04975820332765579,
+                        "z": 0.08473522961139679
+                    },
+                    "quat": {
+                        "w": 0.49389062226739305,
+                        "x": 0.4874522805943872,
+                        "y": 0.5961431568741539,
+                        "z": -0.40382627934766235
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.022788681089878082,
+                        "y": -0.0495573990046978,
+                        "z": 0.08439723402261734
+                    },
+                    "quat": {
+                        "w": 0.49332647612428265,
+                        "x": 0.48423515442115694,
+                        "y": 0.591417370209942,
+                        "z": -0.415175622347305
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.022697370499372482,
+                        "y": -0.05072237551212311,
+                        "z": 0.08526451885700226
+                    },
+                    "quat": {
+                        "w": 0.49401634670376804,
+                        "x": 0.48247119902221386,
+                        "y": 0.584303198165972,
+                        "z": -0.4263322224703954
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.023290155455470085,
+                        "y": -0.05122264847159386,
+                        "z": 0.08635210245847702
+                    },
+                    "quat": {
+                        "w": 0.49362611320049926,
+                        "x": 0.4797006553364295,
+                        "y": 0.5809682554060743,
+                        "z": -0.43439202092901086
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.022841136902570724,
+                        "y": -0.05144774168729782,
+                        "z": 0.08634782582521439
+                    },
+                    "quat": {
+                        "w": 0.4932235986340149,
+                        "x": 0.47788882204336375,
+                        "y": 0.5761827119030627,
+                        "z": -0.4431323030659701
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.023545145988464355,
+                        "y": -0.05167799070477486,
+                        "z": 0.08578716218471527
+                    },
+                    "quat": {
+                        "w": 0.49181923976851993,
+                        "x": 0.475288713565917,
+                        "y": 0.5717237268118197,
+                        "z": -0.4531516902216898
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0240173302590847,
+                        "y": -0.051553525030612946,
+                        "z": 0.08513433486223221
+                    },
+                    "quat": {
+                        "w": 0.49090084026908143,
+                        "x": 0.47259383688412177,
+                        "y": 0.5675634952239444,
+                        "z": -0.4621072486462786
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.02413260191679001,
+                        "y": -0.05201847478747368,
+                        "z": 0.08518282324075699
+                    },
+                    "quat": {
+                        "w": 0.49024055392491284,
+                        "x": 0.4705676337945471,
+                        "y": 0.561974856524348,
+                        "z": -0.47160848375197206
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.024376889690756798,
+                        "y": -0.05239072069525719,
+                        "z": 0.08601326495409012
+                    },
+                    "quat": {
+                        "w": 0.48925018429768125,
+                        "x": 0.46842314138934765,
+                        "y": 0.5554406530147152,
+                        "z": -0.48238957156452617
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.024488218128681183,
+                        "y": -0.05301738902926445,
+                        "z": 0.08748550713062286
+                    },
+                    "quat": {
+                        "w": 0.48858805894516893,
+                        "x": 0.4661226117811157,
+                        "y": 0.5492370922970498,
+                        "z": -0.49229060105554073
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.024095678701996803,
+                        "y": -0.05344829335808754,
+                        "z": 0.08894255757331848
+                    },
+                    "quat": {
+                        "w": 0.48851457480842947,
+                        "x": 0.4642798125334834,
+                        "y": 0.5443123950507458,
+                        "z": -0.4995215535567345
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.023646265268325806,
+                        "y": -0.053774625062942505,
+                        "z": 0.09005408734083176
+                    },
+                    "quat": {
+                        "w": 0.4888875440864432,
+                        "x": 0.4624193279901961,
+                        "y": 0.5412192441614672,
+                        "z": -0.5042212451766702
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.022431431338191032,
+                        "y": -0.05443200469017029,
+                        "z": 0.0904788076877594
+                    },
+                    "quat": {
+                        "w": 0.49068446216090106,
+                        "x": 0.4599845469198672,
+                        "y": 0.5388906848237652,
+                        "z": -0.5071881357040651
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0209228303283453,
+                        "y": -0.05459088832139969,
+                        "z": 0.09042830020189285
+                    },
+                    "quat": {
+                        "w": 0.4930317291293929,
+                        "x": 0.45803521128955127,
+                        "y": 0.5370086449242913,
+                        "z": -0.5086700055705989
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.020245101302862167,
+                        "y": -0.054487455636262894,
+                        "z": 0.09065962582826614
+                    },
+                    "quat": {
+                        "w": 0.4951393506114332,
+                        "x": 0.45645222727908336,
+                        "y": 0.5346691008363135,
+                        "z": -0.5105069444179386
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.019861575216054916,
+                        "y": -0.05499725788831711,
+                        "z": 0.09145476669073105
+                    },
+                    "quat": {
+                        "w": 0.49766030976134823,
+                        "x": 0.4545137857790074,
+                        "y": 0.5312261062503195,
+                        "z": -0.5133714626498026
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.018331794068217278,
+                        "y": -0.05519910156726837,
+                        "z": 0.09260044246912003
+                    },
+                    "quat": {
+                        "w": 0.5027453666004235,
+                        "x": 0.4511424286139411,
+                        "y": 0.5286532027743115,
+                        "z": -0.5140461036352513
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.016028394922614098,
+                        "y": -0.055630914866924286,
+                        "z": 0.09465183317661285
+                    },
+                    "quat": {
+                        "w": 0.5108371786325282,
+                        "x": 0.44508909892490434,
+                        "y": 0.5264766867362077,
+                        "z": -0.5135789805553184
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.014099327847361565,
+                        "y": -0.05569924786686897,
+                        "z": 0.09742114692926407
+                    },
+                    "quat": {
+                        "w": 0.5191322039239101,
+                        "x": 0.43794941112652147,
+                        "y": 0.5247674810978386,
+                        "z": -0.5131482816158174
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.012444259598851204,
+                        "y": -0.05584070831537247,
+                        "z": 0.10122781246900558
+                    },
+                    "quat": {
+                        "w": 0.52830224679805,
+                        "x": 0.4289836121445117,
+                        "y": 0.5229500096177812,
+                        "z": -0.513218358966573
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.01141468994319439,
+                        "y": -0.05506322532892227,
+                        "z": 0.1060703694820404
+                    },
+                    "quat": {
+                        "w": 0.5378094331750087,
+                        "x": 0.4178184795048944,
+                        "y": 0.5227547920928791,
+                        "z": -0.5127535071709651
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.011272391304373741,
+                        "y": -0.0538368783891201,
+                        "z": 0.11180077493190765
+                    },
+                    "quat": {
+                        "w": 0.545216814353484,
+                        "x": 0.4076585185296277,
+                        "y": 0.5211800935029067,
+                        "z": -0.5147081384170735
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.011928357183933258,
+                        "y": -0.051885515451431274,
+                        "z": 0.11717855930328369
+                    },
+                    "quat": {
+                        "w": 0.5499601169808633,
+                        "x": 0.39962634052061013,
+                        "y": 0.5198172185394276,
+                        "z": -0.5173323080984149
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.013322857208549976,
+                        "y": -0.04783536121249199,
+                        "z": 0.12323334068059921
+                    },
+                    "quat": {
+                        "w": 0.5540184003916976,
+                        "x": 0.39031840501305615,
+                        "y": 0.5219383940206045,
+                        "z": -0.5179724583244564
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.014152457006275654,
+                        "y": -0.04202200099825859,
+                        "z": 0.12854740023612976
+                    },
+                    "quat": {
+                        "w": 0.5581253129466134,
+                        "x": 0.38101114587394314,
+                        "y": 0.5282366436163146,
+                        "z": -0.5140940479222067
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0135158346965909,
+                        "y": -0.03552950546145439,
+                        "z": 0.1334531605243683
+                    },
+                    "quat": {
+                        "w": 0.5622639136176656,
+                        "x": 0.3750796290584771,
+                        "y": 0.5321507426286307,
+                        "z": -0.5098922929683272
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.011773967184126377,
+                        "y": -0.02970174327492714,
+                        "z": 0.13708233833312988
+                    },
+                    "quat": {
+                        "w": 0.5655778346696458,
+                        "x": 0.37394271986743244,
+                        "y": 0.5320250175284178,
+                        "z": -0.5071862931038542
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.009178425185382366,
+                        "y": -0.023354986682534218,
+                        "z": 0.14071880280971527
+                    },
+                    "quat": {
+                        "w": 0.5683514215564398,
+                        "x": 0.37703406057982036,
+                        "y": 0.5279727801303908,
+                        "z": -0.5060303570131462
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.00665590725839138,
+                        "y": -0.017426421865820885,
+                        "z": 0.14397139847278595
+                    },
+                    "quat": {
+                        "w": 0.5700547346404453,
+                        "x": 0.38211760704497194,
+                        "y": 0.5221105441938797,
+                        "z": -0.5063835636568458
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.005026929546147585,
+                        "y": -0.012091029435396194,
+                        "z": 0.1476401537656784
+                    },
+                    "quat": {
+                        "w": 0.5710067889159552,
+                        "x": 0.3860264426598956,
+                        "y": 0.5169839569119897,
+                        "z": -0.5076045910695236
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.004105152562260628,
+                        "y": -0.007890362292528152,
+                        "z": 0.15095362067222595
+                    },
+                    "quat": {
+                        "w": 0.5713397747686327,
+                        "x": 0.3889008442128877,
+                        "y": 0.5128565971843397,
+                        "z": -0.5092200956976574
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0036770470906049013,
+                        "y": -0.0040779514238238335,
+                        "z": 0.15443694591522217
+                    },
+                    "quat": {
+                        "w": 0.5713944446160876,
+                        "x": 0.39081549653522135,
+                        "y": 0.5095293305563622,
+                        "z": -0.5110298402565027
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.004271349404007196,
+                        "y": -0.0008594332612119615,
+                        "z": 0.15753310918807983
+                    },
+                    "quat": {
+                        "w": 0.5706561280479444,
+                        "x": 0.39169720316625184,
+                        "y": 0.5075382415763754,
+                        "z": -0.513156718645118
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0056961714290082455,
+                        "y": 0.0019364090403541923,
+                        "z": 0.16024459898471832
+                    },
+                    "quat": {
+                        "w": 0.5692551824077795,
+                        "x": 0.39181943135034836,
+                        "y": 0.5066454601215468,
+                        "z": -0.5154963125536417
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.0074389115907251835,
+                        "y": 0.003822521073743701,
+                        "z": 0.16243036091327667
+                    },
+                    "quat": {
+                        "w": 0.5677018428098872,
+                        "x": 0.3914299034074034,
+                        "y": 0.506315874596062,
+                        "z": -0.5178237958232063
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.008862857706844807,
+                        "y": 0.0053166672587394714,
+                        "z": 0.16434459388256073
+                    },
+                    "quat": {
+                        "w": 0.5664261871805483,
+                        "x": 0.39104536002331214,
+                        "y": 0.5059214844477847,
+                        "z": -0.5198926355070773
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.009895707480609417,
+                        "y": 0.006592894438654184,
+                        "z": 0.1655375361442566
+                    },
+                    "quat": {
+                        "w": 0.5654574136787179,
+                        "x": 0.39096277408369884,
+                        "y": 0.5055811561588981,
+                        "z": -0.5213383902357335
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.010724063031375408,
+                        "y": 0.007876277901232243,
+                        "z": 0.1661309152841568
+                    },
+                    "quat": {
+                        "w": 0.5646368124387168,
+                        "x": 0.3912198112531024,
+                        "y": 0.5052681869881309,
+                        "z": -0.5223374278566102
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.01151118054986,
+                        "y": 0.009001395665109158,
+                        "z": 0.16634617745876312
+                    },
+                    "quat": {
+                        "w": 0.5639273026199606,
+                        "x": 0.3916600501102263,
+                        "y": 0.5049156239814416,
+                        "z": -0.5231143423448277
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.012190219014883041,
+                        "y": 0.010061402805149555,
+                        "z": 0.16646525263786316
+                    },
+                    "quat": {
+                        "w": 0.5632933223627163,
+                        "x": 0.39211680779650476,
+                        "y": 0.5045669515493287,
+                        "z": -0.5237912116762452
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.012558863498270512,
+                        "y": 0.010745604522526264,
+                        "z": 0.16647784411907196
+                    },
+                    "quat": {
+                        "w": 0.5629169757231528,
+                        "x": 0.3924414357896311,
+                        "y": 0.5043262834128855,
+                        "z": -0.5241843166072578
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.012483332306146622,
+                        "y": 0.010784825310111046,
+                        "z": 0.16631671786308289
+                    },
+                    "quat": {
+                        "w": 0.5629500968860588,
+                        "x": 0.3925557622136011,
+                        "y": 0.5042808059442615,
+                        "z": -0.5241068886449421
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.012401237152516842,
+                        "y": 0.010769081301987171,
+                        "z": 0.16618144512176514
+                    },
+                    "quat": {
+                        "w": 0.5630031957263243,
+                        "x": 0.39262473006694726,
+                        "y": 0.5042728761083154,
+                        "z": -0.5240058104289024
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.012216657400131226,
+                        "y": 0.010837225243449211,
+                        "z": 0.16590768098831177
+                    },
+                    "quat": {
+                        "w": 0.5630847003556799,
+                        "x": 0.39281536841135467,
+                        "y": 0.5041927295854832,
+                        "z": -0.5238524582345164
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.012080807238817215,
+                        "y": 0.010880019515752792,
+                        "z": 0.16562671959400177
+                    },
+                    "quat": {
+                        "w": 0.5631558394818342,
+                        "x": 0.39299922569482554,
+                        "y": 0.5041414596427238,
+                        "z": -0.5236874045936964
+                    }
+                }
+            },
+            {
+                "frame_A": "container_yellow_sauce_holder__container_holder_120_root",
+                "frame_B": "panda_east__spoon_tip_link",
+                "X_AB": {
+                    "translation": {
+                        "x": -0.011959446594119072,
+                        "y": 0.01094184909015894,
+                        "z": 0.1653597205877304
+                    },
+                    "quat": {
+                        "w": 0.5632125957903386,
+                        "x": 0.3931848078918944,
+                        "y": 0.5040830965333147,
+                        "z": -0.5235432270362281
+                    }
+                }
+            }
+        ],
+        "time_now": 0.00003147125244140625,
+        "suggested_segment_durations": [
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05,
+            0.05
+        ],
+        "merge_point_search_step_size": 0.05,
+        "time_optimal": true
+    },
+    "name": "scoop_trajectory_panda_east",
+    "start_system_conf": {
+        "data": {
+            "panda_east": {
+                "data": [
+                    -0.44971533586180723,
+                    0.08530063959403825,
+                    0.029411726937706082,
+                    -2.0625668261857957,
+                    0.16697568354473322,
+                    2.1605635757262984,
+                    -1.6213346629591103
+                ]
+            },
+            "panda_west": {
+                "data": [
+                    0.3803885234624735,
+                    -0.14809038161416718,
+                    -0.24450568179167054,
+                    -1.820699998470773,
+                    0.03959356250696711,
+                    1.6682007181644438,
+                    0.14369537021716436
+                ]
+            }
+        }
+    },
+    "active_trajectory": {
+        "data": {
+            "panda_west": {
+                "path": {
+                    "breaks": [
+                        0,
+                        10
+                    ],
+                    "dim": 7,
+                    "coeffs": [
+                        {
+                            "data": [
+                                0.3803885234624735
+                            ]
+                        },
+                        {
+                            "data": [
+                                -0.14809038161416718
+                            ]
+                        },
+                        {
+                            "data": [
+                                -0.24450568179167054
+                            ]
+                        },
+                        {
+                            "data": [
+                                -1.820699998470773
+                            ]
+                        },
+                        {
+                            "data": [
+                                0.03959356250696711
+                            ]
+                        },
+                        {
+                            "data": [
+                                1.6682007181644438
+                            ]
+                        },
+                        {
+                            "data": [
+                                0.14369537021716436
+                            ]
+                        }
+                    ]
+                },
+                "time_scaling": {
+                    "breaks": [
+                        0,
+                        10
+                    ],
+                    "dim": 1,
+                    "coeffs": [
+                        {
+                            "data": [
+                                0,
+                                1
+                            ]
+                        }
+                    ]
+                },
+                "global_time_offset": 1775504204.9630637
+            },
+            "panda_east": {
+                "path": {
+                    "breaks": [
+                        0,
+                        10
+                    ],
+                    "dim": 7,
+                    "coeffs": [
+                        {
+                            "data": [
+                                -0.44971533586180723
+                            ]
+                        },
+                        {
+                            "data": [
+                                0.08530063959403825
+                            ]
+                        },
+                        {
+                            "data": [
+                                0.029411726937706082
+                            ]
+                        },
+                        {
+                            "data": [
+                                -2.0625668261857957
+                            ]
+                        },
+                        {
+                            "data": [
+                                0.16697568354473322
+                            ]
+                        },
+                        {
+                            "data": [
+                                2.1605635757262984
+                            ]
+                        },
+                        {
+                            "data": [
+                                -1.6213346629591103
+                            ]
+                        }
+                    ]
+                },
+                "time_scaling": {
+                    "breaks": [
+                        0,
+                        10
+                    ],
+                    "dim": 1,
+                    "coeffs": [
+                        {
+                            "data": [
+                                0,
+                                1
+                            ]
+                        }
+                    ]
+                },
+                "global_time_offset": 1775504204.9630637
+            }
+        }
+    },
+    "plan_options": {
+        "collision_options": {
+            "paddings": [
+                {
+                    "pair": {
+                        "body_2": "panda_west_gripper"
+                    }
+                },
+                {
+                    "pair": {
+                        "body_1": "container_yellow_sauce_holder::container_yellow_sauce_holder__container_holder_120_root",
+                        "body_2": "panda_east::panda_east__tool_body_link"
+                    },
+                    "padding": -0.04
+                }
+            ]
+        },
+        "trajectory_update_options": {}
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "creation_date": "2026-03-18_11-56-22",
+  "geometric_hash": "eb801d69e09ed396f34e2e0f4d96c03e",
+  "manifest": "jp-tanuki",
+  "panda_east": {
+    "calibration_dh": {
+      "arm_type": "panda",
+      "calibration_id": "xanthan",
+      "creation_date": "2025-06-18_16-21-29"
+    },
+    "finger_type": "BASIC",
+    "gripper_type": "ROBOTIQ",
+    "hand_camera_name": "d405_east",
+    "hand_camera_type": "CAMERA_REALSENSE_D405",
+    "orientation_constrained": false,
+    "tool_name": "SPATULA",
+    "tool_type": "SPATULA"
+  },
+  "panda_west": {
+    "calibration_dh": {
+      "arm_type": "panda",
+      "calibration_id": "vanilla",
+      "creation_date": "2024-12-07_02-41-00"
+    },
+    "finger_type": "TACTILE_SFEEL_COMPLIANT",
+    "gripper_type": "TANUKI",
+    "hand_camera_name": "d405_west",
+    "hand_camera_type": "CAMERA_REALSENSE_D405",
+    "orientation_constrained": false,
+    "tool_name": "SCRAPER",
+    "tool_type": "SCRAPER"
+  },
+  "scene_hash": "7e63372669932495f69d764e7cb2573d",
+  "scene_name": "jp-tanuki-panda_west(TANUKI,TACTILE_SFEEL_COMPLIANT,SCRAPER)-panda_east(ROBOTIQ,BASIC,SPATULA)",
+  "shokunin_description_version": "0.0.37",
+  "spam_version": "dev-1a335c3"
+}

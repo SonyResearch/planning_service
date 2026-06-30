@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "visualizer_hub",
+    srcs = ["visualizer_hub.cc"],
+    hdrs = ["visualizer_hub.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:misc_utils",
+        "//planning_service/common:time_utils",
+        "//planning_service/draco",
+        "//planning_service/service/utils",
+    ],
+)

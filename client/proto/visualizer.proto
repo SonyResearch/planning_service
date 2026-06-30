@@ -1,0 +1,174 @@
+syntax = "proto3";
+package proto;
+
+import "proto/basic_types.proto";
+
+service Visualizer {
+  // Start the visualizer.
+  rpc StartVisualizer(StartVisualizerRequest)
+      returns (StartVisualizerResponse) {}
+  // Stop the visualizer.
+  rpc StopVisualizer(StopVisualizerRequest) returns (StopVisualizerResponse) {}
+  // Set the joint positions of the model.
+  rpc GetVisualizerStatus(GetVisualizerStatusRequest)
+      returns (GetVisualizerStatusResponse) {}
+  rpc SetConfiguration(SetConfigurationRequest)
+      returns (SetConfigurationResponse) {}
+  // Stream joint positions to the model. Used for live visualization.
+  rpc StreamConfigurations(stream StreamConfigurationsRequest)
+      returns (StreamConfigurationsResponse) {}
+  // Get the pose of a given target frame relative to another frame.
+  rpc CalcPose(CalcPoseRequest) returns (CalcPoseResponse) {}
+  // Visualize trajectory.
+  rpc DisplayTrajectory(DisplayTrajectoryRequest)
+      returns (DisplayTrajectoryResponse) {}
+  // Set an object in the scene at a given pose.
+  rpc SetObject(SetObjectRequest) returns (SetObjectResponse) {}
+  // Delete an object from the scene.
+  rpc DeleteObject(DeleteObjectRequest) returns (DeleteObjectResponse) {}
+  // Toggle the visibility of geometry in the scene.
+  rpc ToggleObject(ToggleObjectRequest) returns (ToggleObjectResponse) {}
+  // Toggle the visibility of a frame's axes in the scene.
+  rpc ToggleFrame(ToggleFrameRequest) returns (ToggleFrameResponse) {}
+}
+
+message SetObjectRequest {
+  string path = 1;
+  ShapeInFrame shape_in_frame = 2;
+  Rgba color = 3;
+}
+
+message SetObjectResponse {}
+
+message DeleteObjectRequest {
+  string path = 1;
+}
+
+message DeleteObjectResponse {}
+
+message ToggleObjectRequest {
+  // Name of the body.
+  string path = 1;
+  // When true, show geometry.
+  bool visible = 2;
+}
+
+message ToggleObjectResponse {}
+
+message ToggleFrameRequest {
+  // Name of the frame OR Meshcat path to frame.
+  string frame = 1;
+  // When true, show frame axes.
+  bool visible = 2;
+}
+
+message ToggleFrameResponse {}
+
+// Parameters which control the appearance of the visualized model.
+message MeshcatParameters {
+  // Show visual geometry when true
+  bool visual = 1;
+  // Show collision geometry when true
+  bool collision = 2;
+  // Map of body names to specific colors
+  map<string, Rgba> color_map = 3;
+  // Bodies named here will have their reference frames displayed in the
+  // visualizer.
+  repeated string end_effector_frame_vec = 4;
+}
+
+// Visualization options not tied directly to the model geometry.
+message VisualizerOptions {
+  // When true, add sliders to control each joint position.
+  bool enable_sliders = 5;
+  // When true, display projections of IRIS regions into Cartesian space.
+  bool show_iris_regions = 6;
+  // When true, display projections of PRM into Cartesian space.
+  bool show_prm = 7;
+}
+
+// Request to start a visualizer session.
+message StartVisualizerRequest {
+  oneof viz_data {
+    // Unique ID for the model to be visualized.
+    PlanContextId context_id = 1;
+    // name of target DMD
+    string dmd_filename = 2;
+  }
+  // Parameters which control the manner in which the model is shown in the
+  // visualizer.
+  MeshcatParameters meshcat_params = 3;
+  // When true, override an already loaded model with the requested one.
+  bool force_reload = 4;
+  VisualizerOptions options = 5;
+}
+
+message StartVisualizerResponse {}
+
+message StopVisualizerRequest {}
+
+message StopVisualizerResponse {}
+
+enum VisualizerStatus {
+  VISUALIZER_STATUS_UNSPECIFIED = 0;
+  VISUALIZER_STATUS_IDLE = 1;
+  VISUALIZER_STATUS_ACTIVE = 2;
+  VISUALIZER_STATUS_STARTING = 3;
+  VISUALIZER_STATUS_STOPPING = 4;
+  VISUALIZER_STATUS_ERROR = 5;
+}
+
+message GetVisualizerStatusRequest {}
+
+message GetVisualizerStatusResponse {
+  VisualizerStatus status = 1;
+  string details = 2;
+}
+
+// Request to set the model positions.
+message SetConfigurationRequest {
+  oneof position_data {
+    Conf conf = 1;
+    SystemConf system_conf = 2;
+  }
+}
+
+message SetConfigurationResponse {}
+
+message StreamConfigurationsRequest {
+  oneof position_data {
+    Conf conf = 1;
+    SystemConf system_conf = 2;
+  }
+}
+
+message StreamConfigurationsResponse {}
+
+// Request to get the pose of a frame B relative to a frame A at the current
+// model positions.
+message CalcPoseRequest {
+  // frame A
+  string frame_a = 1;
+  // frame B
+  string frame_b = 2;
+  // Override the current position of the visualizer model by passing in a
+  // SystemConf. If not set, the pose will be calculated at the
+  // current position of the visualizer model.
+  SystemConf system_conf_override = 3;
+}
+
+message CalcPoseResponse {
+  // The pose of the frame B relative to frame A.
+  FrameRelativePose pose = 1;
+}
+
+message DisplayTrajectoryRequest {
+  oneof trajectory_data {
+    // Trajectory as a path in joint space and a time parameterization.
+    SystemTimedTrajectory timed_trajectory = 2;
+    // Trajectory as a polynomial function of time.
+    SystemPolynomial timed_spline = 3;
+  }
+}
+
+message DisplayTrajectoryResponse {}

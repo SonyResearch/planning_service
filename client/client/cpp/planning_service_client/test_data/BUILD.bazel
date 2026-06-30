@@ -1,0 +1,32 @@
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("//tools/bazel:proto_generate.bzl", "CPP", "proto_generate")
+
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "conftest.py",
+    "dummy_message_snake.json",
+    "dummyMessageCamel.json",
+])
+
+proto_library(
+    name = "dummy_proto",
+    srcs = ["dummy.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_generate(
+    srcs = [":dummy_proto"],
+    generate_grpc = True,
+    languages = [CPP],
+)
+
+cc_library(
+    name = "dummy",
+    hdrs = ["dummy.h"],
+    deps = [
+        ":dummy_cpp_proto",
+        "//client/cpp/planning_service_client/internal:proto_base",
+    ],
+)

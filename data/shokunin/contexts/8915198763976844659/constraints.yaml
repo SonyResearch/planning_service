@@ -1,0 +1,5 @@
+plan_name: default
+collision_checker:
+  paddings:
+    - pair: [panda_east_gripper, panda_west_gripper]
+      distance: 0.05

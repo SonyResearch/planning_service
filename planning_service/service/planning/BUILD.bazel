@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "plan_manager",
+    srcs = ["plan_manager.cc"],
+    hdrs = ["plan_manager.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/draco",
+        "//planning_service/service/utils",
+        "//planning_service/service/utils:resource_manager",
+        "@magic_enum",
+    ],
+)
+
+cc_test(
+    name = "test_plan_manager",
+    srcs = ["tests/test_plan_manager.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":plan_manager",
+        "@googletest//:gtest_main",
+    ],
+)

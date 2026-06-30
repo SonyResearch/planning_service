@@ -1,0 +1,550 @@
+syntax = "proto3";
+
+package proto;
+import "google/protobuf/struct.proto";
+
+// Joint configuration for a single robot.
+message Conf {
+  // Array of joint position data, i.e., data = [q_0, q_1, ..., q_N] for a
+  // robot with N degrees of freedom.
+  repeated double data = 1;
+}
+
+// "System configuration", a type mapping individual robots to respective
+// independent configurations. To be a valid system configuration, each robot in
+// the associated model must be represented.
+message SystemConf {
+  // A map of robot names to individual robot configurations.
+  map<string, Conf> data = 1;
+}
+
+message MaxFrameSpeed {
+  // A map of frame names to their maxmimum frame speeds.
+  map<string, double> data = 1;
+}
+
+// Ordered pair of system configurations.
+message SystemConfEdge {
+  // Vertex 1
+  SystemConf u = 1;
+  // Vertex 2
+  SystemConf v = 2;
+}
+
+// Real-valued vector in 3-dimensional space.
+message Vector3 {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}
+
+// Quaternion representing q = w + x*i + y*j + z*k.
+message Quaternion {
+  double w = 1;
+  double x = 2;
+  double y = 3;
+  double z = 4;
+}
+
+// Generic vector.
+message Vector {
+  repeated double data = 1;
+  uint32 size = 2;
+}
+
+// A message representing a rigid transformation of a frame B relative to a
+// frame A.
+// DEPRECATION NOTICE: This message will be deprecated in favor of the
+// FrameRelativePose message.
+message RigidTransform {
+  // A 3-vector representing the translation of the origin of frame A relative
+  // to the origin of frame B.
+  Vector3 translation = 1;
+  // The rotation of the origin of frame A relative to the origin of frame B.
+  oneof rotation {
+    // Quaternion representation.
+    Quaternion quat = 2;
+    // RPY in radians.
+    Vector3 rpy = 3;
+  }
+}
+
+// A message representating a rigid transformation of a frame B relative to a
+// frame A.
+message FrameRelativePose {
+  // The reference frame A.
+  string frame_A = 1;
+  // The target frame B.
+  string frame_B = 2;
+  // The rigid transformation of frame B relative to frame A.
+  RigidTransform X_AB = 3;
+}
+
+message FrameRelativePoseVec {
+  repeated FrameRelativePose poses_vec = 1;
+}
+
+// [DEPRECATED] State to assign the start and goal of any planning problem.
+message Deprecated_State {
+  oneof data {
+    // System configuration.
+    SystemConf system_conf = 1;
+    // Relative pose of a target frame against a reference frame. (should be
+    // deprecated in favor of 3)
+    FrameRelativePose pose = 2;
+    // Multiple target poses simultaneously
+    FrameRelativePoseVec poses = 3;
+  }
+}
+
+// Real-valued coefficients of a single polynomial.
+message Coeffs {
+  // Array of term-by-term coefficients. For a polynomial of the form
+  // f(t) = c_0 + c_1 * t + c_2 * t^2 + c_3 * t_3, we would have
+  // data = [c_0, c_1, c_2, c_3].
+  repeated double data = 1;
+}
+
+// A scalar piecewise polynomial trajectory in time. In practice, we encode
+// robot trajectories  where for each interval [t, t'] we define a
+// univariate cubic (in time t) polynomial for every robot joint.
+//
+// note: the coefficients are stored in this message type as an array of arrays,
+// so care must be taken to properly unpack the data according to the provided.
+// WARNING: will be deprecated in favor of ClientPiecewisePolynomial.
+message PiecewisePolynomial {
+  // Array of points in time which represent the intervals over which each
+  // constituent polynomial is defined.
+  repeated double breaks = 1;
+  // Number of rows of the polynomial matrix. In practice, this corresponds to
+  // the degrees of freedom of the corresponding robot.
+  uint32 rows = 2;
+  // Number of columns of the polynomial matrix. In practice, this is equivalent
+  // to one.
+  uint32 cols = 3;
+  // Array of arrays of polynomial coefficients. A trajectory for a robot of M
+  // degrees of freedom over N continuous intervals should have M * N arrays of
+  // coefficients.
+  repeated Coeffs coeffs = 4;
+}
+
+// A scalar piecewise polynomial trajectory in time. In practice, we encode
+// robot trajectories  where for each interval [t, t'] we define a
+// univariate cubic (in time t) polynomial for every robot joint.
+//
+// note: the coefficients are stored in this message type as an array of arrays,
+// so care must be taken to properly unpack the data according to the provided.
+// ToDo: Rename as PiecewisePolynomial once above is deprecated.
+message ClientPiecewisePolynomial {
+  // Array of points in time which represent the intervals over which each
+  // constituent polynomial is defined.
+  repeated double breaks = 1;
+  // Number of rows of the polynomial matrix. In practice, this corresponds to
+  // the degrees of freedom of the corresponding robot.
+  uint32 dim = 2;
+  // Array of arrays of polynomial coefficients. The order is dimension first,
+  // interval second. That is, the coefficients are stored as
+  // [coeffs_0[0], coeffs_0[1], ..., coeffs_0[dim-1], coeffs_1[0], ...]
+  // where coeffs_i is the coefficients for the i-th segment.
+  // Then the intervals are stacked.
+  // Each coeffs[i] is an array of deg+1 coefficients.
+  repeated Coeffs coeffs = 3;
+}
+
+// Timed trajectory is a piecewise polynomial trajectory path and its
+// time-scaling parameterization, which is a piecewise polynomial trajectory
+// itself.
+message TimedTrajectory {
+  // The path of the trajectory.
+  ClientPiecewisePolynomial path = 1;
+  // The time-scaling parameterization of the trajectory.
+  // Keep the magnitude of the values of path and time_scaling roughly the same
+  // for the best resolution between time and the path.
+  ClientPiecewisePolynomial time_scaling = 2;
+  // A coarse time offset added to time_scaling, allowing global timing with
+  // high resolution during the trajectory.
+  double global_time_offset = 3;
+}
+
+// System polynomial. Akin to the "system configuration", represent a map of
+// individual piecewise polynomials to their respective target robots.
+message SystemPolynomial {
+  // A map of robot names to individual piecewise polynomials.
+  map<string, PiecewisePolynomial> data = 1;
+}
+
+message SystemPiecewisePolynomial {
+  // A map of robot names to individual piecewise polynomials.
+  map<string, ClientPiecewisePolynomial> data = 1;
+}
+
+// System timed trajectory
+message SystemTimedTrajectory {
+  // A map of robot names to individual timed trajectories.
+  map<string, TimedTrajectory> data = 1;
+}
+
+// Enum which specifies the desired type of returned solution.
+enum SolutionType {
+  // Default value.
+  SOLUTION_TYPE_UNSPECIFIED = 0;
+  // Return a trajectory which is linear in Cartesian space.
+  CARTESIAN_LINEAR = 1;
+  // Return a trajectory which requires the minimum amount of time to complete.
+  TIME_OPTIMAL = 2;
+  // Return a fast estimate of the solution cost, without computing the actual
+  // trajectory.
+  FAST_ESTIMATE_COST = 3;
+  // Get the robot out of constraint violation.
+  OUT_OF_VIOLATION = 4;
+  // Multimodal motion (eg picking and placing motions, where we want to combine
+  // unconstrained motions and cartesian linear motions)
+  MULTIMODAL = 5;
+}
+
+// Parameters which provide supplemental information to the planner (f.e., what
+// kind of system is requesting a plan).
+message Parameters {
+  string system = 1;
+  string model_directive = 2;
+  string robot_name = 3;
+  // Between the start and this offset (from start pose), the trajectory will be
+  // a cartesian linear motion
+  optional RigidTransform multimodal_start_offset = 4;
+  // Between this offset (from goal pose) and the goal, the trajectory will be a
+  // cartesian linear motion
+  optional RigidTransform multimodal_goal_offset = 5;
+}
+
+enum MeshFormat {
+  MESH_FORMAT_UNSPECIFIED = 0;
+  // .obj
+  MESH_FORMAT_OBJ = 1;
+  // .dae
+  MESH_FORMAT_DAE = 2;
+  // .stl
+  MESH_FORMAT_STL = 3;
+  // .mtl
+  MESH_FORMAT_MTL = 4;
+  // .gltf
+  MESH_FORMAT_GLTF = 5;
+  // .bin (for gltf)
+  MESH_FORMAT_BIN = 6;
+}
+
+enum MeshType {
+  MESH_TYPE_UNSPECIFIED = 0;
+  // Collision.
+  MESH_TYPE_COLLISION = 1;
+  // Visual.
+  MESH_TYPE_VISUAL = 2;
+}
+
+// Representation of a meshfile.
+message MeshFile {
+  // The name of the mesh.
+  string name = 1;
+  // The name of the package to which this mesh belongs.
+  string package_name = 2;
+  // The relative path of the mesh within the given package.
+  string parent_path = 3;
+  // File content.
+  bytes content = 4;
+  // File format (e.g., .obj, .dae, etc.).
+  MeshFormat format = 5;
+  // Mesh type (collision/visual).
+  MeshType type = 6;
+}
+
+// Format of model geometry file.
+enum ModelFormat {
+  MODEL_FORMAT_UNSPECIFIED = 0;
+  // URDF
+  MODEL_FORMAT_URDF = 1;
+}
+
+// Representation of a model geometry file.
+message ModelFile {
+  // The name of the file.
+  string name = 1;
+  // The name of the package to which this modelfile belongs.
+  string package_name = 2;
+  // The relative path of the model within the given package.
+  string parent_path = 3;
+  // Raw content.
+  bytes content = 4;
+  // Model format.
+  ModelFormat format = 5;
+}
+
+// Message containing the name of the model, which will be used to set its
+// filename, and the raw contents of its geometric representation. Currently
+// only UDRF formats are supported.
+message Model {
+  // Name of the model in the scene.
+  string name = 1;
+  // Raw contents of URDF file.
+  ModelFile file = 2;
+  // Meshes of given model.
+  repeated MeshFile meshes = 3;
+  // Pose in the scene.
+  FrameRelativePose pose = 4;
+  // Map of joint names to default joint positions.
+  map<string, Conf> default_joint_positions = 5;
+  // Map of bodies to default poses.
+  map<string, FrameRelativePose> default_free_body_pose = 6;
+}
+
+// Message containing useful metadata about a given scene.
+message SceneMetadata {
+  // Human-readable name.
+  string name = 1;
+  // Human-readable description.
+  string description = 2;
+  // Hash of the given scene.
+  uint64 hash = 3;
+  // Other hashes corresponding to scenes whose geometry is sufficiently similar
+  // as to use this scene as proxy.
+  repeated uint64 compatible_hashes = 4;
+  // Metadata about each robot in the scene.
+  map<string, RobotMetadata> robot_metadata = 5;
+}
+
+// A single planning scene, which fully represents the geometry of a robotic
+// system.
+message Scene {
+  // The set of models in the scene.
+  repeated Model models = 1;
+  // Metadata describing the scene.
+  SceneMetadata metadata = 3;
+  // Raw Drake model directive (TO BE DEPRECATED).
+  bytes model_directive_raw = 4;
+}
+
+// Message containing the unique hash computed from a given unique plan context,
+// as well as metadata relevant to the context.
+// TO BE DEPRECATED IN FAVOR OF ContextID.
+message PlanContextId {
+  // The hash-based value.
+  uint64 value = 1;
+  // The associated top-level system name.
+  string system = 2;
+}
+
+// Message containing the unique hash computed from a given unique context and
+// name of the system.
+message ContextId {
+  // The hash-based value.
+  uint64 value = 1;
+  // The associated top-level system name.
+  string system = 2;
+}
+
+message RobotMetadata {
+  uint32 num_positions = 1;
+  FrameRelativePose world_pose = 2;
+  repeated string joints = 3;
+}
+
+message PlanContextSummary {
+  string name = 1;
+  PlanContextId id = 2;
+  map<string, RobotMetadata> robot_summaries = 3;
+}
+
+message RoadmapStatus {
+  // number of vertices in the roadmap (graph of configurations)
+  uint32 num_vertices = 1;
+  // number of edges in the roadmap
+  uint32 num_edges = 2;
+  // the number of roadmap vertices which are covered by any region
+  uint32 num_covered_vertices = 3;
+  // the number of roadmap edges which are entirely contained within the volume
+  // of the IRIS regions
+  uint32 num_covered_edges = 4;
+  // number of roadmap connected components
+  uint32 num_connected_components = 5;
+}
+
+message IrisRegionStatus {
+  // number of IRIS regions available
+  uint32 num_regions = 1;
+  // percent of sample points covered by volume
+  double volume_coverage = 2;
+  // percent of sample points covered by visibility
+  double visibility_coverage = 3;
+  // percent of sample points not covered
+  double uncovered = 4;
+}
+
+message PlanningArtifactStatus {
+  RoadmapStatus roadmap_status = 1;
+  IrisRegionStatus iris_status = 2;
+}
+
+// ========================== The following messages be deprecated
+// ========================= //
+
+// Constrains the position of a point Q, rigidly attached to a frame B, to be
+// within a bounding box measured and expressed in frame A.
+// Additional reference:
+// https://drake.mit.edu/doxygen_cxx/classdrake_1_1multibody_1_1_position_constraint.html
+message Deprecated_PositionConstraint {
+  string frame_A = 1;
+  string frame_B = 2;
+  repeated double p_AQ_lower = 3;
+  repeated double p_AQ_upper = 4;
+  repeated double p_BQ = 5;
+}
+
+// Constrains the angle between a vector a, expressed in frame A, and another
+// vector b, expressed in frame B, to be within the open interval [θ_lower,
+// θ_upper].
+// Additional reference:
+// https://drake.mit.edu/doxygen_cxx/classdrake_1_1multibody_1_1_angle_between_vectors_constraint.html
+message Deprecated_AngleBetweenVectorsConstraint {
+  string frame_A = 1;
+  string frame_B = 2;
+  repeated double a_A = 3;
+  repeated double b_B = 4;
+  double angle_lower = 5;
+  double angle_upper = 6;
+}
+
+// The set of all constraints for a given planning problem.
+message ConstraintsSet {
+  // The set of all position constraints.
+  repeated Deprecated_PositionConstraint pos_constraints = 1;
+  // The set of all angle constraints.
+  repeated Deprecated_AngleBetweenVectorsConstraint angle_constraints = 2;
+}
+
+// ToDo(@Ramy, David) Remove this as it is only used in the builder code.
+// The set of all information which uniquely defines a planning problem.
+message ProblemDef {
+  // Plan name.
+  string name = 1;
+  // Goal state.
+  Deprecated_State goal = 2;
+  // Start state.
+  Deprecated_State start = 3;
+  PlanContextId context_id = 4;
+  // Additional informations specified to the planner
+  Parameters params = 5;
+  // Initial guess for IK solver.
+  SystemConf ik_seed = 6;
+  // Option speciying the form of the computed solution.
+  SolutionType solution_type = 7;
+  // Whether to move the goal to the nearest valid configuration.
+  bool replace_goal_with_closest_valid_conf = 8;
+}
+
+// ToDo(@Ramy, David) Take a look at this when we modify the builder and spam.
+// Message containing the required information to uniquely define a given
+// context for motion planning. Concretely, this corresponds to:
+//   1.) A set of Models, which each correspond to a constituent robot in the
+//   overall system.
+//   2.) A Model Directive, which describes the relative positioning and other
+//   properties of each model in the overall system.
+//   3.) A set of Constraints, which impose certain geometric constraints on
+//   the system.
+message PlanContext {
+  // name for the scene
+  string name = 1;
+  // description
+  string description = 2;
+  // The model directive YAML content as bytes.
+  bytes model_directive_raw = 3;
+  // The set of all robot models.
+  repeated Model models = 4;
+  // The set of constraints imposed on the system.
+  ConstraintsSet constraints = 5;
+  // The ID of the context.
+  PlanContextId id = 6;
+  // Constraints YAML content as bytes.
+  bytes constraints_raw = 7;
+  // Additional metadata.
+  google.protobuf.Struct metadata = 1000;
+  // Arbitrary state information associated with this context.
+  State state = 1100;
+}
+
+message NullValue {}
+
+message ListValue {
+  repeated Value values = 1;
+}
+message Value {
+  oneof value {
+    // Null
+    NullValue null_value = 6;
+    // Fundamental types
+    double number = 1;
+    string string = 2;
+    bool bool = 3;
+    // List
+    ListValue list = 4;
+    // Recursive state
+    State state = 5;
+  }
+}
+
+message State {
+  map<string, Value> entries = 1;
+}
+
+message Box {
+  double width = 1;
+  double depth = 2;
+  double height = 3;
+}
+
+message Sphere {
+  double radius = 1;
+}
+
+message Cylinder {
+  double radius = 1;
+  double height = 2;
+}
+
+message Capsule {
+  double radius = 1;
+  double height = 2;
+}
+
+// A message representing a geometric shape.
+message Shape {
+  oneof shape {
+    Cylinder cylinder = 1;
+    Sphere sphere = 2;
+    Box box = 3;
+    Capsule capsule = 4;
+  }
+}
+
+// A message representing a geometric shape with a pose in a specified reference
+// frame.
+message ShapeInFrame {
+  Shape shape = 1;
+  // Frame to which the shape is attached.
+  string frame = 2;
+  // Pose of the shape in the given frame.
+  RigidTransform pose_in_frame = 3;
+  // Optional display color of the shape.
+  Rgba color = 4;
+  // Optional name or label for the shape.
+  string name = 5;
+}
+
+// RGB-A color encoding.
+message Rgba {
+  // Red
+  double r = 1;
+  // Green
+  double g = 2;
+  // Blue
+  double b = 3;
+  // Alpha (transparency)
+  double a = 4;
+}

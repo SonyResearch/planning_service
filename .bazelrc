@@ -1,0 +1,38 @@
+# Enable Bzlmod for every Bazel command
+common --enable_bzlmod
+# Use highest optimization option for compilation
+build --cxxopt=-O3
+# Use C++23 by default.
+build --cxxopt=-std=c++23
+build --host_cxxopt=-std=c++23
+# fPIC
+build --force_pic
+# OpenMP
+build --cxxopt=-fopenmp
+build --linkopt=-lgomp
+# Fmtlib: Use header-only library (same as Drake)
+build --cxxopt=-DFMT_HEADER_ONLY=1
+# Compiler warnings
+build --features=external_include_paths
+build --cxxopt=-Wall
+build --cxxopt=-Wextra
+build --cxxopt=-Wpedantic
+build --cxxopt=-Werror
+build --per_file_copt=external/.*@-w
+build --host_per_file_copt=external/.*@-w
+# Without this, Drake's YAML serialization does not compile
+build --cxxopt=-Wno-maybe-uninitialized
+build --cxxopt=-Wno-error=deprecated-declarations
+
+# Resource limits for compilation
+common --local_resources=cpu=HOST_CPUS*.5
+
+# Disk cache
+build --disk_cache=~/.cache/bazel-disk
+
+# CI configuration
+# Use fastbuild for CI to speed up compilation
+build:ci -c fastbuild
+# Tests: always show errors and failures in CI; sandboxing already on by default.
+test:ci --test_output=errors
+test:ci --verbose_failures

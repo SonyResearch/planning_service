@@ -1,0 +1,14 @@
+services:
+  motion_planner:
+    extends:
+      file: docker-compose.production.yml
+      service: motion_planner
+    volumes:
+      - type: bind
+        source: ${PWD}/data
+        target: /data
+
+  visualizer:
+    extends:
+      file: docker-compose.production.yml
+      service: visualizer

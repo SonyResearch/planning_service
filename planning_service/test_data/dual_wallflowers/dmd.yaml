@@ -1,0 +1,37 @@
+directives:
+  - add_model:
+      file: package://test_models/wallflower/wallflower_flower.urdf
+      name: flower1
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: flower1::base_link
+      X_PC:
+        translation: [0.45, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://test_models/wallflower/wallflower_flower.urdf
+      name: flower2
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: flower2::base_link
+      X_PC:
+        translation: [-0.45, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://test_models/wallflower/wallflower_wall.urdf
+      name: wall
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: wall::main
+      X_PC:
+        translation: [0.85, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]

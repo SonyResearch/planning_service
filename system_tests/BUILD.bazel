@@ -1,0 +1,37 @@
+load("@planning_service_client//tools/bazel:cpp.bzl", "cc_googletest")
+load("@planning_service_client//tools/bazel:python.bzl", "py_pytest")
+
+# Frame pairs config shared by both test targets.
+# The visualizer binary is included so Bazel re-runs these tests when its
+# source changes, even though the binary is launched externally.
+_SYSTEM_TEST_DATA = [
+    "visualizer_frames.yaml",
+    "//planning_service/app:visualizer",
+]
+
+# Python visualizer system tests – native (pybind11) client.
+py_pytest(
+    name = "py_visualizer_system_test",
+    srcs = ["tests/visualizer_system_test.py"],
+    data = _SYSTEM_TEST_DATA,
+    tags = ["manual"],  # requires a live visualizer service; run via scripts/run_system_tests.sh
+    deps = [
+        "@planning_service_client//client/python/planning_service_client/src:planning_service_client",
+        "@planning_service_client//client/python/planning_service_client/src/planning_service_client/native",
+        "@planning_service_client_dependencies//pyyaml:pkg",
+    ],
+)
+
+# C++ visualizer system test.
+cc_googletest(
+    name = "cpp_visualizer_system_test",
+    timeout = "long",
+    srcs = ["cpp/visualizer_system_test.cc"],
+    data = _SYSTEM_TEST_DATA,
+    tags = ["manual"],  # requires a live visualizer service; run via scripts/run_system_tests.sh
+    deps = [
+        "@drake//:drake_shared_library",
+        "@planning_service_client//client/cpp/planning_service_client:basics",
+        "@planning_service_client//client/cpp/planning_service_client/api:visualizer_client",
+    ],
+)

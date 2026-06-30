@@ -1,0 +1,64 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Allows to be called from other actions (i.e., release)
+  workflow_call:
+    inputs:
+      coverage-artifact-name:
+        required: false
+        description: 'Name of coverage artifact'
+        type: string
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Create clean gh-pages branch
+        run:  git checkout -b gh-pages
+      - name: make documentation
+        run: scripts/generate_docs.sh
+      - name: take everything to docs folder
+        run: mv docs/planning_service_website/* docs/
+      - name: Download code coverage
+        if: ${{ inputs.coverage-artifact-name }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.coverage-artifact-name }}
+          path: coverage
+      - name: Add code coverage to docs
+        if: ${{ inputs.coverage-artifact-name }}
+        run: |
+          ls -a .
+          mv coverage docs/
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.PlanningServiceDocs }}
+          user_name: 'SonyResearch'
+          user_email: 'sadra.sadraddini@dexai.com'
+          publish_dir: ./docs
+          force_orphan: true

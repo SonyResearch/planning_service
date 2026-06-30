@@ -1,0 +1,21 @@
+load("@planning_service_client_dependencies//:requirements.bzl", "requirement")
+load("@rules_python//python:defs.bzl", "py_library")
+
+# Client to interact with the motion planner service
+py_library(
+    name = "planning_service_client",
+    srcs = glob(["planning_service_client/**/*.py"]),
+    imports = ["."],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/python/planning_service_client/src/planning_service_client/native",
+        "//proto:builder_py_pb2_grpc",
+        "//proto:planner_py_pb2_grpc",
+        "//proto:registry_py_pb2_grpc",
+        "//proto:visualizer_py_pb2_grpc",
+        requirement("grpcio-health-checking"),
+        requirement("protobuf"),
+        requirement("numpy"),
+        requirement("colorlog"),
+    ],
+)

@@ -1,0 +1,22 @@
+base_iris_options:
+  require_sample_point_is_contained: true
+  iteration_limit: 1
+  termination_threshold: 0.02
+  relative_termination_threshold: 0.01
+  configuration_space_margin: 0.005
+  num_collision_infeasible_samples: 5
+  num_additional_constraint_infeasible_samples: 5
+  random_seed: 0
+  mixing_steps: 10
+  convexity_radius_stepback: 0.001
+  verify_domain_boundedness: true
+iris_regions_adapter_file: iris_regions.yaml
+existing_regions_as_obstacle: false
+minimum_region_volume: 0
+edge_sample_step: 0.01
+repair_regions: false
+num_samples_for_repair: 100
+partition_overlap: 0.01
+intersection_samples: 1
+mixing_steps: 3
+use_generation_from_cliques: true

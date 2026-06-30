@@ -1,0 +1,38 @@
+<robot name="object">
+  <link name="tray_small__tray_small_root">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/objects/tray/tray_small/visual/tray_small.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.08281 0 0.0097" />
+      <geometry>
+        <box size="0.010 0.260 0.022" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.08281 0 0.0097" />
+      <geometry>
+        <box size="0.010 0.260 0.022" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0.12231 0.0097" />
+      <geometry>
+        <box size="0.180 0.010 0.022" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.12231 0.0097" />
+      <geometry>
+        <box size="0.180 0.010 0.022" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

@@ -1,0 +1,97 @@
+{
+    "context_id": {
+      "value": "14490459688054985756"
+    },
+    "multimodal_planning_problem": {
+      "goal": {
+        "poses": [
+          {
+            "X_AB": {
+              "quat": {
+                "w": 0,
+                "x": 1,
+                "y": 0,
+                "z": 0
+              },
+              "translation": {
+                "x": -0.04,
+                "y": -0,
+                "z": 0.035
+              }
+            },
+            "frame_A": "plate1__plate_root",
+            "frame_B": "panda_east__bottle_tip_link"
+          }
+        ],
+        "system_conf": {}
+      },
+      "goal_transform_poses": [
+        {
+          "X_AB": {
+            "quat": {
+              "w": 1
+            },
+            "translation": {
+              "x": 0.08
+            }
+          },
+          "frame_A": "plate1__plate_root",
+          "frame_B": "panda_east__bottle_tip_link"
+        }
+      ],
+      "start": {
+        "system_conf": {
+          "data": {
+            "panda_east": {
+              "data": [-0.367, -0.057, 0.355, -2.233, -0.009, 2.240, 0.202]
+            },
+            "panda_west": {
+              "data": [
+                1.4988917506465302,
+                0.36897497227742438,
+                0.10177072998195454,
+                -2.2370935622367405,
+                -0.09536167905682276,
+                2.4491587597529336,
+                1.455498369978495
+              ]
+            }
+          }
+        }
+      },
+      "start_transform_poses": [
+        {
+          "X_AB": {
+            "quat": {
+              "w": 1
+            },
+            "translation": {
+              "z": 0.075
+            }
+          },
+          "frame_A": "plate1__plate_root",
+          "frame_B": "panda_east__bottle_tip_link"
+        }
+      ]
+    },
+    "name": "make_brown_sauce_line",
+    "start_system_conf": {
+      "data": {
+        "panda_east": {
+          "data": [-0.367, -0.057, 0.355, -2.233, -0.009, 2.240, 0.202]
+        },
+        "panda_west": {
+          "data": [
+            1.4988917506465302,
+            0.36897497227742438,
+            0.10177072998195454,
+            -2.2370935622367405,
+            -0.09536167905682276,
+            2.4491587597529336,
+            1.455498369978495
+          ]
+        }
+      }
+    }
+  }
+  

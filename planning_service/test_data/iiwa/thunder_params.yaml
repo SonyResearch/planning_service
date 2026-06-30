@@ -1,0 +1,8 @@
+validity_check_resolution: 0.005
+sparse_delta_fraction_base: 0.16
+num_parallel_plans: 0
+roadmap_granularity_base: 0.3
+migration_on_load: false
+max_scratch_planning_time: 10.0
+max_recall_planning_time: 1.0
+verbosity: 2

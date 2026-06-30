@@ -1,0 +1,27 @@
+visualizer_options:
+  add_plans_to_visualizer: true
+  wait_for_user_go_input_in_meshcat: false
+  plans_buffer_size: 10
+  display_trajectory_frequency: 20
+  meshcat_beat_interval_ms: 100
+  # Options:
+  # - kDraco: Use the standalone Draco visualizer.
+  # - kNative: Use the native meshcat visualizer.
+  # - kNone: Do not use any visualizer.
+  mode: kDraco
+planner_options:
+  use_straight_path_planner: true
+  use_gcs_planner: true
+  use_sample_based_planner: true
+  deconfliction_step: 0.05
+  deconfliction_offset: 0.3
+  async_collison_checking_time_step: 0.05
+  async_latency_check_per_call: 0.0010
+  latency_comms: 0.005
+  partial_solution_time_buffer: 0.3
+  update_spline_per_conf: 0.001
+  update_spline_extra_time: 0.005
+default_configuration:
+  panda_east: [-0.369, -0.458, 0.326, -2.201, 0.131, 1.791, -0.064]
+  panda_west: [0.381, -0.150, -0.245, -1.819, 0.041, 1.668, 0.144]
+

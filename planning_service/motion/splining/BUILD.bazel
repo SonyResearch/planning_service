@@ -1,0 +1,50 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "cubic_spliner",
+    srcs = ["cubic_spliner.cc"],
+    hdrs = ["cubic_spliner.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//planning_service/motion/planning:sample_based_planner"],
+)
+
+cc_library(
+    name = "time_optimal_spliner",
+    srcs = ["time_optimal_spliner.cc"],
+    hdrs = [
+        "time_optimal_spliner.h",
+        "trajopt_adapters.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:override",
+        "//planning_service/motion:robot_constraints",
+        "//planning_service/motion/splining/drake:drake_toppra",
+        "//planning_service/motion/splining/internal:cubic_trajectory",
+        "//planning_service/motion/splining/internal:path_math",
+    ],
+)
+
+# unit tests
+
+cc_test(
+    name = "test_time_optimal_spliner",
+    timeout = "short",
+    srcs = ["tests/test_time_optimal_spliner.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":time_optimal_spliner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_cubic_spliner",
+    srcs = ["tests/test_cubic_spliner.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":cubic_spliner",
+        "//planning_service/motion/planning:informed_rrt_star",
+        "@googletest//:gtest_main",
+    ],
+)

@@ -1,0 +1,357 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("//tools/bazel:cpp.bzl", "cc_googletest")
+
+# Package-level library
+cc_library(
+    name = "planner",
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":cartesian_linear_move_problem",
+        ":fixed_frames_motion",
+        ":general_multimodal_plan",
+        ":global_ik_problem",
+        ":max_cartesian_acceleration",
+        ":motion_plan_result",
+        ":motion_problem_definition",
+        ":multimodal_plan",
+        ":out_of_violation",
+        ":planner_base",
+        ":start_to_goal_plan",
+        ":twist",
+        ":update_traj_toward_waypoints",
+    ],
+)
+
+cc_library(
+    name = "planner_base",
+    hdrs = [
+        "planner_base.h",
+        "planning_problem_registry.h",
+    ],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client:basics",
+        "//client/cpp/planning_service_client:context_id",
+        "//client/cpp/planning_service_client/internal:client_throw",
+    ],
+)
+
+cc_library(
+    name = "anchor",
+    srcs = ["anchor.cc"],
+    hdrs = ["anchor.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":planner_base"],
+)
+
+cc_library(
+    name = "start_to_goal_plan",
+    srcs = ["start_to_goal_plan.cc"],
+    hdrs = ["start_to_goal_plan.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":anchor"],
+)
+
+cc_library(
+    name = "cartesian_linear_move_problem",
+    srcs = ["cartesian_linear_move_problem.cc"],
+    hdrs = ["cartesian_linear_move_problem.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":anchor"],
+)
+
+cc_library(
+    name = "global_ik_problem",
+    srcs = ["global_ik_problem.cc"],
+    hdrs = ["global_ik_problem.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":anchor",
+    ],
+)
+
+cc_library(
+    name = "multimodal_plan",
+    srcs = ["multimodal_plan.cc"],
+    hdrs = ["multimodal_plan.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":anchor"],
+)
+
+cc_library(
+    name = "general_multimodal_plan",
+    srcs = ["general_multimodal_plan.cc"],
+    hdrs = ["general_multimodal_plan.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":anchor"],
+)
+
+cc_library(
+    name = "update_traj_toward_waypoints",
+    srcs = ["update_traj_toward_waypoints.cc"],
+    hdrs = ["update_traj_toward_waypoints.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":planner_base"],
+)
+
+cc_library(
+    name = "out_of_violation",
+    srcs = ["out_of_violation.cc"],
+    hdrs = ["out_of_violation.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":planner_base",
+        ":twist",
+    ],
+)
+
+cc_library(
+    name = "fixed_frames_motion",
+    srcs = ["fixed_frames_motion.cc"],
+    hdrs = ["fixed_frames_motion.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":planner_base"],
+)
+
+cc_library(
+    name = "twist",
+    srcs = ["twist.cc"],
+    hdrs = ["twist.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client/internal:eigen_utils",
+        "//client/cpp/planning_service_client/internal:proto_base",
+    ],
+)
+
+cc_library(
+    name = "max_cartesian_acceleration",
+    srcs = ["max_cartesian_acceleration.cc"],
+    hdrs = ["max_cartesian_acceleration.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":planner_base",
+        ":twist",
+    ],
+)
+
+cc_library(
+    name = "motion_plan_result",
+    srcs = ["motion_plan_result.cc"],
+    hdrs = ["motion_plan_result.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":planner_base"],
+)
+
+cc_library(
+    name = "motion_problem_definition",
+    hdrs = ["motion_problem_definition.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":constraints",
+        ":plan_options",
+        ":planner_base",
+    ],
+)
+
+cc_library(
+    name = "plan_options",
+    srcs = ["plan_options.cc"],
+    hdrs = ["plan_options.h"],
+    strip_include_prefix = "/client/cpp",
+    deps = [
+        ":collision_options",
+        ":dynamic_limits",
+    ],
+)
+
+cc_library(
+    name = "dynamic_limits",
+    srcs = ["dynamic_limits.cc"],
+    hdrs = ["dynamic_limits.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client:basics",
+        "//proto:planner_cpp_proto",
+    ],
+)
+
+cc_library(
+    name = "collision_options",
+    srcs = ["collision_options.cc"],
+    hdrs = ["collision_options.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client:basics",
+        "//proto:planner_cpp_proto",
+    ],
+)
+
+cc_library(
+    name = "constraints",
+    srcs = ["constraints.cc"],
+    hdrs = ["constraints.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//client/cpp/planning_service_client:basics",
+        "//proto:planner_cpp_proto",
+    ],
+)
+# --------------------------
+# ------- Unit tests -------
+# --------------------------
+
+cc_library(
+    name = "test_utils",
+    hdrs = ["tests/test_utils.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [":planner"],
+)
+
+cc_googletest(
+    name = "test_anchor",
+    srcs = ["tests/test_anchor.cc"],
+    deps = [":anchor"],
+)
+
+cc_googletest(
+    name = "test_start_to_goal_plan",
+    srcs = ["tests/test_start_to_goal_plan.cc"],
+    deps = [
+        ":start_to_goal_plan",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_multimodal_plan",
+    srcs = ["tests/test_multimodal_plan.cc"],
+    deps = [":multimodal_plan"],
+)
+
+cc_googletest(
+    name = "test_general_multimodal_plan",
+    srcs = ["tests/test_general_multimodal_plan.cc"],
+    deps = [":general_multimodal_plan"],
+)
+
+cc_googletest(
+    name = "test_cartesian_linear_move",
+    srcs = ["tests/test_cartesian_linear_move.cc"],
+    deps = [":cartesian_linear_move_problem"],
+)
+
+cc_googletest(
+    name = "test_update_traj_toward_waypoints",
+    srcs = ["tests/test_update_traj_toward_waypoints.cc"],
+    deps = [
+        ":test_utils",
+        ":update_traj_toward_waypoints",
+    ],
+)
+
+cc_googletest(
+    name = "test_out_of_violation",
+    srcs = ["tests/test_out_of_violation.cc"],
+    deps = [
+        ":out_of_violation",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_global_ik_problem",
+    srcs = ["tests/test_global_ik_problem.cc"],
+    deps = [
+        ":global_ik_problem",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_fixed_frames_motion",
+    srcs = ["tests/test_fixed_frames_motion.cc"],
+    deps = [
+        ":fixed_frames_motion",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_twist",
+    srcs = ["tests/test_twist.cc"],
+    deps = [":twist"],
+)
+
+cc_googletest(
+    name = "test_max_cartesian_acceleration",
+    srcs = ["tests/test_max_cartesian_acceleration.cc"],
+    deps = [
+        ":max_cartesian_acceleration",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_motion_plan_result",
+    srcs = ["tests/test_motion_plan_result.cc"],
+    deps = [
+        ":motion_plan_result",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_motion_problem_definition",
+    srcs = ["tests/test_motion_problem_definition.cc"],
+    deps = [
+        ":motion_problem_definition",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_dynamic_limits",
+    srcs = ["tests/test_dynamic_limits.cc"],
+    deps = [
+        ":dynamic_limits",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_collision_options",
+    srcs = ["tests/test_collision_options.cc"],
+    deps = [
+        ":collision_options",
+        ":test_utils",
+    ],
+)
+
+cc_googletest(
+    name = "test_constraints",
+    srcs = ["tests/test_constraints.cc"],
+    deps = [
+        ":constraints",
+        ":test_utils",
+    ],
+)

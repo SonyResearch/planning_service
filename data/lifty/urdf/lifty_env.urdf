@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot name="env">
+
+  <link name="plate">
+    <collision>
+      <geometry>
+       <cylinder length="0.02" radius="0.2"/> </geometry>
+    </collision>
+  </link>
+
+  <link name="rack_a">
+    <collision>
+      <geometry>
+       <box size="0.33 0.33 0.02"/> </geometry>
+    </collision>
+  </link>
+
+  <link name="rack_b">
+    <collision>
+      <geometry>
+       <box size="0.33 0.33 0.02"/> </geometry>
+    </collision>
+  </link>
+
+  <link name="obstacle">
+    <collision>
+      <geometry>
+       <box size="0.2 0.2 0.24"/> </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_plate_obstacle" type="fixed">
+    <parent link="plate"/>
+    <child link="obstacle"/>
+    <origin rpy="0 0 0" xyz="0.35 0.0 0.12"/>
+  </joint>
+
+
+    <joint name="joint_plate_rack_a" type="fixed">
+        <parent link="plate"/>
+        <child link="rack_a"/>
+        <origin rpy="0 0 0" xyz="0.55 0.5 0.0"/>
+    </joint>
+
+    <joint name="joint_plate_rack_b" type="fixed">
+        <parent link="plate"/>
+        <child link="rack_b"/>
+        <origin rpy="0 0 0" xyz="0.55 -0.5 0.0"/>
+    </joint>
+
+  <drake:collision_filter_group name="everything">
+    <drake:member link="plate"/>
+    <drake:member link="rack_a"/>
+    <drake:member link="rack_b"/>
+    <drake:ignored_collision_filter_group name="everything"/>
+  </drake:collision_filter_group>
+
+</robot>

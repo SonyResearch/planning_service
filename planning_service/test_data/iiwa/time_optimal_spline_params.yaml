@@ -1,0 +1,8 @@
+calc_grid_points_options:
+  max_err: 0.0005
+  max_iter: 100
+  max_seg_length: 0.05
+  min_points: 100
+safety_factor_velocity: 0.99
+safety_factor_acceleration: 0.99
+safety_factor_torque: 0.8

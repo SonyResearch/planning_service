@@ -1,0 +1,5 @@
+alias(
+    name = "python",
+    actual = "//client/python/planning_service_client",
+    visibility = ["//visibility:public"],
+)

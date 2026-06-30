@@ -1,0 +1,82 @@
+# Directories
+.vscode/
+data/
+cache/
+xcode/
+.cproject/
+.project/
+.settings/
+.clwb/
+.history/
+
+# Python Distribution / packaging
+.eggs/
+*.egg-info/
+*.egg
+
+# Venv
+.*venv*
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Python
+*.ipynb
+*.ipynb_checkpoints
+.pytest_cache
+.tags*
+*__pycache__
+
+# Ignore some preferences files for IDE's, etc.
+.idea/
+
+# C extensions
+*.so
+
+# Common editor-specific files
+*.idea
+*.autosave
+*.bk
+*.tmp
+*~
+.#*
+*.bak
+*.pyc
+*.o
+*.swp
+*DS_Store
+
+# Build artifacts
+client/**/proto/
+client/**/build/
+build/
+
+# documentation
+docs/website/
+
+# Bazel
+bazel-*
+MODULE.bazel.lock
+
+# proto gen
+gen/python_proto_*
+gen/python/src/*

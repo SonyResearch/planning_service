@@ -1,0 +1,383 @@
+<?xml version="1.0" ?>
+<robot name="robot" xmlns:drake="http://drake.mit.edu">
+<!-- Primary gripper collision filter group, containing the principal gripper geometry. -->
+<drake:collision_filter_group name="panda_east__gripper">
+    <drake:member link="panda_east__robotiq_coupling_link"/>
+    <drake:member link="panda_east__robotiq_85_base_link"/>
+    <drake:member link="panda_east__robotiq_85_left_knuckle_link"/>
+    <drake:member link="panda_east__robotiq_85_right_knuckle_link"/>
+    <drake:member link="panda_east__robotiq_85_left_finger_link"/>
+    <drake:member link="panda_east__robotiq_85_right_finger_link"/>
+    <drake:member link="panda_east__robotiq_85_left_inner_knuckle_link"/>
+    <drake:member link="panda_east__robotiq_85_right_inner_knuckle_link"/>
+    <drake:member link="panda_east__robotiq_85_left_finger_tip_link"/>
+    <drake:member link="panda_east__robotiq_85_right_finger_tip_link"/>
+    <drake:member link="panda_east__finger_eef"/>
+    <drake:member link="panda_east__camera_view_link"/>
+    <drake:ignored_collision_filter_group name="panda_east__gripper"/>
+  </drake:collision_filter_group>
+  <!-- Collision filter group containing only the tool mount link. -->
+  <drake:collision_filter_group name="panda_east__tool_mount">
+    <drake:member link="panda_east__tool_mount_base_link"/>
+    <drake:ignored_collision_filter_group name="panda_east__tool_mount"/>
+  </drake:collision_filter_group>
+  <link name="panda_east__robotiq_coupling_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="8.625E-08 -4.6583E-06 0.03145"/>
+      <mass value="0.22652"/>
+      <inertia ixx="0.00020005" ixy="-4.2442E-10" ixz="-2.9069E-10" iyy="0.00017832" iyz="-3.4402E-08" izz="0.00013478"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_gripper_coupling.obj"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Connect the gripper to its parent link -->
+  <joint name="panda_east__robotiq_85_base_joint" type="fixed">
+    <parent link="panda_east__robotiq_coupling_link"/>
+    <child link="panda_east__robotiq_85_base_link"/>
+    <origin rpy="0 -1.5708 0" xyz="0 0 0.0075"/>
+  </joint>
+  <link name="panda_east__robotiq_85_base_link">
+    <!-- Cylinder base -->
+    <collision>
+      <origin rpy="1.5708 0 1.5708" xyz="0.019 0 0"/>
+      <geometry>
+        <cylinder length="0.0383" radius="0.038"/>
+      </geometry>
+    </collision>
+    <!-- Main body -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0.06415 0 0"/>
+      <geometry>
+        <box size="0.0517 0.1548 0.036"/>
+      </geometry>
+    </collision>
+    <!-- East block -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0.101 0.052741 0"/>
+      <geometry>
+        <box size="0.022 0.047 0.036"/>
+      </geometry>
+    </collision>
+    <!-- West block -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0.101 -0.052741 0"/>
+      <geometry>
+        <box size="0.022 0.047 0.036"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.636951"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000380" ixy="0.000000" ixz="0.000000" iyx="0.000000" iyy="0.001110" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.001171"/>
+    </inertial>
+  </link>
+  <joint name="panda_east__robotiq_85_left_knuckle_joint" type="revolute">
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="panda_east__robotiq_85_left_knuckle_link"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="3.141592653589793 0.0 0.0" xyz="0.05490451627 0.03060114443 0.0"/>
+    <limit effort="1000" lower="0.0" upper="0.804" velocity="2.0"/>
+  </joint>
+  <joint name="panda_east__robotiq_85_right_knuckle_joint" type="continuous">
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="panda_east__robotiq_85_right_knuckle_link"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.05490451627 -0.03060114443 0.0"/>
+    <limit effort="1000" lower="-3.14" upper="3.14" velocity="100.0"/>
+    <mimic joint="panda_east__robotiq_85_left_knuckle_joint"/>
+  </joint>
+  <link name="panda_east__robotiq_85_left_knuckle_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_85_knuckle_link.obj"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.018491"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000009" ixy="-0.000001" ixz="0.000000" iyx="-0.000001" iyy="0.000001" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000010"/>
+    </inertial>
+  </link>
+  <link name="panda_east__robotiq_85_right_knuckle_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_85_knuckle_link.obj"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.018491"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000009" ixy="-0.000001" ixz="0.000000" iyx="-0.000001" iyy="0.000001" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000010"/>
+    </inertial>
+  </link>
+  <joint name="panda_east__robotiq_85_left_finger_joint" type="fixed">
+    <parent link="panda_east__robotiq_85_left_knuckle_link"/>
+    <child link="panda_east__robotiq_85_left_finger_link"/>
+    <origin rpy="0 0 0" xyz="-0.00408552455 -0.03148604435 0.0"/>
+  </joint>
+  <joint name="panda_east__robotiq_85_right_finger_joint" type="fixed">
+    <parent link="panda_east__robotiq_85_right_knuckle_link"/>
+    <child link="panda_east__robotiq_85_right_finger_link"/>
+    <origin rpy="0 0 0" xyz="-0.00408552455 -0.03148604435 0.0"/>
+  </joint>
+  <link name="panda_east__robotiq_85_left_finger_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_85_finger_link.obj"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.027309"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000003" ixy="-0.000002" ixz="0.000000" iyx="-0.000002" iyy="0.000021" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000020"/>
+    </inertial>
+  </link>
+  <link name="panda_east__robotiq_85_right_finger_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_85_finger_link.obj"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.027309"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000003" ixy="-0.000002" ixz="0.000000" iyx="-0.000002" iyy="0.000021" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000020"/>
+    </inertial>
+  </link>
+  <joint name="panda_east__robotiq_85_left_inner_knuckle_joint" type="continuous">
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="panda_east__robotiq_85_left_inner_knuckle_link"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="3.141592653589793 0.0 0.0" xyz="0.06142 0.0127 0"/>
+    <limit effort="0.1" lower="-3.14" upper="3.14" velocity="100.0"/>
+    <mimic joint="panda_east__robotiq_85_left_knuckle_joint" offset="0"/>
+  </joint>
+  <joint name="panda_east__robotiq_85_right_inner_knuckle_joint" type="continuous">
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="panda_east__robotiq_85_right_inner_knuckle_link"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0.06142 -0.0127 0"/>
+    <limit effort="0.1" lower="-3.14" upper="3.14" velocity="100.0"/>
+    <mimic joint="panda_east__robotiq_85_left_knuckle_joint" offset="0"/>
+  </joint>
+  <link name="panda_east__robotiq_85_left_inner_knuckle_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_85_inner_knuckle_link.obj"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.029951"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000039" ixy="0.000000" ixz="0.000000" iyx="0.000000" iyy="0.000005" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000035"/>
+    </inertial>
+  </link>
+  <link name="panda_east__robotiq_85_right_inner_knuckle_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_85_inner_knuckle_link.obj"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.029951"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000039" ixy="0.000000" ixz="0.000000" iyx="0.000000" iyy="0.000005" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000035"/>
+    </inertial>
+  </link>
+  <!-- Connect the left and right finger frames to the gripper -->
+  <joint name="panda_east__robotiq_85_left_finger_tip_joint" type="continuous">
+    <parent link="panda_east__robotiq_85_left_inner_knuckle_link"/>
+    <child link="panda_east__robotiq_85_left_finger_tip_link"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.04303959807 -0.03759940821 0.0"/>
+    <limit effort="0.1" lower="-3.14" upper="3.14" velocity="100.0"/>
+    <mimic joint="panda_east__robotiq_85_left_knuckle_joint" multiplier="-1"/>
+  </joint>
+  <joint name="panda_east__robotiq_85_right_finger_tip_joint" type="continuous">
+    <parent link="panda_east__robotiq_85_right_inner_knuckle_link"/>
+    <child link="panda_east__robotiq_85_right_finger_tip_link"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.04303959807 -0.03759940821  0.0"/>
+    <limit effort="0.1" lower="-3.14" upper="3.14" velocity="100.0"/>
+    <mimic joint="panda_east__robotiq_85_left_knuckle_joint" multiplier="-1"/>
+  </joint>
+  <link name="panda_east__robotiq_85_left_finger_tip_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_85_basic_finger_tip_link.obj"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/collision/robotiq_85_basic_finger_tip_link.obj"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.019555"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000002" ixy="0.000000" ixz="0.000000" iyx="0.000000" iyy="0.000005" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000006"/>
+    </inertial>
+  </link>
+  <link name="panda_east__robotiq_85_right_finger_tip_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/visual/robotiq_85_basic_finger_tip_link.obj"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/collision/robotiq_85_basic_finger_tip_link.obj"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.019555"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000002" ixy="0.000000" ixz="0.000000" iyx="0.000000" iyy="0.000005" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000006"/>
+    </inertial>
+  </link>
+  <!-- Attach the base link to its parent -->
+  <joint name="panda_east__camera_mount_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.036 0 0.027"/>
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="panda_east__camera_mount_base_link"/>
+  </joint>
+  <link name="panda_east__camera_mount_base_link">
+    <inertial>
+      <mass value="0.0015"/>
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 3.141592653589793 3.141592653589793" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/collision/robotiq_85_camera_mount.obj"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Attach the base link to its parent -->
+  <joint name="panda_east__tool_mount_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.036 0 -0.027"/>
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="panda_east__tool_mount_base_link"/>
+  </joint>
+  <link name="panda_east__tool_mount_base_link">
+    <inertial>
+      <mass value="0.0015"/>
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4"/>
+    </inertial>
+    <collision>
+      <origin rpy="-3.141592653589793 0 1.5707963267948966" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://test_models/franka_with_gripper/meshes/collision/robotiq_85_tool_mount.obj"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="panda_east__tool_mount_attach_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.03 0 -0.019"/>
+    <parent link="panda_east__tool_mount_base_link"/>
+    <child link="panda_east__tool_mount_attach_link"/>
+  </joint>
+  <link name="panda_east__tool_mount_attach_link"/>
+  <!-- Links -->
+  <link name="camera_bottom_screw_frame"/>
+  <link name="camera_link">
+    <collision>
+      <!-- TODO: X and Y coordinate correct, the Z should be set to 0 once the semantics are loaded through the
+          description API -->
+      <!-- <origin xyz="${d405_zero_depth_to_glass-d405_cam_depth/2} ${-d405_cam_depth_py} -${d405_cam_height/5}" rpy="0 0 0"/> -->
+      <origin rpy="0 0 0" xyz="-0.0078 -0.009 0"/>
+      <geometry>
+        <!-- TODO: To be reupdated to original value when the semantics are loaded through the description API -->
+        <box size="0.023 0.042 0.042"/>
+        <!-- <box size="${d405_cam_depth} ${d405_cam_width} ${d405_cam_height*0.6}"/> -->
+      </geometry>
+    </collision>
+    <inertial>
+      <!-- The following are not reliable values, and should not be used for modeling -->
+      <mass value="0.072"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257"/>
+    </inertial>
+  </link>
+  <link name="camera_depth_frame"/>
+  <link name="camera_depth_optical_frame"/>
+  <link name="camera_infra1_frame"/>
+  <link name="camera_infra1_optical_frame"/>
+  <link name="camera_infra2_frame"/>
+  <link name="camera_infra2_optical_frame"/>
+  <link name="camera_color_frame"/>
+  <link name="camera_color_optical_frame"/>
+  <!-- Joints -->
+  <!-- The position of the camera body is either given by the position parameters (sensor_xyz, sensor_rpy). Or by a
+    config file calibration_camera_extrinsic -->
+  <joint name="camera_joint" type="fixed">
+    <origin rpy="3.141592653589793 0 0" xyz="0.06460 -0.009 0.04048"/>
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="camera_link"/>
+  </joint>
+  <!-- TODO: handle the camera_parameters_file -->
+  <joint name="camera_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.01085 -0.009 -0.021"/>
+    <parent link="camera_link"/>
+    <child link="camera_bottom_screw_frame"/>
+  </joint>
+  <!-- camera depth joints and links -->
+  <joint name="camera_depth_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_depth_frame"/>
+  </joint>
+  <joint name="camera_depth_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="camera_depth_frame"/>
+    <child link="camera_depth_optical_frame"/>
+  </joint>
+  <!-- camera left IR joints and links -->
+  <joint name="camera_infra1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.0 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_infra1_frame"/>
+  </joint>
+  <joint name="camera_infra1_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="camera_infra1_frame"/>
+    <child link="camera_infra1_optical_frame"/>
+  </joint>
+  <!-- camera right IR joints and links -->
+  <joint name="camera_infra2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.018 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_infra2_frame"/>
+  </joint>
+  <joint name="camera_infra2_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="camera_infra2_frame"/>
+    <child link="camera_infra2_optical_frame"/>
+  </joint>
+  <!-- camera color joints and links -->
+  <joint name="camera_color_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.0 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_color_frame"/>
+  </joint>
+  <joint name="camera_color_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="camera_color_frame"/>
+    <child link="camera_color_optical_frame"/>
+  </joint>
+  <link name="panda_east__finger_eef"/>
+  <joint name="panda_east__finger_eef_joint" type="fixed">
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="panda_east__finger_eef"/>
+    <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0.162 0 0"/>
+  </joint>
+  <link name="panda_east__camera_view_link"/>
+  <joint name="panda_east__camera_view_joint" type="fixed">
+    <parent link="panda_east__robotiq_85_base_link"/>
+    <child link="panda_east__camera_view_link"/>
+    <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0.2445 0 0.0484"/>
+  </joint>
+</robot>

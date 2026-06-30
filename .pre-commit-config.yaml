@@ -1,0 +1,68 @@
+exclude: (data|externals|client)/.*
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: check-executables-have-shebangs
+        exclude: ".*[.](urdf|obj|dae|stl|mtl)$"
+      - id: check-json
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: end-of-file-fixer
+        exclude: ".*[.](urdf|obj|dae|stl|mtl)$"
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: no-commit-to-branch
+        args: [--branch, main]
+      - id: pretty-format-json
+        args: [--autofix, --indent, "2", --no-ensure-ascii]
+        exclude: ".*[.]ipynb$"
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
+        exclude: ".*[.](urdf|obj|dae|stl|mtl)$"
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.5
+    hooks:
+      - id: forbid-crlf
+      - id: remove-crlf
+      - id: forbid-tabs
+      - id: remove-tabs
+        args: ["--whitespaces-count", "2"] # defaults to: 4
+  # C++
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v20.1.5
+    hooks:
+      - id: clang-format
+        exclude: ".*[.](ipynb|json)$"
+  # Python
+  - repo: https://github.com/psf/black
+    rev: 25.1.0
+    hooks:
+      - id: black
+        args: [--line-length, "120"]
+  - repo: https://github.com/pyCQA/isort
+    rev: 6.0.1
+    hooks:
+      - id: isort
+        types: [python]
+        args: ["--profile", "black", "--line-length=120"]
+  - repo: https://github.com/pyCQA/docformatter
+    rev: v1.7.7
+    hooks:
+      - id: docformatter
+        args:
+          [
+            "-i",
+            "--pre-summary-newline",
+            "--make-summary-multi-line",
+            "--wrap-summaries=120",
+            "--wrap-descriptions=120",
+          ]
+  # Bazel
+  - repo: https://github.com/keith/pre-commit-buildifier
+    rev: 8.2.0
+    hooks:
+      - id: buildifier
+      - id: buildifier-lint

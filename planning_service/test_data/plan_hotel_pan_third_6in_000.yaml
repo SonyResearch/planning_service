@@ -1,0 +1,13 @@
+plan_name: view_conf_to_getstuff_approach
+position_constraints:
+  - frame_A: hotel_pan_third_6in_000
+    frame_B: disher_2oz_face
+    position_BQ: [0.0, 0.0, 0.0]
+    position_AQ_lower: [-0.15, -0.08, -0.02]
+    position_AQ_upper: [0.15, 0.08, 0.66]
+  - frame_A: hotel_pan_third_6in_000
+    frame_B: disher_2oz_tip
+    position_BQ: [0.0, 0.0, 0.0]
+    position_AQ_lower: [-0.15, -0.08, -0.02]
+    position_AQ_upper: [0.15, 0.08, 0.66]
+collision_checker: {}

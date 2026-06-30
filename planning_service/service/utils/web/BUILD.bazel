@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "meshcat_ports",
+    srcs = ["meshcat_ports.cc"],
+    hdrs = ["meshcat_ports.h"],
+    data = ["//planning_service:test_data"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common:file_utils",
+        "//planning_service/draco/planner:draco_planner",
+        "@civetweb",
+        "@civetweb//:civetserver",
+    ],
+)

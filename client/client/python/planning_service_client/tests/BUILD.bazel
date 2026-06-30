@@ -1,0 +1,25 @@
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
+load("//tools/bazel:proto_generate.bzl", "PYTHON", "proto_generate")
+load("//tools/bazel:python.bzl", "py_pytest")
+
+exports_files(["conftest.py"])
+
+proto_library(
+    name = "dummy_proto",
+    srcs = ["dummy.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_generate(
+    srcs = [":dummy_proto"],
+    generate_grpc = True,
+    languages = [PYTHON],
+)
+
+py_pytest(
+    name = "test_proto_imports",
+    srcs = ["test_proto_imports.py"],
+    deps = [
+        "//client/python/planning_service_client/src:planning_service_client",
+    ],
+)

@@ -1,0 +1,77 @@
+<robot name="sensor">
+  <link name="d415_west__camera_link">
+    <visual>
+      <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0.00987 -0.02 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/sensors/cameras/realsense/d415/visual/d415.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.02 0" />
+      <geometry>
+        <box size="0.02005 0.099 0.023" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.072" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257" />
+    </inertial>
+  </link>
+  <link name="d415_west__camera_bottom_screw_frame" />
+  <link name="d415_west__camera_depth_frame" />
+  <link name="d415_west__camera_depth_optical_frame" />
+  <link name="d415_west__camera_infra1_frame" />
+  <link name="d415_west__camera_infra1_optical_frame" />
+  <link name="d415_west__camera_infra2_frame" />
+  <link name="d415_west__camera_infra2_optical_frame" />
+  <link name="d415_west__camera_color_frame" />
+  <link name="d415_west__camera_color_optical_frame" />
+  <joint name="d415_west__camera_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.02 -0.0115" />
+    <parent link="d415_west__camera_link" />
+    <child link="d415_west__camera_bottom_screw_frame" />
+  </joint>
+  <joint name="d415_west__camera_depth_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="d415_west__camera_link" />
+    <child link="d415_west__camera_depth_frame" />
+  </joint>
+  <joint name="d415_west__camera_depth_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+    <parent link="d415_west__camera_depth_frame" />
+    <child link="d415_west__camera_depth_optical_frame" />
+  </joint>
+  <joint name="d415_west__camera_infra1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.0 0" />
+    <parent link="d415_west__camera_link" />
+    <child link="d415_west__camera_infra1_frame" />
+  </joint>
+  <joint name="d415_west__camera_infra1_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+    <parent link="d415_west__camera_infra1_frame" />
+    <child link="d415_west__camera_infra1_optical_frame" />
+  </joint>
+  <joint name="d415_west__camera_infra2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.055 0" />
+    <parent link="d415_west__camera_link" />
+    <child link="d415_west__camera_infra2_frame" />
+  </joint>
+  <joint name="d415_west__camera_infra2_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+    <parent link="d415_west__camera_infra2_frame" />
+    <child link="d415_west__camera_infra2_optical_frame" />
+  </joint>
+  <joint name="d415_west__camera_color_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.015 0" />
+    <parent link="d415_west__camera_link" />
+    <child link="d415_west__camera_color_frame" />
+  </joint>
+  <joint name="d415_west__camera_color_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+    <parent link="d415_west__camera_color_frame" />
+    <child link="d415_west__camera_color_optical_frame" />
+  </joint>
+  <ros2_control name="camera_control" type="system">
+    </ros2_control>
+</robot>

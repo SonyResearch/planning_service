@@ -1,0 +1,81 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library", "cc_test")
+
+cc_library(
+    name = "holonomic_mapping",
+    srcs = [
+        "holonomic_mapping.cc",
+    ],
+    hdrs = ["holonomic_mapping.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/common",
+        "@drake//:drake_shared_library",
+    ],
+)
+
+cc_library(
+    name = "robot_model",
+    srcs = [
+        "robot_meshcat.cc",
+        "robot_model.cc",
+    ],
+    hdrs = ["robot_model.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":holonomic_mapping",
+        "//planning_service/common",
+        "@drake//:drake_shared_library",
+    ],
+)
+
+cc_library(
+    name = "robot_constraints",
+    srcs = [
+        "constraints_adapters.cc",
+        "robot_constraints.cc",
+    ],
+    hdrs = [
+        "constraints_adapters.h",
+        "robot_constraints.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":robot_model",
+        "//planning_service/common:override",
+    ],
+)
+
+# Unit Tests
+
+cc_test(
+    name = "test_robot_model",
+    timeout = "short",
+    srcs = [
+        "tests/test_robot_model.cc",
+        "tests/test_robot_model_with_holonomic_mapping.cc",
+    ],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":robot_model",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_robot_constraints",
+    timeout = "short",
+    srcs = ["tests/test_robot_constraints.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":robot_constraints",
+        "@googletest//:gtest_main",
+    ],
+)
+
+# Executables
+cc_binary(
+    name = "meshcat_sliders",
+    srcs = ["exe/robot_meshcat_sliders.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [":robot_constraints"],
+)

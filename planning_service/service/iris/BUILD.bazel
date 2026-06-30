@@ -1,0 +1,23 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "iris_manager",
+    srcs = ["iris_manager.cc"],
+    hdrs = ["iris_manager.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/draco",
+        "//planning_service/service/utils",
+        "//planning_service/service/utils:resource_manager",
+    ],
+)
+
+cc_test(
+    name = "test_iris_manager",
+    srcs = ["tests/test_iris_manager.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":iris_manager",
+        "@googletest//:gtest_main",
+    ],
+)

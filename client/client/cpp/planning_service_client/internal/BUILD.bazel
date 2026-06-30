@@ -1,0 +1,75 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("//tools/bazel:cpp.bzl", "cc_googletest")
+
+package(default_visibility = ["//client/cpp/planning_service_client:__subpackages__"])
+
+cc_library(
+    name = "internal",
+    deps = [
+        ":client_throw",
+        ":eigen_utils",
+        ":overloaded",
+        ":proto_base",
+        ":system_property",
+    ],
+)
+
+cc_library(
+    name = "eigen_utils",
+    srcs = ["eigen_utils.cc"],
+    hdrs = ["eigen_utils.h"],
+    strip_include_prefix = "/client/cpp",
+    deps = [
+        "//proto:basic_types_cpp_proto",
+        "@eigen",
+        "@protobuf",
+    ],
+)
+
+cc_library(
+    name = "client_throw",
+    srcs = ["client_throw.cc"],
+    hdrs = ["client_throw.h"],
+    strip_include_prefix = "/client/cpp",
+)
+
+cc_library(
+    name = "proto_base",
+    hdrs = ["proto_base.h"],
+    strip_include_prefix = "/client/cpp",
+    deps = [
+        "//proto:builder_cpp_proto",
+        "//proto:planner_cpp_proto",
+        "//proto:registry_cpp_proto",
+        "//proto:visualizer_cpp_proto",
+        "@protobuf",
+    ],
+)
+
+cc_library(
+    name = "system_property",
+    hdrs = ["system_property.h"],
+    strip_include_prefix = "/client/cpp",
+    deps = [":proto_base"],
+)
+
+cc_library(
+    name = "overloaded",
+    hdrs = ["overloaded.h"],
+    strip_include_prefix = "/client/cpp",
+)
+
+cc_googletest(
+    name = "test_proto_base",
+    srcs = ["tests/test_proto_base.cc"],
+    deps = [
+        ":proto_base",
+        "//client/cpp/planning_service_client/test_data:dummy",
+    ],
+)
+
+cc_googletest(
+    name = "test_eigen_utils",
+    srcs = ["tests/test_eigen_utils.cc"],
+    deps = [":eigen_utils"],
+)

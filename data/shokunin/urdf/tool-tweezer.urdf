@@ -1,0 +1,61 @@
+<robot name="tool">
+  <link name="tool_base_link">
+    <inertial>
+      <mass value="0.080" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/tweezer/visual/tweezer_atm.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="0.0165 0 0" />
+      <geometry>
+        <box size="0.033 0.025 0.020" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_body_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="tool_base_link" />
+    <child link="tool_body_link" />
+  </joint>
+  <link name="tool_body_link">
+    <inertial>
+      <mass value="0.080" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/tweezer/visual/tweezer_body.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/tweezer/collision/tweezer_body.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_primary_tag_joint" type="fixed">
+    <origin rpy="0.7853981633974483 0 -1.5707963267948966" xyz="0.039571 0 0.019571" />
+    <parent link="tool_base_link" />
+    <child link="tweezer_primary_tag_link" />
+  </joint>
+  <link name="tweezer_primary_tag_link" />
+  <joint name="tool_secondary_tag_joint" type="fixed">
+    <origin rpy="0 0 -1.5707963267948966" xyz="0.023975 0 0.0125" />
+    <parent link="tool_base_link" />
+    <child link="tweezer_secondary_tag_link" />
+  </joint>
+  <link name="tweezer_secondary_tag_link" />
+  <joint name="tool_tip_joint" type="fixed">
+    <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0.14005 0 0.10278" />
+    <parent link="tool_base_link" />
+    <child link="tweezer_tip_link" />
+  </joint>
+  <link name="tweezer_tip_link" />
+</robot>

@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<robot name="collision_tree_test">
+
+  <!-- ========================= -->
+  <!-- base_link : COLLISION -->
+  <!-- ========================= -->
+  <link name="base_link">
+    <visual>
+      <geometry><box size="0.2 0.2 0.2"/></geometry>
+      <material name="red"><color rgba="1 0 0 1"/></material>
+    </visual>
+    <collision>
+      <geometry><box size="0.2 0.2 0.2"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_mid1" type="fixed">
+    <parent link="base_link"/>
+    <child link="mid_link_1"/>
+  </joint>
+
+  <!-- ========================= -->
+  <!-- mid_link_1 : NO COLLISION -->
+  <!-- ========================= -->
+  <link name="mid_link_1">
+    <visual>
+      <geometry><sphere radius="0.04"/></geometry>
+      <material name="gray"><color rgba="0.7 0.7 0.7 1"/></material>
+    </visual>
+  </link>
+
+  <!-- ========================= -->
+  <!-- Branch 1 -->
+  <!-- ========================= -->
+  <joint name="mid1_to_b1a" type="revolute">
+    <parent link="mid_link_1"/>
+    <child link="branch1_linkA"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.0" upper="1.0" effort="5" velocity="2"/>
+  </joint>
+
+  <link name="branch1_linkA">
+    <visual>
+      <geometry><cylinder length="0.1" radius="0.03"/></geometry>
+      <material name="green"><color rgba="0 1 0 1"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder length="0.1" radius="0.03"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="b1a_to_b1b" type="fixed">
+    <parent link="branch1_linkA"/>
+    <child link="branch1_linkB"/>
+    <origin rpy="3.145 0 0" xyz="0 0 0.1" />
+  </joint>
+
+  <link name="branch1_linkB">
+    <visual>
+      <geometry><sphere radius="0.03"/></geometry>
+      <material name="lightgreen"><color rgba="0.6 1 0.6 1"/></material>
+    </visual>
+  </link>
+
+  <!-- ========================= -->
+  <!-- mid_link_2 : COLLISION -->
+  <!-- ========================= -->
+  <joint name="mid1_to_mid2" type="revolute">
+    <parent link="mid_link_1"/>
+    <child link="mid_link_2"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.5" upper="0.5" effort="5" velocity="2"/>
+  </joint>
+
+  <link name="mid_link_2">
+    <visual>
+      <geometry><sphere radius="0.05"/></geometry>
+      <material name="blue"><color rgba="0 0 1 1"/></material>
+    </visual>
+    <collision>
+      <geometry><sphere radius="0.05"/></geometry>
+    </collision>
+  </link>
+
+  <!-- ========================= -->
+  <!-- mid_link_3 : NO COLLISION -->
+  <!-- ========================= -->
+  <joint name="mid2_to_mid3" type="fixed">
+    <parent link="mid_link_2"/>
+    <child link="mid_link_3"/>
+    <origin rpy="0 0 0" xyz="0 0 0.3"/>
+  </joint>
+
+  <link name="mid_link_3">
+    <visual>
+      <geometry><sphere radius="0.035"/></geometry>
+      <material name="yellow"><color rgba="1 1 0 1"/></material>
+    </visual>
+  </link>
+
+  <!-- ========================= -->
+  <!-- Branch 2 -->
+  <!-- ========================= -->
+  <joint name="mid3_to_b2a" type="prismatic">
+    <parent link="mid_link_3"/>
+    <child link="branch2_linkA"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="0.1" effort="5" velocity="1"/>
+  </joint>
+
+  <link name="branch2_linkA">
+    <visual>
+      <geometry><sphere radius="0.03"/></geometry>
+      <material name="cyan"><color rgba="0 1 1 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="b2a_to_b2b" type="fixed">
+    <parent link="branch2_linkA"/>
+    <child link="branch2_linkB"/>
+  </joint>
+
+  <link name="branch2_linkB">
+    <visual>
+      <geometry><box size="0.1 0.1 0.1"/></geometry>
+      <material name="darkcyan"><color rgba="0 0.6 0.6 1"/></material>
+    </visual>
+    <collision>
+      <geometry><box size="0.1 0.1 0.1"/></geometry>
+    </collision>
+  </link>
+
+  <!-- ========================= -->
+  <!-- Branch 3 -->
+  <!-- ========================= -->
+  <joint name="mid3_to_b3a" type="revolute">
+    <parent link="mid_link_3"/>
+    <child link="branch3_linkA"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.2" upper="1.2" effort="5" velocity="2"/>
+  </joint>
+
+  <link name="branch3_linkA">
+    <visual>
+      <geometry><cylinder length="0.12" radius="0.02"/></geometry>
+      <material name="purple"><color rgba="0.5 0 0.8 1"/></material>
+    </visual>
+    <collision>
+      <geometry><cylinder length="0.12" radius="0.02"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="b3a_to_b3b" type="fixed">
+    <parent link="branch3_linkA"/>
+    <child link="branch3_linkB"/>
+  </joint>
+
+  <link name="branch3_linkB">
+    <visual>
+      <geometry><sphere radius="0.04"/></geometry>
+      <material name="pink"><color rgba="1 0.4 0.7 1"/></material>
+    </visual>
+    <collision>
+      <geometry><sphere radius="0.04"/></geometry>
+    </collision>
+  </link>
+
+</robot>

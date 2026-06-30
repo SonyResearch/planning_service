@@ -1,0 +1,255 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "state_space",
+    srcs = ["state_space.cc"],
+    hdrs = ["state_space.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/motion:robot_constraints",
+        "@ompl",
+    ],
+)
+
+cc_library(
+    name = "validity_checker",
+    srcs = ["validity_checker.cc"],
+    hdrs = ["validity_checker.h"],
+    visibility = ["//visibility:public"],
+    deps = [":state_space"],
+)
+
+cc_library(
+    name = "sample_based_planner",
+    srcs = ["sample_based_planner.cc"],
+    hdrs = ["sample_based_planner.h"],
+    visibility = ["//visibility:public"],
+    deps = [":validity_checker"],
+)
+
+cc_library(
+    name = "thunder_planner",
+    srcs = ["thunder_planner.cc"],
+    hdrs = ["thunder_planner.h"],
+    visibility = ["//visibility:public"],
+    deps = [":sample_based_planner"],
+)
+
+cc_library(
+    name = "informed_rrt_star",
+    srcs = [
+        "informed_rrt_star.cc",
+        "sample_based_planner.cc",
+    ],
+    hdrs = [
+        "informed_rrt_star.h",
+        "sample_based_planner.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [":sample_based_planner"],
+)
+
+cc_library(
+    name = "artifact_builder",
+    srcs = ["artifact_builder.cc"],
+    hdrs = ["artifact_builder.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":thunder_planner",
+        "//planning_service/common",
+        "//planning_service/motion/iris:iris_builder",
+    ],
+)
+
+cc_library(
+    name = "single_mode_gcs_planner",
+    srcs = ["single_mode_gcs_planner.cc"],
+    hdrs = ["single_mode_gcs_planner.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":convex_hull_gcs",
+        "//planning_service/motion/iris:iris_inspector",
+        "//planning_service/motion/planning/internal:graph",
+    ],
+)
+
+cc_library(
+    name = "convex_hull_gcs",
+    srcs = ["convex_hull_gcs.cc"],
+    hdrs = ["convex_hull_gcs.h"],
+    copts = [
+        "-Wno-error=array-bounds",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/motion/iris:iris_inspector",
+        "//planning_service/motion/planning/internal:graph",
+    ],
+)
+
+cc_library(
+    name = "ik_planner",
+    srcs = [
+        "ik_cache.cc",
+        "ik_planner.cc",
+    ],
+    hdrs = [
+        "ik_cache.h",
+        "ik_planner.h",
+        "try_multiple_approaches.h",
+    ],
+    linkopts = ["-pthread"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/motion:robot_constraints",
+        "@ctpl",
+        "@magic_enum",
+    ],
+)
+
+cc_library(
+    name = "straight_path_planner",
+    srcs = ["straight_path_planner.cc"],
+    hdrs = ["straight_path_planner.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//planning_service/motion:robot_constraints",
+        "//planning_service/motion/planning/internal:geodesic_math",
+    ],
+)
+
+# Unit Tests
+
+cc_test(
+    name = "test_single_mode_gcs_planner",
+    timeout = "short",
+    srcs = ["tests/test_single_mode_gcs_planner.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":single_mode_gcs_planner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_thunder_planner",
+    timeout = "moderate",
+    srcs = ["tests/test_thunder_planner.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":thunder_planner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_artifact_builder",
+    timeout = "short",
+    srcs = ["tests/test_artifact_builder.cc"],
+    data = [
+        "//planning_service:test_data",
+    ],
+    deps = [
+        ":artifact_builder",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_state_space",
+    timeout = "short",
+    srcs = ["tests/test_state_space.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":state_space",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_validity_checker",
+    timeout = "short",
+    srcs = ["tests/test_validity_checker.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":validity_checker",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_sample_based_planner",
+    timeout = "moderate",
+    srcs = ["tests/test_sample_based_planner.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":thunder_planner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_informed_rrt_star",
+    timeout = "short",
+    srcs = ["tests/test_informed_rrt_star.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":informed_rrt_star",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_ik_planner",
+    timeout = "short",
+    srcs = ["tests/test_ik_planner.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":ik_planner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_multiple_approaches",
+    timeout = "short",
+    srcs = ["tests/test_multiple_approaches.cc"],
+    deps = [
+        ":ik_planner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_ik_cache",
+    timeout = "short",
+    srcs = ["tests/test_ik_cache.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":ik_planner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_straight_path_planner",
+    timeout = "short",
+    srcs = ["tests/test_straight_path_planner.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":straight_path_planner",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_generation_from_roadmap",
+    timeout = "short",
+    srcs = ["tests/test_generation_from_roadmap.cc"],
+    data = ["//planning_service:test_data"],
+    deps = [
+        ":thunder_planner",
+        "//planning_service/motion/iris:iris_builder",
+        "@googletest//:gtest_main",
+    ],
+)

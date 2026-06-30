@@ -1,0 +1,46 @@
+directives:
+  - add_model:
+      file: package://lifty_models/lifty.urdf
+      name: a
+      default_joint_positions:
+        piston: [0.15]
+        rev: [0.5]
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: a::base_link
+      X_PC:
+        translation: [0.0, 0.5, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_model:
+      file: package://lifty_models/lifty.urdf
+      name: b
+      default_joint_positions:
+        piston: [0.15]
+        rev: [-0.5]
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: b::base_link
+      X_PC:
+        translation: [0.0, -0.5, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 180.0]
+  - add_model:
+      file: package://lifty_models/lifty_env.urdf
+      name: env
+      default_joint_positions: {}
+      default_free_body_pose: {}
+  - add_weld:
+      parent: world
+      child: env::plate
+      X_PC:
+        translation: [0.0, 0.0, 0.0]
+        rotation: !Rpy
+          deg: [0.0, -0.0, 0.0]
+  - add_collision_filter_group:
+      name: env_X_base
+      members: []
+      member_groups: [env::everything]
+      ignored_collision_filter_groups: [a::base, b::base]

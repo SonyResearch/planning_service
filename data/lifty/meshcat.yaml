@@ -1,0 +1,6 @@
+visual: true
+collision: true
+
+color_map: {}
+prm_color_map: {}
+end_effector_frame_vec: [a::stamp, b::stamp]

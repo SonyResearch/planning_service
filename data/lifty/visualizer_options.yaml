@@ -1,0 +1,20 @@
+meshcat_params:
+  color_map: {}
+  end_effector_frame_vec: []
+  collision: true
+  visual: false # Lifty only has collision geometry
+  reserved_ports: [7000]
+  prm_color_map: {}
+enable_sliders: true
+enable_set_configuration: false
+enable_frame_toggle_web: false
+show_iris_regions: false
+frame_name_ignore_patterns: []
+frame_name_ignore_prefixes: []
+frame_name_ignore_suffixes: []
+show_prm: false
+stream_opacity: false
+show_joint_limits: true
+default_init: true
+default_contexts:
+  lifty: 5699026305296616857

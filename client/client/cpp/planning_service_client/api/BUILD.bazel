@@ -1,0 +1,86 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("//tools/bazel:cpp.bzl", "cc_googletest")
+
+cc_library(
+    name = "api",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":planner_client",
+        ":visualizer_client",
+    ],
+)
+
+cc_library(
+    name = "client",
+    hdrs = ["client.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = ["@grpc//:grpc++"],
+)
+
+# Client to interact with the motion planner service
+cc_library(
+    name = "planner_client",
+    hdrs = ["planner_client.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":client",
+        "//client/cpp/planning_service_client:check_satisfied_response",
+        "//client/cpp/planning_service_client:context_id",
+        "//client/cpp/planning_service_client/planner",
+        "//proto:planner_cpp_grpc",
+        "@grpc//:grpc++",
+    ],
+)
+
+cc_library(
+    name = "visualizer_client",
+    srcs = ["visualizer_client.cc"],
+    hdrs = ["visualizer_client.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":client",
+        "//client/cpp/planning_service_client:conf",
+        "//client/cpp/planning_service_client:context_id",
+        "//client/cpp/planning_service_client:frame_relative_pose",
+        "//client/cpp/planning_service_client:rgba",
+        "//client/cpp/planning_service_client:shape",
+        "//client/cpp/planning_service_client:visualizer_status",
+        "//client/cpp/planning_service_client/common",
+        "//proto:visualizer_cpp_grpc",
+        "@eigen",
+    ],
+)
+
+cc_library(
+    name = "registry_client",
+    hdrs = ["registry_client.h"],
+    strip_include_prefix = "/client/cpp",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":client",
+        "//proto:registry_cpp_grpc",
+    ],
+)
+# Additional client targets can be created on a per-service basis (i.e., visualizer, builder, etc...)
+
+cc_googletest(
+    name = "test_planner_client",
+    srcs = ["tests/test_planner_client.cc"],
+    deps = [
+        ":planner_client",
+        "//proto:planner_cpp_grpc",
+        "@grpc//:grpc++_test",
+    ],
+)
+
+cc_googletest(
+    name = "test_visualizer_client",
+    srcs = ["tests/test_visualizer_client.cc"],
+    deps = [
+        ":visualizer_client",
+        "@grpc//:grpc++_test",
+    ],
+)

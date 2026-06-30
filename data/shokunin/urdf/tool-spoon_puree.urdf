@@ -1,0 +1,163 @@
+<robot name="tool">
+  <link name="tool_base_link">
+    <inertial>
+      <mass value="0.060" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/spoon/visual/spoon_atm.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 -3.141592653589793" xyz="0.02 0 0" />
+      <geometry>
+        <box size="0.040 0.025 0.028" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_body_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="tool_base_link" />
+    <child link="tool_body_link" />
+  </joint>
+  <link name="tool_body_link">
+    <inertial>
+      <mass value="0.080" />
+      <inertia ixx="3.987e-5" ixy="0.0" ixz="0.0" iyy="6.629e-4" iyz="0.0" izz="7.024e-4" />
+    </inertial>
+    <visual name="visual">
+      <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/spoon/visual/spoon_body.obj" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="-1.5707963267948966 3.141592653589793 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://shokunin_description/meshes/tools/spoon/collision/spoon_body.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tool_primary_tag_joint" type="fixed">
+    <origin rpy="0.7853981633974483 0 -1.5707963267948966" xyz="0.04769 0 0.01957" />
+    <parent link="tool_base_link" />
+    <child link="spoon_primary_tag_link" />
+  </joint>
+  <link name="spoon_primary_tag_link" />
+  <joint name="tool_secondary_tag_joint" type="fixed">
+    <origin rpy="0 0 -1.5707963267948966" xyz="0.03069 0 0.01250" />
+    <parent link="tool_base_link" />
+    <child link="spoon_secondary_tag_link" />
+  </joint>
+  <link name="spoon_secondary_tag_link" />
+  <joint name="tool_tip_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.16167 0 0.08789" />
+    <parent link="tool_base_link" />
+    <child link="spoon_tip_link" />
+  </joint>
+  <link name="spoon_tip_link" />
+  <joint name="tool_face_joint" type="fixed">
+    <origin rpy="0 -1.136 0" xyz="0.15792 0 0.066997" />
+    <parent link="tool_base_link" />
+    <child link="spoon_face_link" />
+  </joint>
+  <link name="spoon_face_link" />
+  <joint name="spoon_marker_1_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0145 0.029959 0.06875" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_1" />
+  </joint>
+  <link name="spoon_marker_1" />
+  <joint name="spoon_marker_2_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.095888 0.014759 0.0018454" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_2" />
+  </joint>
+  <link name="spoon_marker_2" />
+  <joint name="spoon_marker_3_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.084889 -0.0001 0.011837" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_3" />
+  </joint>
+  <link name="spoon_marker_3" />
+  <joint name="spoon_marker_4_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.095888 -0.014959 0.0018454" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_4" />
+  </joint>
+  <link name="spoon_marker_4" />
+  <joint name="spoon_marker_5_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.10689 -0.0001 -0.0081458" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_5" />
+  </joint>
+  <link name="spoon_marker_5" />
+  <joint name="spoon_marker_6_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.033171 -0.020959 0.0048947" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_6" />
+  </joint>
+  <link name="spoon_marker_6" />
+  <joint name="spoon_marker_7_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.033171 -0.020959 0.0048947" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_7" />
+  </joint>
+  <link name="spoon_marker_7" />
+  <joint name="spoon_marker_8_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0145 -0.032159 0.0675" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_8" />
+  </joint>
+  <link name="spoon_marker_8" />
+  <joint name="spoon_marker_9_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0145 -0.032159 0.1055" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_9" />
+  </joint>
+  <link name="spoon_marker_9" />
+  <joint name="spoon_marker_10_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0145 0.01765 0.11656" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_10" />
+  </joint>
+  <link name="spoon_marker_10" />
+  <joint name="spoon_marker_11_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0145 -0.01785 0.11656" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_11" />
+  </joint>
+  <link name="spoon_marker_11" />
+  <joint name="spoon_marker_12_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.1386 -0.0046 0.025729" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_12" />
+  </joint>
+  <link name="spoon_marker_12" />
+  <joint name="spoon_marker_13_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.033171 0.020959 0.0048947" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_13" />
+  </joint>
+  <link name="spoon_marker_13" />
+  <joint name="spoon_marker_14_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.11463 -0.016659 0.022632" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_14" />
+  </joint>
+  <link name="spoon_marker_14" />
+  <joint name="spoon_marker_15_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.11705 -0.0010519 0.045308" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_15" />
+  </joint>
+  <link name="spoon_marker_15" />
+  <joint name="spoon_marker_16_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.12909 0.014183 0.038396" />
+    <parent link="tool_base_link" />
+    <child link="spoon_marker_16" />
+  </joint>
+  <link name="spoon_marker_16" />
+</robot>

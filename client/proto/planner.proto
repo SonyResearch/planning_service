@@ -1,0 +1,411 @@
+syntax = "proto3";
+package proto;
+
+import "proto/basic_types.proto";
+
+service MotionPlanner {
+  // Solve a planning problem.
+  rpc SolvePlan(SolvePlanRequest) returns (SolvePlanResponse) {}
+  // Calculate a relative pose.
+  rpc CalcRelativePose(CalcRelativePoseRequest)
+      returns (CalcRelativePoseResponse) {}
+  // Check whether a set of target states satisfy the constraints of a given
+  // planning context.
+  rpc CheckSatisfied(CheckSatisfiedRequest) returns (CheckSatisfiedResponse) {}
+  // Set the pose of a FixedOffsetFrame in the parent frame.
+  rpc SetPoseInParentFrame(SetPoseInParentFrameRequest)
+      returns (SetPoseInParentFrameResponse) {}
+}
+
+// The set of all information that define a fixed reference point in a
+// planning problem.
+message Anchor {
+  // System configuration as a map between model names and their respective
+  // configurations.
+  SystemConf system_conf = 1;
+  // A vector of frame-relative poses that define the anchor.
+  repeated FrameRelativePose poses = 2;
+}
+
+// Planning problem consisting of, at most, three movements: a linear motion to
+// the start, a motion between the start and goal state, and a linear motion
+// from the goal.
+message MultimodalPlanningProblem {
+  // Context ID.
+  ContextId context_id = 1;
+  // Plan name.
+  string name = 2;
+  // Start anchor.
+  Anchor start = 3;
+  // Goal anchor.
+  Anchor goal = 4;
+  // Transform from original start to transit start (can handle multiple frame
+  // pair poses for the cartesian linear move)
+  repeated FrameRelativePose start_transform_poses = 5;
+  // Transform from original goal to transit goal (can handle multiple frame
+  // pair poses for the cartesian linear move)
+  repeated FrameRelativePose goal_transform_poses = 6;
+  // Allow partial async plan solutions
+  bool allow_async_partial_solutions = 7;
+}
+
+message GeneralizedMultimodalPlanningProblem {
+  // Field 1 was removed (start_system_conf) - now in MotionProblemDefinition
+  reserved 1;
+  reserved "start_system_conf";
+  // start wayposes anchors
+  repeated Anchor start_anchors = 2;
+  // goal wayposes anchors
+  repeated Anchor goal_anchors = 3;
+  // Fast estimate solution option
+  bool fast_estimate_solution = 4;
+  // Allow partial solutions for start anchors
+  bool allow_partial_start_anchor_solutions = 5;
+  // Allow partial solutions for goal anchors
+  bool allow_partial_goal_anchor_solutions = 6;
+  // Allow partial async plan solutions
+  bool allow_async_partial_solutions = 7;
+  // Allow to update active arms trajectories
+  bool allow_update_active_arms = 8;
+}
+
+// Planning problem to move from some start state to some goal state.
+message StartToGoalProblem {
+  // Start anchor.
+  Anchor start = 1;
+  // Goal anchor.
+  Anchor goal = 2;
+  // If true, replaces invalid goal with closest valid conf
+  bool replace_invalid_goal = 3;
+  // If true, only a estimated solution is returned.
+  bool fast_estimate_solution = 4;
+  // Allow partial async solutions
+  bool allow_async_partial_solutions = 5;
+}
+
+message FrameRelativePosesVec {
+  repeated FrameRelativePose poses = 1;
+}
+
+// Planning problem to perform a Cartesian-linear move from a start anchor
+// to some configuration of goal poses.
+message CartesianLinearMoveProblem {
+  // Start anchor.
+  Anchor start = 1;
+  repeated FrameRelativePose start_transform_poses = 3;
+  // Allow partial async solutions
+  bool allow_async_partial_solutions = 4;
+}
+
+message GlobalIKProblem {
+  // poses
+  repeated FrameRelativePose poses = 1;
+  // ik seed system conf
+  optional SystemConf ik_seed_system_conf = 2;
+  // fixed (partial) system conf
+  optional SystemConf fixed_system_conf = 3;
+}
+
+enum SuccessStatus {
+  SUCCESS_STATUS_UNDEFINED = 0;
+  SUCCESS_STATUS_FULL = 1;
+  SUCCESS_STATUS_STOPPED_SHORT = 2;
+}
+
+enum FailureStatus {
+  FAILURE_STATUS_UNDEFINED = 0;
+  FAILURE_STATUS_INVALID_START = 1;
+  FAILURE_STATUS_INVALID_GOAL = 2;
+  FAILURE_STATUS_INVERSE_KINEMATICS = 3;
+  FAILURE_STATUS_ASYNC_COLLISION = 4;
+  FAILURE_STATUS_ASYNC_ACTIVE_RESOURCE = 5;
+  FAILURE_STATUS_GENERAL = 100;
+}
+
+message MotionPlanResult {
+  // ID of the plan.
+  uint32 id = 1;
+  // Whether the plan was successful.
+  bool is_success = 2;
+  // The plan as a spline, given as a polynomial function of time.
+  string message = 3;
+  // The returned plan as a spline, given as a polynomial function of time.
+  SystemTimedTrajectory trajectory = 4;
+  // 5 abandoned from t_switch.
+  // Success status
+  SuccessStatus success_status = 6;
+  // Failure status
+  FailureStatus failure_status = 7;
+}
+
+// Request to calculate the pose of a given joint configuration.
+message CalcRelativePoseRequest {
+  // ID of the target context.
+  PlanContextId context_id = 1;
+  // The joint configuration as a system conf.
+  SystemConf system_conf = 2;
+  // The relative frame.
+  string frame_A = 3;
+  // The target frame.
+  string frame_B = 4;
+}
+
+// Response containing calculated pose.
+message CalcRelativePoseResponse {
+  // Pose X_AB.
+  RigidTransform pose = 1;
+}
+
+// Options passed when running CheckSatisfied.
+message CheckSatisfiedOptions {
+  // When true, check candidate states in parallel.
+  bool parallel = 1;
+  // When true, fail on the first instance in which a candidate state does not
+  // satisfy the constraints.
+  bool fail_fast = 2;
+  // When true, return a verbose message specifying the results of the check.
+  bool verbose = 3;
+  // Number of threads used to check the constraints.
+  int32 num_threads = 4;
+  // Tolerance used when evaluating constraints.
+  double tolerance = 5;
+}
+
+// Request for CheckSatisfied.
+message CheckSatisfiedRequest {
+  // Target context ID.
+  PlanContextId context_id = 1;
+  // Vector of system configurations.
+  repeated SystemConf system_conf_vec = 2;
+  // Options for the check.
+  CheckSatisfiedOptions options = 3;
+  // Collision options
+  CollisionOptions collision_options = 100;
+}
+
+// Response for CheckSatisfied.
+message CheckSatisfiedResponse {
+  // True if all states satisfy the given constraints.
+  bool satisfied = 1;
+  // Old field 2 (string msg) is no longer being used.
+  reserved 2;
+  reserved "msg";
+  // When satisfied is false, this field is populated with the list of
+  // constraints that are not satisfied.
+  repeated string unsatisfied_constraints = 3;
+  // When satisfied is false, this field is populated with the list of resource
+  // names that are in violation.
+  repeated string offending_resource_names = 4;
+}
+
+message SetPoseInParentFrameRequest {
+  // Frame Relative Pose
+  FrameRelativePose frame_relative_pose = 1;
+}
+
+message SetPoseInParentFrameResponse {}
+
+// Planning problem to update from a given trajectory toward a sequence of
+// waypoints, either in joint space or Cartesian space.
+message UpdateTrajTowardWaypointsProblem {
+  // Current system timed trajectory.
+  SystemTimedTrajectory current_trajectory = 1;
+  // Repeated is not allowed in oneof, so we use a separate field.
+  repeated SystemConf waypoints = 2;
+  // Wayposes.
+  repeated FrameRelativePose wayposes = 3;
+  // Time now.
+  double time_now = 4;
+  // Minimum timing between waypoints. If empty, the planner will
+  // automatically determine the timing using a default heuristic.
+  repeated double suggested_segment_durations = 6;
+  // Search step size for the merge point.
+  double merge_point_search_step_size = 7;
+  // If true, the planner will attempt to time-optimize the trajectory.
+  bool time_optimal = 8;
+  // If provided, waypoints are allowed to move up to this much in the
+  // configuration space to encourage smoother trajectories.
+  optional SystemConf waypoint_wiggle_room = 9;
+}
+
+// Planning problem to resolve a state in violation of the system constraints.
+message OutOfViolationProblem {
+  // L2 distance for clearance in the configuration space. The robot will
+  // configure itself to be at least this far away from the obstacle.
+  double configuration_clearance_norm = 2;
+
+  // The influence distance of the out-of-the-violation optimization.
+  // This is the distance within which the robot will try to resolve
+  // the out-of-the-violation state.
+  // The greater the distance, more collision pairs will be considered
+  // for the optimization, but the more expensive the optimization will be.
+  // The default value is 0.05 meters = 5 cm.
+  double influence_distance = 3;
+
+  // If true, the gradient of the constraint violation is used to move out of
+  // violation. If false, a PRM is used instead. When use_gradient is true,
+  // twist is ignored. Defaults to true at the application layer.
+  optional bool use_gradient = 4;
+
+  // Optional direction in which to move out of violation, expressed as a
+  // Twist. Only used when use_gradient is false.
+  optional Twist twist = 5;
+}
+
+message FixedFramesMotionProblem {
+  // The system configuration.
+  SystemConf system_conf = 1;
+
+  // The source frame.
+  string frame_A = 2;
+
+  // The target frame.
+  string frame_B = 3;
+}
+
+// A twist specifying motion between two frames.
+message Twist {
+  // The reference frame.
+  string frame_A = 1;
+
+  // The target frame.
+  string frame_B = 2;
+
+  // The frame in which twist amounts are specified.
+  string frame_E = 3;
+
+  // Delta in xyz directions (meters).
+  Vector3 delta_xyz = 4;
+
+  // Delta in rpy directions (radians).
+  Vector3 delta_rpy = 5;
+}
+
+// Planning problem for maximum Cartesian acceleration between two frames.
+message MaxCartesianAccelerationProblem {
+  // The twist.
+  Twist twist = 1;
+
+  // Number of cycles.
+  int32 num_cycles = 2;
+}
+
+// Dynamic limits for a planning problem.
+message DynamicLimits {
+  // Joint velocity safety factor.
+  double safety_factor_velocity = 1;
+  // Joint acceleration safety factor.
+  double safety_factor_acceleration = 2;
+  // Joint torque safety factor.
+  double safety_factor_torque = 3;
+  // Map of frames to respective maximum cartesian velocities in m/s.
+  map<string, double> cartesian_velocity_limits = 4;
+}
+
+// A pair of links for which collision options may be specified. These pairs are
+// unordered - the pair (body_1, body_2) is equivalent to (body_2, body_1).
+message CollisionPair {
+  string body_1 = 1;
+  string body_2 = 2;
+}
+
+// A padding value in meters to be applied to a given collision pair.
+message CollisionPadding {
+  CollisionPair pair = 1;
+  double padding = 2;
+}
+
+// Collision options for a planning problem.
+message CollisionOptions {
+  repeated CollisionPadding paddings = 1;
+  repeated CollisionPair filtered_pairs = 2;
+  repeated ShapeInFrame shapes = 3;
+}
+
+// Options controlling the merging of a new trajectory onto an existing one.
+message TrajectoryUpdateOptions {
+  // Search step size for the merge point.
+  double merge_point_search_step_size = 3;
+  // If true, the planner will attempt to time-optimize the resultant
+  // trajectory.
+  bool time_optimal = 4;
+}
+
+// Options which may be used to configure the behavior of the planner on a
+// per-plan basis.
+message PlanOptions {
+  DynamicLimits dynamic_limits = 1;
+  CollisionOptions collision_options = 2;
+  TrajectoryUpdateOptions trajectory_update_options = 3;
+  optional double global_time = 4;
+}
+
+// A position constraint between two frames. See
+// https://drake.mit.edu/doxygen_cxx/classdrake_1_1multibody_1_1_position_constraint.html
+// for details.
+message PositionConstraint {
+  string frame_A = 1;
+  string frame_B = 2;
+  Vector3 p_AQ_lower = 3;
+  Vector3 p_AQ_upper = 4;
+  Vector3 p_BQ = 5;
+}
+
+// An angle constraint between two vectors expressed in two different frames.
+// See
+// https://drake.mit.edu/doxygen_cxx/classdrake_1_1multibody_1_1_angle_between_vectors_constraint.html#aaa11fd69bb834bc3695b005832bee7f8
+// for details.
+message AngleBetweenVectorsConstraint {
+  string frame_A = 1;
+  string frame_B = 2;
+  Vector3 a_A = 3;
+  Vector3 b_B = 4;
+  double angle_lower = 5;
+  double angle_upper = 6;
+}
+
+message GeometricConstraints {
+  repeated PositionConstraint position_constraints = 1;
+  repeated AngleBetweenVectorsConstraint angle_between_vectors_constraints = 2;
+}
+
+// Definition of a given motion plan.
+message MotionProblemDefinition {
+  // Name of the plan.
+  string name = 100;
+  // Start system configuration. Always assumed to be complete.
+  SystemConf start_system_conf = 200;
+  // Optional start trajectory and update options.
+  SystemTimedTrajectory active_trajectory = 201;
+
+  // ID of the planning context.
+  ContextId context_id = 1;
+  // Possible planning problems.
+  oneof problem {
+    UpdateTrajTowardWaypointsProblem update_traj_toward_waypoints_problem = 2;
+    StartToGoalProblem start_to_goal_problem = 3;
+    MultimodalPlanningProblem multimodal_planning_problem = 5;
+    OutOfViolationProblem out_of_violation_problem = 6;
+    CartesianLinearMoveProblem cartesian_linear_move_problem = 7;
+    GlobalIKProblem global_ik_problem = 8;
+    GeneralizedMultimodalPlanningProblem
+        generalized_multimodal_planning_problem = 9;
+    FixedFramesMotionProblem fixed_frames_motion_problem = 10;
+    MaxCartesianAccelerationProblem max_cartesian_acceleration_problem = 11;
+  }
+  // Additional options controlling planner behavior.
+  PlanOptions plan_options = 500;
+}
+
+// Request to solve a planning problem.
+message SolvePlanRequest {
+  // Unique ID for the request.
+  string id = 1;
+  // Definition of the planning problem.
+  MotionProblemDefinition def = 2;
+}
+
+message SolvePlanResponse {
+  string id = 1;
+  MotionPlanResult result = 2;
+}

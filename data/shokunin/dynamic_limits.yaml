@@ -1,0 +1,15 @@
+joint_limits:
+  panda_west:
+    velocity_bound: [2.1750, 2.1750, 2.1750, 2.1750, 2.6100, 2.6100, 2.6100]
+    acceleration_bound: [15, 7.5, 10, 12.5, 15, 20, 20]
+    torque_bound: [87, 87, 87, 87, 12, 12, 12]
+  panda_east:
+    velocity_bound: [2.1750, 2.1750, 2.1750, 2.1750, 2.6100, 2.6100, 2.6100]
+    acceleration_bound: [15, 7.5, 10, 12.5, 15, 20, 20]
+    torque_bound: [87, 87, 87, 87, 12, 12, 12]
+
+cartesian_limits:
+  panda_west__panda_link8:
+    speed_limit: 1.7
+  panda_east__panda_link8:
+    speed_limit: 1.7

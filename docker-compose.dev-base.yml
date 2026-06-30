@@ -1,0 +1,29 @@
+services:
+  _dev_base:
+    build:
+      context: .
+      args:
+        USER_UID: ${USER_UID}
+      target: ps_build
+    image: planning_service-dev-${USER_UID}:latest
+    env_file:
+      - .env
+    user: ${USER_UID}:${USER_UID}
+    volumes:
+      - type: bind
+        source: .
+        target: /root/app
+      - type: bind
+        source: ./data
+        target: /data
+      - type: bind
+        source: ./logs
+        target: /logs
+      - type: bind
+        source: "${HOME}/.cache/bazel"
+        target: /root/.cache/bazel
+      - type: bind
+        source: "${HOME}/.cache/bazelisk"
+        target: /root/.cache/bazelisk
+    cap_add:
+      - SYS_PTRACE

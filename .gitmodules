@@ -1,0 +1,3 @@
+[submodule "external/shokunin_ompl"]
+	path = external/shokunin_ompl
+	url = git@github.com:SonyResearch/shokunin_ompl.git

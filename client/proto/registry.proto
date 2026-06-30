@@ -1,0 +1,122 @@
+syntax = "proto3";
+package proto;
+
+import "proto/basic_types.proto";
+
+service PlanContextRegistry {
+  // Given a unique planning context, return the corresponding hash value which
+  // can be used to access the associated model/planner instance.
+  rpc HandleRegisterPlanContextRequest(RegisterPlanContextRequest)
+      returns (RegisterPlanContextResponse) {}
+  // Remove a planning context and its associated model/planner instance.
+  rpc RemovePlanContext(RemovePlanContextRequest)
+      returns (RemovePlanContextResponse) {}
+  // Register a scene.
+  rpc RegisterScene(RegisterSceneRequest) returns (RegisterSceneResponse) {}
+  // Get the version of the planning service.
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {}
+  // Get summaries of the currently loaded plan contexts; this summary includes
+  // details like the name, as well as the involved robots.
+  rpc GetPlanContextSummaries(GetPlanContextSummariesRequest)
+      returns (GetPlanContextSummariesResponse) {}
+  // Get the status of the planning artifacts for the requested contexts.
+  rpc GetPlanningArtifactStatus(GetPlanningArtifactStatusRequest)
+      returns (GetPlanningArtifactStatusResponse) {}
+  // Migrate planning artifacts from one context to another
+  rpc HandleMigratePlanningArtifactsRequest(MigratePlanningArtifactsRequest)
+      returns (MigratePlanningArtifactsResponse) {}
+}
+
+message RemovePlanContextRequest {
+  // Target system.
+  string system = 1;
+  // The context to be removed.
+  PlanContextId context_id = 2;
+}
+
+message RemovePlanContextResponse {}
+
+// Request to get the version of the planning service.
+message GetVersionRequest {}
+
+// Response which contains the version of the planning service.
+message GetVersionResponse {
+  string version = 1;
+}
+
+// Request to compute a unique hash-based identifier for a target planning
+// context.
+message RegisterPlanContextRequest {
+  // The target system.
+  string system = 1;
+  // The target context.
+  PlanContext context = 2;
+}
+
+// Response which contains the resultant unique ID for the provided planning
+// context.
+message RegisterPlanContextResponse {
+  // unique hash-based identifier
+  PlanContextId context_id = 1;
+}
+
+message GetPlanContextSummariesRequest {
+  // Target system.
+  string system = 1;
+}
+
+message GetPlanContextSummariesResponse {
+  repeated PlanContextSummary summaries = 1;
+}
+
+message GetPlanningArtifactStatusRequest {
+  // Target system
+  string system = 1;
+  // The context for which the artifacts belong
+  repeated PlanContextId context_ids = 2;
+  uint32 num_samples = 3;
+}
+
+message GetPlanningArtifactStatusResponse {
+  // the planning artifacts
+  map<uint64, PlanningArtifactStatus> artifacts_status_map = 1;
+}
+
+// Request to compute a unique hash-based identifier for a target planning
+// context.
+message RegisterSceneRequest {
+  // The target system.
+  string system = 1;
+  // Scene.
+  Scene scene = 2;
+  // Constraints (optional).
+  ConstraintsSet constraints = 3;
+}
+
+// Response which contains the resultant unique ID for the provided planning
+// context.
+message RegisterSceneResponse {
+  // unique hash-based identifier
+  PlanContextId id = 1;
+}
+
+// Migrate planning artifacts from one context to another
+message MigratePlanningArtifactsRequest {
+  // ID of the request. Used to track job status.
+  string id = 1;
+  // source context from which the planning artifacts will be migrated
+  PlanContextId from_context_id = 2;
+  // context to which the planning artifacts will be migrated
+  PlanContextId to_context_id = 3;
+  // number of samples used to repair IRIS regions
+  int32 num_samples = 4;
+  // flag that determines if we only copy artifacts, or repair them after copy
+  // as well (slower)
+  bool repair_artifacts = 5;
+}
+
+// Migrate planning artifacts Response
+message MigratePlanningArtifactsResponse {
+  string id = 1;
+  string msg = 2;
+}

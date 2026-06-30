@@ -1,0 +1,39 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "path_math",
+    srcs = ["path_math.cc"],
+    hdrs = ["path_math.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//planning_service/common:logging"],
+)
+
+cc_library(
+    name = "cubic_trajectory",
+    srcs = ["cubic_trajectory.cc"],
+    hdrs = ["cubic_trajectory.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//planning_service/common:logging"],
+)
+
+# Tests
+
+cc_test(
+    name = "test_path_math",
+    timeout = "short",
+    srcs = ["tests/test_path_math.cc"],
+    deps = [
+        ":path_math",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_cubic_trajectory",
+    timeout = "short",
+    srcs = ["tests/test_cubic_trajectory.cc"],
+    deps = [
+        ":cubic_trajectory",
+        "@googletest//:gtest_main",
+    ],
+)

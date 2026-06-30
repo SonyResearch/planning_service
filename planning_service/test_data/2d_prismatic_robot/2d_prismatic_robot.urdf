@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot name="two_joint_prismatic_robot">
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+       <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="joint1" type="prismatic">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <axis xyz="0 1 0"/> 
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <limit effort="10" lower="-7.0" upper="7.0" velocity="2.1750"/>
+  </joint>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="joint2" type="prismatic">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="1 0 0"/> 
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <limit effort="10" lower="-7.0" upper="7.0" velocity="2.1750"/>
+  </joint>
+
+  <link name="link2">
+    <collision>
+      <geometry>
+        <box size="0.2 0.2 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  
+  <!-- <joint name="joint2" type="prismatic">
+    <parent link="link1"/>
+    <child link="link1"/>
+    <axis xyz="1 0 0"/> 
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.22"/>
+    <limit effort="10" lower="-7.0" upper="7.0" velocity="2.1750"/>
+  </joint> -->
+
+</robot>

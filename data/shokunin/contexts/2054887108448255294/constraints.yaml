@@ -1,0 +1,29 @@
+plan_name: default
+collision_checker:
+  paddings:
+    - pair: [panda_west_gripper, plate1]
+      distance: 0.05
+    - pair: [panda_west_gripper, workstation]
+      distance: 0.05
+    - pair: [panda_west_gripper, tweezer_holder]
+      distance: 0.05
+    - pair: [panda_west_gripper, spoon_puree_holder]
+      distance: 0.05
+    - pair: [panda_west_gripper, spoon_sauce_holder]
+      distance: 0.05
+    - pair: [bottle_green_sauce_holder, panda_west_gripper]
+      distance: 0.05
+    - pair: [bottle_miso_sauce_holder, panda_west_gripper]
+      distance: 0.05
+    - pair: [bottle_brown_sauce_holder, panda_west_gripper]
+      distance: 0.05
+    - pair: [panda_west_gripper, spatula_holder]
+      distance: 0.05
+    - pair: [panda_west_gripper, scraper_holder]
+      distance: 0.05
+    - pair: [panda_west_gripper, tray_small]
+      distance: 0.05
+    - pair: [panda_west_gripper, tray_large]
+      distance: 0.05
+    - pair: [panda_east_gripper, panda_west_gripper]
+      distance: 0.08

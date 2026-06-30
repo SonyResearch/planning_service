@@ -1,0 +1,13 @@
+# Frames exercised by the visualizer system tests.
+# Every source frame is tested against every target frame.
+# Drake model instances are: a, b (two lifty arms), env.
+source_frames:
+  - world
+  - a::base_link
+  - b::base_link
+
+target_frames:
+  - a::stamp
+  - b::stamp
+  - a::piston
+  - b::piston
