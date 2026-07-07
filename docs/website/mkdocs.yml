@@ -1,16 +1,14 @@
 site_name: Planning Service
+use_directory_urls: false
 nav:
-  - Home: index.md
-  - Introduction: introduction.md
-  - Research: blog/multiarm_async/index.md
+  - Research: index.md
+  - Getting Started: introduction.md
+  - API: api.md
 
 theme:
   name: null
   locale: en
   custom_dir: 'sony_theme/'
-
-  static_templates:
-    - 404.html
 
   include_search_page: false
   search_index_only: false
