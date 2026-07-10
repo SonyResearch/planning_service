@@ -1,8 +1,5 @@
 # Config options for 'mkdocs' theme
 
-static_templates:
-  - 404.html
-
 locale: en
 
 include_search_page: false
