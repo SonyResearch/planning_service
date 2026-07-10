@@ -1,0 +1,55 @@
+/* Optional blog styling. Layered on top of doxygen's stylesheet via
+   HTML_EXTRA_STYLESHEET so it inherits the site's fonts/colors.
+   Everything here is scoped to blog classes so it cannot affect API docs. */
+
+.blog-meta {
+  font-size: 90%;
+  color: #555;
+  margin: 0.5em 0 1.5em 0;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.blog-figure {
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+.blog-figure video,
+.blog-figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  background: #000;
+}
+
+.blog-figure img {
+  background: transparent;
+}
+
+.blog-figure figcaption {
+  font-size: 88%;
+  color: #555;
+  margin-top: 0.5em;
+  line-height: 1.4;
+}
+
+/* Side-by-side videos that stack on narrow screens */
+.blog-video-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+}
+
+.blog-video-row .blog-figure {
+  flex: 1 1 320px;
+  margin: 0.5em 0;
+}
+
+.blog-table {
+  width: 720px;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}

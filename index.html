@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/planning_logo.png.">
+        <title>Planning Service</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link href="blog/blog.css" rel="stylesheet"> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Planning Service</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link active" aria-current="page">Research</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="introduction.html" class="nav-link">Getting Started</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="api.html" class="nav-link">API</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="introduction.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#multi-arm-asynchronous-motion-planning-for-manipulation-tasks" class="nav-link">Multi-Arm Asynchronous Motion Planning for Manipulation Tasks</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#tldr" class="nav-link">TL;DR</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#abstract" class="nav-link">Abstract</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#the-problem" class="nav-link">The Problem</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#approach" class="nav-link">Approach</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#the-platform-dual-arm-food-plating" class="nav-link">The Platform: Dual-Arm Food Plating</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#experiments-results" class="nav-link">Experiments &amp; Results</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#citation" class="nav-link">Citation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!--
+  Notes for whoever edits this next:
+   - Raw <video>/<figure> HTML works natively here (no \htmlonly needed).
+   - Media in blog/multiarm_async/blog_media/ is copied to the built site automatically by MkDocs.
+   - This theme has no fenced-code extension, so the BibTeX block below is an
+     indented (4-space) code block on purpose -- keep it indented.
+-->
+
+<h1 id="multi-arm-asynchronous-motion-planning-for-manipulation-tasks">Multi-Arm Asynchronous Motion Planning for Manipulation Tasks<a class="headerlink" href="#multi-arm-asynchronous-motion-planning-for-manipulation-tasks" title="Permanent link"></a></h1>
+<div class="blog-meta">
+  <strong>Authors:</strong> Sadra Sadraddini, Ramy Yammine, David Bambrick, Robert Truax, Jackie Videira, Alan Zhou, Bob El-Masri, Brian Krieger, Rana Odabas, Brook Stevens, and Peter Stone &nbsp;&middot;&nbsp;
+  <strong>Date:</strong> June 2026 &nbsp;&middot;&nbsp;
+  <strong>Paper:</strong> <span style="color:#888">preprint coming soon</span> &nbsp;&middot;&nbsp;
+  <strong>Code:</strong> <a href="https://github.com/SonyResearch/planning_service">GitHub</a>
+</div>
+
+<div class="toc">
+<ul>
+<li><a href="#multi-arm-asynchronous-motion-planning-for-manipulation-tasks">Multi-Arm Asynchronous Motion Planning for Manipulation Tasks</a><ul>
+<li><a href="#tldr">TL;DR</a></li>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#the-problem">The Problem</a></li>
+<li><a href="#approach">Approach</a></li>
+<li><a href="#the-platform-dual-arm-food-plating">The Platform: Dual-Arm Food Plating</a></li>
+<li><a href="#experiments-results">Experiments &amp; Results</a><ul>
+<li><a href="#quantitative-results-of-making-the-river-plate">Quantitative results of making the River Plate</a></li>
+<li><a href="#qualitative-results">Qualitative results</a></li>
+</ul>
+</li>
+<li><a href="#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link"></a></h2>
+<p>We plan coordinated motions for multi-arm robots that operate <strong>asynchronously</strong>:
+each arm can replan <em>while it is still moving</em> — individually or as a group —
+instead of waiting for the others. To produce high-quality motions in the
+high-dimensional configuration spaces these systems live in, we pair
+sampling-based planning with trajectory optimization over <strong>Graphs of Convex
+Sets (GCS)</strong> that are built from prior planning experience and continuously
+refined as the system plans more. On a dual-arm <strong>food-plating</strong> system, this
+yields substantially higher-quality coordinated trajectories than classical
+sampling-based planners, and running the arms asynchronously significantly
+increases throughput by 34.47%.</p>
+<figure class="blog-figure">
+  <iframe
+    width="720"
+    height="405"
+    src="https://www.youtube.com/embed/srIV65WXbHo"
+    title="Unedited end-to-end plating shoot, with both arms operating asynchronously (shown at 4x speed)."
+    frameborder="0"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+</iframe>
+  <figcaption><strong>Figure 1.</strong> Unedited end-to-end plating shoot, with
+  both arms operating asynchronously (shown at 4&times; speed).</figcaption>
+</figure>
+
+<figure class="blog-figure">
+<iframe
+    width="720"
+    height="405"
+    src="https://www.youtube.com/embed/tPLqhaog5sk"
+    title="Plating edited from multiple shoots using two different robots highlighting the robot motions"
+    frameborder="0"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+</iframe>
+  <figcaption><strong>Figure 2.</strong> Plating edited from multiple shoots using two different robots highlighting robot motions (film credit: Kaiden Stevens).</figcaption>
+</figure>
+
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link"></a></h2>
+<blockquote>
+<p>Multi-arm robotic systems enable coordinated manipulation and parallel task execution, offering substantial gains in capability and throughput relative to single-arm robots. Realizing these benefits, however, requires motion planning in high-dimensional configuration spaces while coordinating asynchronous and heterogeneous robot behaviors. We present a whole-system approach that captures both local and global motion requirements, supports coordinating multiple arms asynchronously, and enables all or a subset of arms to replan while in motion. To generate high-quality motions in high-dimensional spaces, we combine sampling-based methods with trajectory optimization over Graphs of Convex Sets (GCS) that are constructed from prior planning experience and are continuously refined to improve future planning performance. We demonstrate the approach on a dual-arm food-plating platform that combines expressive learned manipulation skills with fast, reliable transit motions. Experiments show that the proposed GCS-based planner generates substantially higher-quality coordinated trajectories than classical sampling-based methods and that asynchronous operation significantly improves throughput compared to sequentially moving arms.</p>
+</blockquote>
+<h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link"></a></h2>
+<p>Multiple arms sharing a workspace can manipulate cooperatively and execute tasks
+in parallel — more capability, more throughput. The cost of those benefits is the
+planning problem underneath:</p>
+<ul>
+<li><strong>High-dimensional configuration spaces.</strong> Every added arm enlarges the joint
+  space the planner must search, and coordinated tasks couple the arms so they
+  cannot simply be planned in isolation.</li>
+<li><strong>Asynchronous, heterogeneous behaviors.</strong> Arms run different skills on
+  different timelines. A planner that forces them onto a single shared clock
+  wastes time waiting on the slowest arm; letting them run freely instead means
+  each arm is a <em>moving obstacle</em> to the others and must plan against information
+  that is constantly going stale.</li>
+<li><strong>Replanning in motion.</strong> Useful systems need to adapt mid-task — ideally
+  letting any arm, or a subset, replan without stopping the whole cell.</li>
+</ul>
+<h2 id="approach">Approach<a class="headerlink" href="#approach" title="Permanent link"></a></h2>
+<p>We take a <strong>whole-system</strong> view of planning: rather than treating each arm in
+isolation, the formulation captures both <strong>local</strong> motion requirements (each
+arm's own constraints and skills) and <strong>global</strong> ones (how the arms must
+coordinate). On top of that, the planner supports asynchronous coordination and
+lets all — or just a subset of — arms replan while in motion.</p>
+<p>The core of the method generates high-quality motions in high-dimensional spaces
+by combining two ingredients:</p>
+<ol>
+<li><strong>Sampling-based exploration</strong> to discover feasible motion in the
+   high-dimensional configuration space.</li>
+<li><strong>Trajectory optimization over Graphs of Convex Sets (GCS).</strong> The GCS is
+   <strong>constructed from prior planning experience</strong> and <strong>continuously refined</strong> as
+   the system plans, so planning quality and speed improve over time rather than
+   starting from scratch on every query.</li>
+<li><strong>Asynchronous coordination.</strong> Arms commit to and execute motions on their own
+   timelines, with replanning available to any arm or subset mid-task — which is
+   what turns the planner's quality into end-to-end throughput.</li>
+</ol>
+<blockquote>
+<p><strong>Key insight.</strong> Reusing and continuously refining planning experience as a
+Graph of Convex Sets lets us optimize <em>high-quality</em> coordinated trajectories
+in spaces where sampling alone struggles — and decoupling the arms
+asynchronously converts that trajectory quality into real throughput gains.</p>
+</blockquote>
+<!-- TODO: add pipeline diagram, then uncomment this figure.
+<figure class="blog-figure">
+  <img src="blog/multiarm_async/blog_media/architecture.png" alt="Planner pipeline" width="720">
+  <figcaption><strong>Figure 2.</strong> Pipeline: sampling-based exploration
+  feeds trajectory optimization over a Graph of Convex Sets that is built from,
+  and refined by, past planning experience.</figcaption>
+</figure>
+-->
+
+<h2 id="the-platform-dual-arm-food-plating">The Platform: Dual-Arm Food Plating<a class="headerlink" href="#the-platform-dual-arm-food-plating" title="Permanent link"></a></h2>
+<p>We demonstrate the approach on a <strong>dual-arm food-plating</strong> platform that combines
+<strong>expressive learned manipulation skills</strong> (the dexterous plating motions) with
+<strong>fast, reliable transit motions</strong> (moving between stations).
+We present a dual-arm robotic system with the ultimate target of plating a Michelin-three-star
+quality dish. The execution speed is critical as the food quality is highly time-sensitive. For example, cooked salmon needs to be plated and served within minutes to preserve its temperature, taste and texture quality.
+Additionally, some ingredients require specialized tools that must
+be picked up from a holder before use and returned afterward. The plate, tool holders, and
+nearby manipulation zones form a densely shared workspace in which independent runs from arms can
+collide with one another, requiring a sophisticated motion planner that can replan quickly while
+avoiding collision.</p>
+<h2 id="experiments-results">Experiments &amp; Results<a class="headerlink" href="#experiments-results" title="Permanent link"></a></h2>
+<h3 id="quantitative-results-of-making-the-river-plate">Quantitative results of making the River Plate<a class="headerlink" href="#quantitative-results-of-making-the-river-plate" title="Permanent link"></a></h3>
+<table cellspacing="0" cellpadding="6" class="blog-table">
+  <thead>
+    <tr>
+      <th style="text-align:left;">Metric</th>
+      <th>GCS on</th>
+      <th>GCS off</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#f2f2f2;">
+      <td style="text-align:left;">Mean runtime (sync)</td>
+      <td>158.15 s</td>
+      <td>183.87 s</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">Mean runtime (async)</td>
+      <td>109.13 s</td>
+      <td>125.47 s</td>
+    </tr>
+    <tr style="background-color:#f2f2f2;">
+      <td style="text-align:left;">Mean reduction (sync - async)</td>
+      <td>49.02 s</td>
+      <td>57.92 s</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">Overall speedup</td>
+      <td>31.00%</td>
+      <td>31.53%</td>
+    </tr>
+    <tr style="background-color:#f2f2f2;">
+      <td style="text-align:left;">Median paired speedup</td>
+      <td>35.17%</td>
+      <td>32.86%</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">P10 paired speedup</td>
+      <td>23.52%</td>
+      <td>26.01%</td>
+    </tr>
+    <tr style="background-color:#f2f2f2;">
+      <td style="text-align:left;">P90 paired speedup</td>
+      <td>37.40%</td>
+      <td>35.60%</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">Async faster (paired trials)</td>
+      <td>100% (45/45)</td>
+      <td>100% (40/40)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Above Table</em> Sync vs. async timing in simulation-only benchmarking (no real hardware or
+vision; task planning and motion time only), comparing planner configurations with
+GCS planning enabled (on) versus solely sample-based planning (GCS off). The
+GCS-on run used all successful trials (45 paired comparisons). The GCS-off planning
+run reflects the updated filtered benchmark set (40 paired comparisons). Overall
+speedup is computed as 1 − <em>μasync/μsync</em>.</p>
+<h3 id="qualitative-results">Qualitative results<a class="headerlink" href="#qualitative-results" title="Permanent link"></a></h3>
+<p>Synchronous vs. asynchronous operation (plating the diced veggies), side by side:</p>
+<div class="blog-video-row">
+  <figure class="blog-figure">
+    <video controls width="352" preload="metadata"
+           poster="blog/multiarm_async/blog_media/veggies_sync_poster.png">
+      <source src="blog/multiarm_async/blog_media/veggies_sync.mp4" type="video/mp4">
+      <a href="blog/multiarm_async/blog_media/veggies_sync.mp4">Download.</a>
+    </video>
+    <figcaption><strong>(a)</strong> Synchronous operation: arms wait on each
+    other between steps.</figcaption>
+  </figure>
+  <figure class="blog-figure">
+    <video controls width="352" preload="metadata"
+           poster="blog/multiarm_async/blog_media/veggies_async_poster.png">
+      <source src="blog/multiarm_async/blog_media/veggies_async.mp4" type="video/mp4">
+      <a href="blog/multiarm_async/blog_media/veggies_async.mp4">Download.</a>
+    </video>
+    <figcaption><strong>(b)</strong> Asynchronous operation: arms replan in
+    motion and overlap their work.</figcaption>
+  </figure>
+</div>
+
+<!-- ## Discussion & Limitations
+
+PLACEHOLDER -->
+
+<h2 id="citation">Citation<a class="headerlink" href="#citation" title="Permanent link"></a></h2>
+<p>The paper is not published yet. Until it is, a preprint citation (this is an
+indented code block — keep the 4-space indent so it renders without a fenced-code
+extension):</p>
+<pre><code>@unpublished{yourkey2026multiarm,
+  title  = {Multi-Arm Asynchronous Motion Planning for Manipulation Tasks},
+  author = {Sadra Sadraddini, Ramy Yammine, David Bambrick, Robert Truax, Jackie Videira, Alan Zhou, Bob El-Masri, Brian Krieger, Rana Odabas, Brook Stevens, and Peter Stone},
+  note   = {Preprint. Under review},
+  year   = {2026}
+}
+</code></pre>
+<p>When it appears, switch to the published <code>@inproceedings{...}</code> form with the
+<code>booktitle</code> and <code>year</code>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation partially built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-07-10 19:38:33.096978+00:00
+-->

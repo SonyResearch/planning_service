@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/planning_logo.png.">
+        <title>Getting Started - Planning Service</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link href="blog/blog.css" rel="stylesheet"> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Planning Service</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link">Research</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="introduction.html" class="nav-link active" aria-current="page">Getting Started</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="api.html" class="nav-link">API</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="index.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="api.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#planningservice-api" class="nav-link">PlanningService API</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#supported-functions" class="nav-link">Supported Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#developing" class="nav-link">Developing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="planningservice-api">PlanningService API<a class="headerlink" href="#planningservice-api" title="Permanent link"></a></h1>
+<p>The robot uses a cd to solve for motion plans which satisfy constraints. This <code>PlanningService</code> consists of an <code>app</code> which:
+- runs a loop that has a <code>comms</code> layer listening for messages and publishing to the <code>client</code> which provides an abstraction to many different communication paradigms (lcm, ROS, Viam)
+- a <code>planner</code> that tranlates the <code>PlanningProblemDefinition</code> into a set of <code>drake::Constraints</code> and solves the planning problem
+- a <code>data</code> layer which stores pre-computed information to reduce planning times, and periodically makes insertions into the database to improve performance
+- a <code>client</code> interface which inherits from the same <code>comms</code> library used by the <code>comms</code> layer and allows other code to use the service.</p>
+<p>It is also possible to directly instantiate a <code>planner</code> in c++ code and not make use of the services architecture.</p>
+<p>The user transmits a <code>robot_description</code> (either URDF or SDF), a <code>PlanningProblemDefinition</code> which consists of a <code>start</code>, a <code>goal</code>, and a set of rules for creating a set of <code>drake::Constraints</code> via the <code>communication_layer</code> which then populates a c++ struct and calls the planner. The <code>PlanningResult</code> is serialized by the <code>communication_layer</code> and transmitted back to the caller.</p>
+<pre><code class="language-mermaid">  graph LR;
+    A[client] -- Serialize --&gt; B[comms];
+    B -- c++ api --&gt; C[planner];
+    C --&gt; B;
+    B -- Serialize --&gt; A;
+</code></pre>
+<h2 id="supported-functions">Supported Functions<a class="headerlink" href="#supported-functions" title="Permanent link"></a></h2>
+<p>We support two different methods for finding a motion plan. Either arbitrary motion is allowed along as it satisfies constraints, or we require the specific motion of a frame and solve via IK.</p>
+<pre><code class="language-c++">// these are really the same
+FindMotionPlan();
+CreateActionPart();
+ConstrainedMotionPlan();
+</code></pre>
+<pre><code class="language-c++">FindLinearMotionPlan();
+IkMotionPlan();
+InverseKinematicsMotionPlan();
+LinearMotionPlan();
+FrameConstrainedToFunctionMotionPlan();
+</code></pre>
+<h2 id="developing">Developing<a class="headerlink" href="#developing" title="Permanent link"></a></h2>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link"></a></h3>
+<p>docker and the docker compose plugin for docker</p>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h3>
+<p>The planning service is built with bazel inside a docker image.
+There are two ways to run it
+1. <code>bazelw</code> is an included wrapper that will run all of the bazel commands inside the image with appropriate mount points and configuration for a development setup. This is easiest to get setup.
+2. <code>dazel</code> we are experimenting with dazel. To run with dazel clone https://github.com/nadirizr/dazel to your local system and install the dazel script somewhere on your local path, e.g. on linux:</p>
+<pre><code>cd $HOME
+git clone git@github.com:nadirizr/dazel.git
+cd dazel
+pip install dazel
+sudo ln -s $HOME/dazel/scripts/dazel /usr/local/bin/dazel
+</code></pre>
+<p>Dazel may be configured with the .dazelrc file.</p>
+<h3 id="common-tasks">Common Tasks<a class="headerlink" href="#common-tasks" title="Permanent link"></a></h3>
+<p><code>./run_unit_tests.sh</code> to build and test your changes
+<code>docker compose build</code> to rebuild the image in case you have made Dockerfile changes</p>
+<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link"></a></h3>
+<p><code>./scripts/generate_docs.sh</code> to build and view doxygen-style documentation.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation partially built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

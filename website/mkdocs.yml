@@ -1,0 +1,40 @@
+site_name: Planning Service
+use_directory_urls: false
+nav:
+  - Research: index.md
+  - Getting Started: introduction.md
+  - API: api.md
+
+theme:
+  name: null
+  locale: en
+  custom_dir: 'sony_theme/'
+
+  include_search_page: false
+  search_index_only: false
+
+  highlightjs: true
+  hljs_languages: []
+  hljs_style: github
+  hljs_style_dark: github-dark
+
+  navigation_depth: 2
+  nav_style: primary
+  color_mode: light
+  user_color_mode_toggle: false
+
+  shortcuts:
+    help: 191    # ?
+    next: 78     # n
+    previous: 80 # p
+    search: 83   # s
+
+extra_css:
+  - 'blog/blog.css'
+
+markdown_extensions:
+  - toc:
+      permalink: 
+  - attr_list
+  - def_list
+  - tables
